@@ -1,6 +1,10 @@
 @font-face { font-family: Abel; src: url('fonts/Abel.ttf'); }
+* {
+    -webkit-text-size-adjust: none;
+}
 
 body {
+  background-image: url("../img/triangleBackground2.png");
   font-family: Abel, sans-serif;
 }
 
@@ -8,11 +12,30 @@ body {
   background-color: black;
   color: white;
   text-align: center;
-  padding: 10px;
 }
 
-ul {
-  font-size: 20px;
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 5em;
+}
+
+p {
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+
+/*Navigation Bar*/
+nav {
+  text-align: center;
+  border: 1px solid #dddddd;
+  margin-top: 10px;
+}
+
+nav ul {
+  font-size: 2em;
+  list-style: none;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -20,23 +43,28 @@ ul {
   background-color: #dddddd;
 }
 
-li {
-  float: left;
+nav ul li {
+  display: inline-block;
+  padding: 10px 15px;
 }
 
-li a {
-   display: block;
+nav ul li a {
    color: black;
-   text-align: center;
-   padding: 14px 16px;
+   padding: 15px 20px;
    text-decoration: none;
 }
 
-li a:hover:not(.active) {
-  background-color: #111;
+nav ul li a:hover:not(.active) {
+  background-color: #333;
+  color: white;
 }
 
 .active {
   background-color: #333;
   color: white;
+}
+
+::selection {
+  /*background: #ffb7b7;*/
+  background: rgba(115, 70, 70, 0.79);
 }
