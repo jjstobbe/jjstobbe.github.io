@@ -1,0 +1,186 @@
+@font-face { font-family: Abel; src: url('fonts/Abel.ttf'); }
+
+@font-face { font-family: 'weather';
+              src: url('../fonts/artill_clean_icons.otf');
+              font-weight: normal;
+              font-style: normal;}
+
+
+
+* {
+    -webkit-text-size-adjust: none;
+}
+
+body {
+  background-image: url("../img/triangleBackground2.png");
+  font-family: Abel;
+}
+
+#Quote {
+  font-size: 15px;
+}
+
+#header {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 5em;
+}
+
+h3 {
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+
+p {
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+
+#weather {
+  width: 500px;
+  margin: 0px auto;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+i {
+  color: #fff;
+  font-family: weather;
+  font-size: 170px;
+  font-weight: normal;
+  font-style: normal;
+  text-transform: none;
+
+  /*Moves it up a bit*/
+  line-height: 0.2;
+  position: relative;
+  bottom: 20px;
+}
+
+/*Huge list of all weather icons!*/
+.weathericon-0:before { content: ":"; }
+.weathericon-1:before { content: "p"; }
+.weathericon-2:before { content: "S"; }
+.weathericon-3:before { content: "Q"; }
+.weathericon-4:before { content: "S"; }
+.weathericon-5:before { content: "W"; }
+.weathericon-6:before { content: "W"; }
+.weathericon-7:before { content: "W"; }
+.weathericon-8:before { content: "W"; }
+.weathericon-9:before { content: "I"; }
+.weathericon-10:before { content: "W"; }
+.weathericon-11:before { content: "I"; }
+.weathericon-12:before { content: "I"; }
+.weathericon-13:before { content: "I"; }
+.weathericon-14:before { content: "I"; }
+.weathericon-15:before { content: "W"; }
+.weathericon-16:before { content: "I"; }
+.weathericon-17:before { content: "W"; }
+.weathericon-18:before { content: "U"; }
+.weathericon-19:before { content: "Z"; }
+.weathericon-20:before { content: "Z"; }
+.weathericon-21:before { content: "Z"; }
+.weathericon-22:before { content: "Z"; }
+.weathericon-23:before { content: "Z"; }
+.weathericon-24:before { content: "E"; }
+.weathericon-25:before { content: "E"; }
+.weathericon-26:before { content: "3"; }
+.weathericon-27:before { content: "a"; }
+.weathericon-28:before { content: "A"; }
+.weathericon-29:before { content: "a"; }
+.weathericon-30:before { content: "A"; }
+.weathericon-31:before { content: "6"; }
+.weathericon-32:before { content: "1"; }
+.weathericon-33:before { content: "6"; }
+.weathericon-34:before { content: "1"; }
+.weathericon-35:before { content: "W"; }
+.weathericon-36:before { content: "1"; }
+.weathericon-37:before { content: "S"; }
+.weathericon-38:before { content: "S"; }
+.weathericon-39:before { content: "S"; }
+.weathericon-40:before { content: "M"; }
+.weathericon-41:before { content: "W"; }
+.weathericon-42:before { content: "I"; }
+.weathericon-43:before { content: "W"; }
+.weathericon-44:before { content: "a"; }
+.weathericon-45:before { content: "S"; }
+.weathericon-46:before { content: "U"; }
+.weathericon-47:before { content: "S"; }
+
+#weather h2 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 100px;
+  font-weight: 300;
+  text-align: center;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+#weather ul {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+#weather li {
+  background: #fff;
+  background: rgba(255,255,255,0.90);
+  padding: 15px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+#weather .currently {
+  margin: 0 20px;
+}
+
+/*Navigation Bar*/
+nav {
+  text-align: center;
+  border: 1px solid #dddddd;
+  margin-top: 10px;
+}
+
+nav ul {
+  font-size: 2em;
+  list-style: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #dddddd;
+}
+
+nav ul li {
+  display: inline-block;
+  padding: 10px 15px;
+}
+
+nav ul li a {
+   color: black;
+   padding: 15px 20px;
+   text-decoration: none;
+}
+
+nav ul li a:hover:not(.active) {
+  background-color: #333;
+  color: white;
+}
+
+.active {
+  background-color: #333;
+  color: white;
+}
+
+::selection {
+  /*background: #ffb7b7;*/
+  background: rgba(115, 70, 70, 0.79);
+}
