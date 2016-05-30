@@ -124,6 +124,12 @@ nav ul li {
   margin: 10px;
 }
 
+nav ul li:first-child {
+   float: left;
+   color: #dfdfdf;
+   text-decoration: none;
+}
+
 nav ul li a {
    color: #dfdfdf;
    margin: 20px;

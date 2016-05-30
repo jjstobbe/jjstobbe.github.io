@@ -250,6 +250,12 @@ nav ul li a {
    text-decoration: none;
 }
 
+nav ul li:first-child {
+   float: left;
+   color: #dfdfdf;
+   text-decoration: none;
+}
+
 nav ul li a:hover:not(.active) {
   border-bottom: 2px solid #dfdfdf;
   color: white;
