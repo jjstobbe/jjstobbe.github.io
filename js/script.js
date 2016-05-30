@@ -7,7 +7,7 @@ $(document).ready(function() {
 
   var currentTime = new Date()
   var hours = currentTime.getHours()
-  if(hours > 12){
+  if(hours >= 12){
     $('#Greeting').html('<h1><span>Good afternoon, Jack</span><h1>');
   }else{
     $('#Greeting').html('<h1><span>Good morning, Jack</span><h1>');
