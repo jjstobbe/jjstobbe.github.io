@@ -1,25 +1,38 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <title>Personal Website</title>
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    <head>
+		<title>Homepage</title>
+        <link rel="stylesheet" type="text/css" href="css/homepage.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="weather/jquery.simpleWeather.js"></script>
+        <script type="text/javascript" src="js/load.js"></script>
+	</head>
+	<body>
+        <div id="wrapper">
+            <div id="loading">
+                <img id="loading-image" src="img/Loading2.3.gif"/>
+            </div>
 
-    <div id="Description">
-      <h1>Welcome to my website!</h1>
-      <p>
-        Words and stuff will go here!
-      </p>
-    </div>
-  </body>
+            <!--Navigation Bar!-->
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html" class="active">About</a></li>
+                        <li><a href="experience.html">Experience</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <!--Footer
+            <footer>
+                <ul>
+                    <li><a>Go to top</a></li>
+                </ul>
+            </footer>
+            -->
+        </div>
+	</body>
 </html>

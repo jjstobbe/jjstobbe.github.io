@@ -5,42 +5,49 @@
         <link rel="stylesheet" type="text/css" href="css/homepage.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="weather/jquery.simpleWeather.js"></script>
-        <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
 	</head>
 	<body>
-        <div id="loading">
-            <img id="loading-image" src="Loading2.2.gif"/>
-        </div>
+        <div id="wrapper">
+            <div id="loading">
+                <img id="loading-image" src="img/Loading2.3.gif"/>
+            </div>
 
+            <!--Navigation Bar!-->
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="experience.html">Experience</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div id="Greeting"></div>
+            </header>
 
-        <!--Navigation Bar!-->
-        <header>
-            <nav>
+            <div id="Quote"></div>
+
+            <div id="weather"></div>
+
+            <!--Footer
+            <footer>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="experience.html">Experience</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a>Go to top</a></li>
                 </ul>
-            </nav>
-            <div id="Greeting"></div>
-        </header>
+            </footer>
+            -->
 
-
-
-        <div id="Quote"></div>
-
-        <div id="weather"></div>
-
-        <!--To Do List!
-        <div id="ToDo">
-            <form>
-                I will: <input type="text" name="ToDoList"/>
-            </form>
-            <ul id="ToDoElements"></ul>
-            <div id="ToDoModifiers"></div>
+            <!--To Do List
+            <div id="ToDo">
+                <form>
+                    I will: <input type="text" name="ToDoList"/>
+                </form>
+                <ul id="ToDoElements"></ul>
+                <div id="ToDoModifiers"></div>
+            </div>
+            -->
         </div>
-        -->
 	</body>
 </html>
