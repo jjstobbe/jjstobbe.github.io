@@ -251,6 +251,8 @@ nav ul li a {
 }
 
 nav ul li:first-child {
+   position: absolute;
+   left: 0;
    float: left;
    color: #dfdfdf;
    text-decoration: none;
