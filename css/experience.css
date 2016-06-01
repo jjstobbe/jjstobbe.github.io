@@ -20,6 +20,10 @@ body {
   background-color: #dfdfdf;
 }
 
+hr {
+  margin: 0 auto;
+}
+
 #wrapper{
   min-height: 100%;
   position: relative;
@@ -69,6 +73,12 @@ header {
      background-color: rgb(55, 55, 55);
 }
 
+#Greeting {
+  /*Edits the animation for the zoomIn effect*/
+  -webkit-animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+}
+
 #Greeting h1 {
   text-align: center;
   color: #dfdfdf;
@@ -81,6 +91,52 @@ header {
   border-bottom: 1px solid rgb(118, 148, 116);
 }
 
+#Hexagons ul {
+  display: -webkit-flex;
+  display: flex;
+  /*Centers within the box*/
+  -webkit-justify-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  /*Centers the box in the window*/
+  margin: 20px auto 0 auto;
+  padding: 0;
+  text-align: center;
+  list-style: none;
+  max-width: 800px;
+}
+#Hexagons ul li img {
+  padding: 0px 20px 20px 20px;
+
+  -webkit-transition: transform .3s ease-in-out;
+}
+
+#Hexagons ul li img:hover {
+  -webkit-transform: scale(1.2);
+  -moz-transform:    scale(1.2);
+  -o-transform:      scale(1.2);
+  -ms-transform:     scale(1.2);
+
+
+  -webkit-transition: transform .3s ease-in-out;
+}
+
+#Hexagons span {
+  display: none;
+  font-size: 100px;
+}
+
+#content li {
+  margin-top: 15px;
+  text-align: center;
+  display: none;
+  font-size: 50px;
+}
+
+ul{
+  list-style: none;
+}
 h1 {
   text-align: center;
   color: #15151A;
@@ -116,7 +172,9 @@ nav ul {
   overflow: hidden;
 
   background: transparent;
-  /*background-color: #dddddd;*/
+  /*Edits the animation for the pulse effect*/
+  -webkit-animation-duration: 1s;
+  -webkit-animation-delay: .5s;
 }
 
 nav ul li {

@@ -74,6 +74,12 @@ header {
      background-color: rgb(55, 55, 55);
 }
 
+#Greeting {
+  /*Edits the animation for the zoomIn effect*/
+  -webkit-animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+}
+
 #Greeting h1 {
   text-align: center;
   color: #dfdfdf;
@@ -222,6 +228,9 @@ i {
 nav {
   margin: 0 auto 0 auto;
   text-align: center;
+  /*Edits the animation for the pulse effect*/
+  -webkit-animation-duration: 1s;
+  -webkit-animation-delay: .5s;
 }
 
 nav ul {

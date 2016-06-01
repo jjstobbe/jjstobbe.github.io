@@ -1,18 +1,18 @@
 $(window).load(function() {
      /*Once the page is completely loaded, the loading gif fades in 500ms (1 second)*/
-     $('#loading').fadeOut(1000);
+     $('#loading').fadeOut(500);
 });
 
+/*Prepares the greeting depending on the time of day!*/
 $(document).ready(function() {
-
   var currentTime = new Date()
   var hours = currentTime.getHours()
   if(hours >= 12){
-    $('#Greeting').html('<h1><span>Good afternoon, Jack</span><h1>');
+    $('#Greeting').html('<h1><span>Good afternoon</span><h1>');
   }else{
-    $('#Greeting').html('<h1><span>Good morning, Jack</span><h1>');
+    $('#Greeting').html('<h1><span>Good morning</span><h1>');
   }
-})
+});
 
 /*Weather Settings*/
 $(document).ready(function() {
