@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  height: 2000px;
+  height: 2500px;
   margin: 0;
   padding: 0;
   position: relative;
@@ -133,6 +133,30 @@ header {
   text-align: center;
   display: none;
   font-size: 50px;
+}
+
+#divider1 {
+  background-image: url('../img/TriangleDivider.png');
+  padding:  0;
+  height: 500px;
+  background-position: center;
+  background-repeat: repeat-x;
+  background-size: contain;
+}
+
+#divider1 h1 {
+  text-align: center;
+  color: #dfdfdf;
+}
+
+#divider1 h1 span{
+  font-weight: lighter;
+  position: relative;
+  top: 180px;
+  border-bottom: 1px solid #dfdfdf;
+
+  margin-top: 300px;
+  margin-bottom: 300px;
 }
 
 ul{
