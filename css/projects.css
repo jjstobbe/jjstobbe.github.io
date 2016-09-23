@@ -35,6 +35,7 @@ hr {
 }
 
 .footer, .push {
+  clear: both;
   height: 420px;
 
   width:100%;
@@ -113,7 +114,8 @@ header {
 }
 
 .Project {
-  margin: 0 40px 20px 40px;
+  width: 1300px;
+  margin: 0 auto 20px auto;
 }
 
 #divider1 {
