@@ -34,7 +34,42 @@ hr {
   position: relative;
 }
 
+#WhoAmI {
+  width: 1300px;
+  margin: 0 auto;
+}
+
+#WhoAmI h2{
+  text-align: right;
+  font-size: 2em;
+  padding-top: 30px;
+}
+
+#WhoAmI p{
+  text-align: right;
+  font-size: 1.7em;
+  margin-bottom: 10px;
+}
+
+#Professional {
+  width: 540px;
+  float: left;
+  margin: 0 40px 0 5px;
+}
+
+#Resume {
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+  height: 1080px;
+
+  /* Bottom Margin to move the footer down farther*/
+  margin-bottom: 450px;
+}
+
+
 .footer, .push {
+  clear: both;
   height: 420px;
 
   width:100%;
@@ -237,14 +272,6 @@ nav ul {
 nav ul li {
   display: inline-block;
   margin: 10px;
-}
-
-nav ul li:first-child {
-   position: absolute;
-   left: 0;
-   float: left;
-   color: #dfdfdf;
-   text-decoration: none;
 }
 
 nav ul li a {
