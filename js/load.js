@@ -59,9 +59,9 @@ $(document).ready(function (){
                 $('#content li:nth-child('+($target.index()+9)+')').show();
             }, 500);
 
-            $('#content li:nth-child('+($(this).index()+1)+')').addClass("animated slideInLeft");
+            $('#content li:nth-child('+($(this).index()+1)+')').addClass("animated fadeInLeft");
             $('#content li:nth-child(8)').addClass("animated fadeIn");
-            $('#content li:nth-child('+($(this).index()+9)+')').addClass("animated slideInRight");
+            $('#content li:nth-child('+($(this).index()+9)+')').addClass("animated fadeInRight");
             $('html, body').animate({scrollTop: $("#lower").offset().top}, 2000);
 
             /*If you select a different hexagon while one is currently selected */
@@ -82,10 +82,10 @@ $(document).ready(function (){
             $('#content li:nth-child(8)').removeClass("fadeIn");
             $('#content li:nth-child(8)').addClass("animated fadeOut");
 
-            $('#content li:nth-child('+($current.index()+1)+')').removeClass("slideInLeft");
+            $('#content li:nth-child('+($current.index()+1)+')').removeClass("fadeInLeft");
             $('#content li:nth-child('+($current.index()+1)+')').addClass("animated slideOutRight");
 
-            $('#content li:nth-child('+($current.index()+9)+')').removeClass("slideInRight");
+            $('#content li:nth-child('+($current.index()+9)+')').removeClass("fadeInRight");
             $('#content li:nth-child('+($current.index()+9)+')').addClass("animated slideOutLeft");
 
             /*Sets a delay so that animations complete*/
@@ -104,9 +104,9 @@ $(document).ready(function (){
                 $('#content li:nth-child(8)').show();
                 $('#content li:nth-child('+($target.index()+9)+')').show();
 
-                $('#content li:nth-child('+($target.index()+1)+')').addClass("animated slideInLeft");
+                $('#content li:nth-child('+($target.index()+1)+')').addClass("animated fadeInLeft");
                 $('#content li:nth-child(8)').addClass("animated fadeIn");
-                $('#content li:nth-child('+($target.index()+9)+')').addClass("animated slideInRight");
+                $('#content li:nth-child('+($target.index()+9)+')').addClass("animated fadeInRight");
 
                 /*redfines current to new value*/
                 $current = $target;

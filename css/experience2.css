@@ -14,6 +14,8 @@ html {
 }
 
 body {
+  max-width: 100%;
+  text-align: center;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -144,6 +146,10 @@ header {
   -webkit-transition: transform .3s ease-in-out;
 }
 
+#content {
+  overflow: hidden;
+}
+
 #content li {
   text-align: center;
   display: none;
@@ -176,16 +182,19 @@ header {
 }
 
 #WorkPlaces {
+  display: block;
+  clear: both;
   position: relative;
   margin: 0 auto;
-  max-width:40%;
+  max-width:70%;
   list-style: none;
-  height: 530px;
 }
 #WorkPlaces img{
-  position: absolute;
+  float: left;
+  position: relative;
   width: 200px;
   height: 220px;
+  padding: 0px 50px 40px 0;
 }
 #WorkPlaces p{
   text-align: left;
