@@ -45,6 +45,20 @@ hr {
   background-repeat: repeat-x;
 }
 
+#Minesweeper li {
+  margin-left: 10px;
+  text-align: left;
+  color: #15151A;
+  font-size: 1.4em;
+  margin-bottom: 15px;
+}
+
+
+#Minesweeper span {
+  font-style: italic;
+  font-weight: 600;
+}
+
 li a{
   color: #dfdfdf;
   margin: 20px;
@@ -107,39 +121,10 @@ header {
   border-bottom: 1px solid #dfdfdf;
 }
 
-#content li {
-  text-align: center;
-  display: none;
-  font-size: 50px;
-}
 
 .Project {
   max-width: 80%;
   margin: 0 auto 20px auto;
-}
-
-#divider1 {
-  background-image: url('../img/TriangleDivider.png');
-  padding:  0;
-  height: 500px;
-  background-position: center;
-  background-repeat: repeat-x;
-  background-size: contain;
-}
-
-#divider1 h1 {
-  text-align: center;
-  color: #dfdfdf;
-}
-
-#divider1 h1 span{
-  font-weight: lighter;
-  position: relative;
-  top: 180px;
-  border-bottom: 1px solid #dfdfdf;
-
-  margin-top: 300px;
-  margin-bottom: 300px;
 }
 
 ul{
@@ -158,6 +143,7 @@ h3 {
 }
 
 p {
+  margin-left: 5px;
   text-align: left;
   color: #15151A;
   font-size: 1.7em;

@@ -28,6 +28,13 @@ hr {
   margin: 0 auto;
 }
 
+li a{
+  color: #dfdfdf;
+  margin: 20px;
+  padding: 3px;
+  text-decoration: none;
+}
+
 #wrapper{
   min-height: 100%;
   height: auto !important;
