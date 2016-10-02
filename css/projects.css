@@ -1,6 +1,7 @@
 @font-face { font-family: 'Abel'; src: url('../fonts/Abel-Regular.ttf'); }
 @font-face { font-family: 'Roboto'; src: url('../fonts/Roboto-Light.ttf'); }
 @font-face { font-family: 'Raleway'; src: url('../fonts/Raleway-Thin.ttf'); }
+@font-face { font-family: 'RalewayR'; src: url('../fonts/Raleway-Regular.ttf'); }
 
 
 * {
@@ -62,8 +63,10 @@ img {
 
 
 #Minesweeper span {
+  font-family: RalewayR;
+  color: #000000;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 li a{
@@ -136,9 +139,29 @@ header {
   margin-bottom: 20px;
 }
 
+#Innovation {
+  -webkit-animation-duration: .5s;
+  -webkit-animation-delay: .2s;
+}
+
+#Minesweeper {
+  -webkit-animation-duration: .5s;
+  -webkit-animation-delay: .4s;
+}
+
+#PhotoshopProjects {
+  -webkit-animation-duration: .5s;
+  -webkit-animation-delay: .6s;
+}
+
+.hideme {
+  opacity: 0;
+}
+
 .Project h2 {
   font-size: 2em;
 }
+
 .Project {
   display: block;
   clear: both;
@@ -147,11 +170,13 @@ header {
 }
 
 .Project p:hover {
+  color: #3f3f3f;
   font-weight: bold;
 }
 
 .Project ul:hover {
   font-weight: bold;
+  color: #3f3f3f;
 }
 
 ul{

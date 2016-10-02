@@ -1,6 +1,6 @@
-@font-face { font-family: 'Abel'; src: url('../fonts/Abel-Regular.ttf'); }
-@font-face { font-family: 'Roboto'; src: url('../fonts/Roboto-Light.ttf'); }
+
 @font-face { font-family: 'Raleway'; src: url('../fonts/Raleway-Thin.ttf'); }
+@font-face { font-family: 'RalewayR'; src: url('../fonts/Raleway-Regular.ttf'); }
 
 
 * {
@@ -40,11 +40,16 @@ hr {
 }
 
 #WhoAmI h2{
+  font-family: RalewayR;
+  color: #3f3f3f;
   text-align: center;
   font-size: 3em;
+  margin-bottom: 8px;
 }
 
 #WhoAmI p{
+  font-weight: bold;
+  color: #3f3f3f;
   font-size: 1.7em;
   margin-bottom: 10px;
 }
