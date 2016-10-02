@@ -19,105 +19,34 @@ function isElementInViewport(elem) {
     return ((elemTop < viewportBottom) && (elemBottom > viewportTop));
 }
 
-// Check if it's time to start the animation.
-function checkAnimation() {
-    var $elem = $('#Java');
-    // If the animation has already been started
-    if ($elem.hasClass('animated bounce')) {
-        return;
-    }
+$(document).ready(function() {
+    /* Every time the window is scrolled ... */
+    $(window).scroll( function(){
 
-    if (isElementInViewport($elem)) {
-        // Start the animation
-        $elem.addClass('animated bounce');
-    }
-}
+        /* Check the location of each desired element */
+        $('.hideme').each( function(i){
 
-// Capture scroll events
-$(window).scroll(function(){
-    checkAnimation();
+            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+            /* If the object is completely visible in the window, fade it it */
+            if( bottom_of_window > bottom_of_object ){
+
+                $(this).animate({'opacity':'1'},500);
+
+            }
+
+        });
+
+    });
+
 });
 
-$(document).ready(function (){
-
-    var $current = $('#Hexagons ul li:nth-child(1)');
-    $("#Hexagons ul li").click(function(){
-        var $target = $(this);
-        /*Select a hexagon when no other hexagon is selected*/
-
-        if(!$(this).hasClass("current") && !$('#Hexagons ul li:not(:nth-child('+($target.index()+1)+')').hasClass("notCurrent")){
-            $(this).addClass("current");
-            $current = $(this);
-            $('#Hexagons ul li:not(:nth-child('+($target.index()+1)+')').addClass("notCurrent");
-            /*Adds a delay to the show*/
-            $('#Hexagons ul li:not(:nth-child('+($target.index()+1)+')').animate({opacity: 0.7});
-
-            /*Adds delay for content*/
-            setTimeout(function(){
-                $('#content li:nth-child('+($target.index()+1)+')').show();
-                $('#content li:nth-child(8)').show();
-                $('#content li:nth-child('+($target.index()+9)+')').show();
-            }, 500);
-
-            $('#content li:nth-child('+($(this).index()+1)+')').addClass("animated fadeInLeft");
-            $('#content li:nth-child(8)').addClass("animated fadeIn");
-            $('#content li:nth-child('+($(this).index()+9)+')').addClass("animated fadeInRight");
-            $('html, body').animate({scrollTop: $("#lower").offset().top}, 2000);
-
-            /*If you select a different hexagon while one is currently selected */
-        }else if($(this).hasClass("notCurrent")){
-
-            /*Changes opacity*/
-            $(this).animate({opacity: 1});
-            $current.animate({opacity: 0.7});
-
-
-            /*Changes classes to match the new state*/
-            $current.removeClass("current");
-            $current.addClass("notCurrent");
-            $(this).removeClass("notCurrent");
-            $(this).addClass("current");
-
-            /*Transitions out*/
-            $('#content li:nth-child(8)').removeClass("fadeIn");
-            $('#content li:nth-child(8)').addClass("animated fadeOut");
-
-            $('#content li:nth-child('+($current.index()+1)+')').removeClass("fadeInLeft");
-            $('#content li:nth-child('+($current.index()+1)+')').addClass("animated slideOutRight");
-
-            $('#content li:nth-child('+($current.index()+9)+')').removeClass("fadeInRight");
-            $('#content li:nth-child('+($current.index()+9)+')').addClass("animated slideOutLeft");
-
-            /*Sets a delay so that animations complete*/
-            setTimeout(function(){
-                /*Removes the transition out animations*/
-                $('#content li:nth-child('+($current.index()+1)+')').removeClass("slideOutRight");
-                $('#content li:nth-child(8)').removeClass("fadeOut");
-                $('#content li:nth-child('+($current.index()+9)+')').removeClass("slideOutLeft");
-
-                $('#content li:nth-child('+($current.index()+1)+')').hide();
-                $('#content li:nth-child(8)').hide();
-                $('#content li:nth-child('+($current.index()+9)+')').hide();
-
-                /*Transition in animations*/
-                $('#content li:nth-child('+($target.index()+1)+')').show();
-                $('#content li:nth-child(8)').show();
-                $('#content li:nth-child('+($target.index()+9)+')').show();
-
-                $('#content li:nth-child('+($target.index()+1)+')').addClass("animated fadeInLeft");
-                $('#content li:nth-child(8)').addClass("animated fadeIn");
-                $('#content li:nth-child('+($target.index()+9)+')').addClass("animated fadeInRight");
-
-                /*redfines current to new value*/
-                $current = $target;
-            }, 500);
-
-            /*Transition out animations*/
-
-
-            /*Transition in animations*/
-
-
-        }
-    });
+$(function() {
+  $('.skillL').hover(function() {
+    $(this).parent().siblings("img").css('background-color', 'yellow');
+  }, function() {
+    // on mouseout, reset the background colour
+    $('#b').css('background-color', '');
+  });
 });
