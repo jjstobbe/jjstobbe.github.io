@@ -26,6 +26,13 @@ hr {
   margin: 0 auto;
 }
 
+img {
+  display: inline-block;
+  float: left;
+  margin: 10px;
+  max-width: 150px;
+}
+
 #wrapper{
   min-height: 100%;
   height: auto !important;
@@ -121,10 +128,30 @@ header {
   border-bottom: 1px solid #dfdfdf;
 }
 
+.Divider {
+  background-image: url("../img/HexDivider.png");
+  background-size: 80px 5px;
+  background-repeat: repeat-x;
+  height: 10px;
+  margin-bottom: 20px;
+}
 
+.Project h2 {
+  font-size: 2em;
+}
 .Project {
+  display: block;
+  clear: both;
   max-width: 80%;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 30px auto;
+}
+
+.Project p:hover {
+  font-weight: bold;
+}
+
+.Project ul:hover {
+  font-weight: bold;
 }
 
 ul{
