@@ -52,7 +52,7 @@ function ToDo(id, content, completed, time) {
               notifySuccess("Success", "Task has been added");
           },error: function(data){
               // Redirects if authentication fails
-              window.location.href = "/login.html"
+              window.location.href = "/login"
           }
         });
     };
@@ -71,7 +71,7 @@ function GetToDos(handleData) {
           handleData(data);
       },error: function(data){
           // Redirects if authentication fails
-          window.location.href = "/login.html"
+          window.location.href = "/login"
       }
     });
 }
@@ -85,7 +85,7 @@ function Logout() {
         "Authorization": "Kinvey " + document.cookie.substring(document.cookie.indexOf("=")+1)
       },success: function(data){
           document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-          window.location.href="/login.html";
+          window.location.href="/login";
       }
     });
 }
@@ -132,12 +132,12 @@ function checkEdit(e) {
                       notifySuccess("Success", "Task has been updated");
                   },error: function(data){
                       // Redirects if authentication fails
-                      window.location.href = "/login.html"
+                      window.location.href = "/login"
                   }
                 });
           },error: function(data){
               // Redirects if authentication fails
-              window.location.href = "/login.html"
+              window.location.href = "/login"
           }
         });
     }
@@ -167,7 +167,7 @@ function removeToDo() {
           notifySuccess("Success", "Task Completed");
       },error: function(data){
           // Redirects if authentication fails
-          //window.location.href = "/login.html"
+          window.location.href = "/login.html"
       }
     });
 }

@@ -25,7 +25,7 @@ function Login() {
           console.log(data);
           document.cookie = "authToken="+data._kmd.authtoken;
           notifySuccess("Success", "You are authorized");
-          window.location.href = "/dashboard.html";
+          window.location.href = "/dashboard";
       },error: function(data){
           $("#SpinContainer").hide();
           $("#LoginText").show("slow");
