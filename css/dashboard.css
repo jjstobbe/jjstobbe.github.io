@@ -1,0 +1,15 @@
+#toDoTable_wrapper {
+    padding: 50px 100px 0px 100px;
+}
+
+#textWrapper {
+    padding: 0px 100px;
+}
+
+.pagination, .dataTables_info, td span br {
+    display: none;
+}
+
+.done, .table-striped > tbody > tr:nth-child(odd).done {
+    background-color: #DDDDDD;
+}

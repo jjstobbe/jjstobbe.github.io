@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/login.css"/>
+	</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-notify.min.js"></script>
+    <script type='text/javascript' src='js/custom-notification.js'></script>
+    <script type="text/javascript" src="js/login.js"></script>
+	<body>
+      <div class="container">
+        <label><b>Username</b></label>
+        <input id="username" type="text" placeholder="Enter Username" onKeyPress="return checkSubmit(event)" required>
+
+        <label id="passLabel"><b>Password</b></label>
+        <input id="password" type="password" placeholder="Enter Password" onKeyPress="return checkSubmit(event)" required>
+
+        <button id="login">                  
+            <div id="SpinContainer" class="spinner" style="display: none">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+              <div class="rect5"></div>
+            </div>
+            <span id="LoginText">Login</span>
+        </button>
+      </div>
+
+    </body>
+</html>
