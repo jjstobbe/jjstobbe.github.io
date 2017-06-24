@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 function Login() {
     $("#LoginText").hide();
-    $("#SpinContainer").show();
+    $("#SpinContainer").show("slow");
     
     var object = new Object();
     object.username = $('#username').val();
