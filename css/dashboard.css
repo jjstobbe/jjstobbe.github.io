@@ -13,3 +13,53 @@
 .done, .table-striped > tbody > tr:nth-child(odd).done {
     background-color: #DDDDDD;
 }
+
+#navbarWrapper {
+    max-width: 200px;
+    height: 100%;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: grey;
+    padding: 20px;
+}
+
+#navbarWrapper ul li {
+    width: 100%;
+    clear: both;
+    margin-bottom: 10px;
+    font-size: 18px;
+    list-style: none;
+    color: #DDDDDD;
+    border: 1px solid black;
+    opacity: 0.5;
+    transition: all 0.5s ease;
+}
+
+#navbarWrapper ul li:hover {
+    opacity: 1;
+}
+
+#navbarWrapper ul:first-child {
+    margin-top: 200px;
+}
+
+.fa-times {
+    margin-right: 10px;
+    padding: 4px 5px !important;
+}
+
+.fa {
+    top: 0;
+    border: 1px solid rgba(200,200,200,0.8);
+    padding: 4px;
+    float: right;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    border-radius: 1px;
+}
+
+.fa:hover {
+    border: 1px solid rgba(140,140,140,0.9);
+}

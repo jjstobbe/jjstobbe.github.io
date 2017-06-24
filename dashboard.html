@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href="css/animate.css"/>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="css/dashboard.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
     <script type='text/javascript' src='js/knockout.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -19,7 +20,18 @@
     <script src="//cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.js"></script>
     
 	<body>
-      <table id="toDoTable" class="table table-striped table-bordered" data-bind="with: ToDoListVM">
+      <div id="navbarWrapper" class="col-xs-2 text-center">
+        <ul>
+            <li>Lynda</li>
+            <li>Facebook</li>
+            <li>Stocks</li>
+            <li>Contact</li>
+            <li>YouTube</li>
+        </ul>
+      </div>
+        
+        <div id="TableContainer" class="col-xs-offset-2 col-xs-8">
+      <table id="toDoTable" class="table  table-striped table-bordered col-xs-8" data-bind="with: ToDoListVM">
         <thead>
           <tr>
             <th>Task</th>
@@ -30,7 +42,9 @@
           <tr data-bind="css: { done: Completed }">
             <td><span data-bind="text: Content, attr: { id: Id }" contenteditable="true" onKeyPress="return checkEdit(event)"></span></td>
             <td><span data-bind="text: Time"></span>
-            <button type="button" class="btn btn-default" data-bind="click: removeToDo">X</button></td>
+            <i class="fa fa-check" aria-hidden="true" data-bind="click: finishToDo"></i>
+            <i class="fa fa-times" aria-hidden="true" data-bind="click: deleteToDo"></i>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -38,5 +52,6 @@
         <div id="textWrapper" class="form-group">
           <input type="text" class="form-control" id="textBox" onKeyDown="return checkSubmit(event)">
         </div>
+            </div>
 	</body>
 </html>

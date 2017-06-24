@@ -8,7 +8,7 @@ $(document).ready(function() {
 function ToDoListVM() {
     var self = this;
     
-    self.ToDoList = ko.observableArray();
+    self.ToDoList = ko.observableArray([]);
     
     self.GetToDos = function() {
         self.ToDoList.removeAll();
@@ -18,7 +18,7 @@ function ToDoListVM() {
                 self.ToDoList.push(new ToDo(value._id, value.Content, value.Completed, value.Time));
             });
             
-            $("#toDoTable").DataTable( { "bStateSave": true } );
+            var table = $("#toDoTable").DataTable( { "bStateSave": true, "aaSorting": [] } );
             
             // Hides bottom content of data table
         });
@@ -143,7 +143,7 @@ function checkEdit(e) {
     }
 }
 
-function removeToDo() {
+function finishToDo() {
     var self = this;
     
     var id = self.Id();
@@ -151,8 +151,6 @@ function removeToDo() {
     self.Completed(true);
 
     var dataObject = ko.toJSON(self);
-    console.log(self);
-    console.log(dataObject);
     
     $.ajax
     ({
@@ -167,6 +165,28 @@ function removeToDo() {
           notifySuccess("Success", "Task Completed");
       },error: function(data){
           // Redirects if authentication fails
+          window.location.href = "/login.html"
+      }
+    });
+}
+
+function deleteToDo() {    
+    var self = this;
+    
+    var id = self.Id();
+    
+    $.ajax
+    ({
+      type: "DELETE",
+      url: "https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/"+id,
+      contentType: 'application/json; charset=utf-8',
+      headers: {
+        "Authorization": "Kinvey " + document.cookie.substring(document.cookie.indexOf("=")+1),
+          "X-Kinvey-API-Version": "3"
+      },success: function(data){
+          location.reload();
+      },error: function(data){
+          //console.log("failed");
           window.location.href = "/login.html"
       }
     });
