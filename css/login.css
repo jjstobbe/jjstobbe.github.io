@@ -66,7 +66,6 @@ html {
     background: -moz-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
     background: linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
     
-    /*background-image: url(../img/LandscapeBackground.jpg);*/
     background-repeat: no-repeat;
     background-position: right top;
     background-attachment: fixed;
