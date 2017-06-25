@@ -43,7 +43,6 @@ function ToDo(id, content, completed, time, order) {
     self.AddToDo = function() {
         delete self.Id;
         self.Order = ToDoListVM.ToDoList().length + 1;
-        console.log(self.Order);
         var dataObject = ko.toJSON(self);
         
         $.ajax
@@ -58,7 +57,8 @@ function ToDo(id, content, completed, time, order) {
           },success: function(data){
               $("#textBox").val("");
               ToDoListVM.ToDoList.push(new ToDo(data._id, data.Content, data.Completed, data.Time, data.Order));
-              notifySuccess("Success", "Task has been added");
+              var cols = document.querySelectorAll('#ToDoList .ToDoElement');
+              [].forEach.call(cols, addDnDHandlers);
           },error: function(data){
               // Redirects if authentication fails
               window.location.href = "/login"
