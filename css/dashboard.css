@@ -1,17 +1,18 @@
-#toDoTable_wrapper {
-    padding: 50px 100px 0px 100px;
+html {
+    background: -webkit-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
+    background: -o-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
+    background: -moz-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
+    background: linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
+    
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100%;
 }
 
-#textWrapper {
-    padding: 0px 100px;
-}
-
-.pagination, .dataTables_info, td span br {
-    display: none;
-}
-
-.done, .table-striped > tbody > tr:nth-child(odd).done {
-    background-color: #DDDDDD;
+body {
+    background-color: transparent;
 }
 
 #navbarWrapper {
@@ -45,6 +46,69 @@
     margin-top: 200px;
 }
 
+#ToDoList {
+    color: white;
+    max-width: 600px;
+    word-break: keep-all;
+}
+
+#ToDoList .ToDoElement {
+    background: rgba(150,150,150,0.2);
+    margin-bottom: 5px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px #333333;
+}
+
+#inputWrapper {
+    word-break: keep-all;
+    max-width: 600px;
+}
+
+#inputWrapper input {
+    border-radius: 0;
+    background: rgba(150,150,150,0.2);
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+/* Removes blue outline on everything */
+*:focus {
+    outline: none !important;
+}
+
+.ToDoElement.over {
+  border-top: 2px solid white;
+}
+
+.ToDoElement {
+    cursor: pointer;
+	transition: all ease 0.8s;
+}
+.ToDoContent {
+    cursor: text !important;
+}
+
+.ToDoElement br {
+    display: none;
+}
+
+.done {
+    background: rgba(50,50,50,.6) !important;
+    color: rgba(200,200,200,0.8);
+}
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
+
 .fa-times {
     margin-right: 10px;
     padding: 4px 5px !important;
@@ -64,28 +128,8 @@
     border: 1px solid rgba(140,140,140,0.9);
 }
 
-@media only screen and (max-device-width: 480px) {
-		div#wrapper {
-			width: 400px;
-		}
-
-		div#header {
-			background-image: url(media-queries-phone.jpg);
-			height: 93px;
-			position: relative;
-		}
-
-		div#header h1 {
-			font-size: 140%;
-		}
-
-		#content {
-			float: none;
-			width: 100%;
-		}
-
-		#navigation {
-			float:none;
-			width: auto;
-		}
-	}
+@media only screen and (max-width: 550px) {
+    #navbarWrapper {
+        display: none;
+    }   
+}
