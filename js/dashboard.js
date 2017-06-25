@@ -206,9 +206,12 @@ function finishToDo() {
     
     var id = self.Id();
     delete self.Id;
-    self.Completed(true);
+    self.Completed(!self.Completed());
 
     var dataObject = ko.toJSON(self);
+    
+    // Adds the id back for later use
+    self.Id = ko.observable(id);
     
     $.ajax
     ({

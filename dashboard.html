@@ -28,20 +28,25 @@
         </ul>
       </div>
         -->
-      <div id="ToDoList" data-bind="with: ToDoListVM">
-        <div data-bind="foreach: ToDoList">
-          <div class="ToDoElement" data-bind="attr: { id: Order }, css: { done: Completed }" draggable="true">
-            <span class="ToDoContent" data-bind="text: Content, attr: { id: Id }" contenteditable="true" onKeyPress="return checkEdit(event)"></span>
-            <div><span data-bind="text: Time"></span>
-                <i class="fa fa-check" aria-hidden="true" data-bind="click: finishToDo"></i>
-                <i class="fa fa-times" aria-hidden="true" data-bind="click: deleteToDo"></i>
+        <div id="ToDoWrapper">
+          <div id="ToDoList" data-bind="with: ToDoListVM">
+            <div data-bind="foreach: ToDoList">
+              <div class="ToDoElement" data-bind="attr: { id: Order }, css: { done: Completed }" draggable="true">
+                <span class="ToDoContent" data-bind="text: Content, attr: { id: Id }" contenteditable="true" onKeyPress="return checkEdit(event)"></span>
+                <div><span class="ToDoTime" data-bind="text: Time"></span>
+                    <i class="fa fa-times" aria-hidden="true" data-bind="click: deleteToDo"></i>
+                    <i class="fa fa-check" aria-hidden="true" data-bind="click: finishToDo"></i>
+                    <i class="fa fa-undo" aria-hidden="true" data-bind="click: finishToDo"></i>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
         
         <div id="inputWrapper" class="form-group">
           <input type="text" class="form-control" id="textBox" onKeyPress="return checkSubmit(event)">
         </div>
+      </div>                                                                                         
 	</body>
+    
+    
 </html>

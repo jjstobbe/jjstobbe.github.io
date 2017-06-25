@@ -2,7 +2,7 @@ html {
     background: -webkit-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
     background: -o-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
     background: -moz-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
-    background: linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
+    background: linear-gradient(to bottom left, rgba(29, 29, 29, 0.4), rgba(100, 100, 100, 0.4)), url(../img/LandscapeBackground.png);
     
     background-repeat: no-repeat;
     background-position: right top;
@@ -52,11 +52,15 @@ body {
     word-break: keep-all;
 }
 
+#ToDoWrapper {
+    padding: 20px;
+    box-shadow: 0px 0px 10px #333333;
+}
+
 #ToDoList .ToDoElement {
-    background: rgba(150,150,150,0.2);
+    background: linear-gradient(to right, rgba(64, 58, 62, 0.25), rgba(191, 90, 107, 0.24));
     margin-bottom: 5px;
     padding: 10px;
-    box-shadow: 0px 0px 10px #333333;
 }
 
 #inputWrapper {
@@ -85,17 +89,39 @@ body {
     cursor: pointer;
 	transition: all ease 0.8s;
 }
+
 .ToDoContent {
     cursor: text !important;
+    font-size: 16px;
 }
+
+.ToDoTime {
+    font-size: 12px;
+    color: #999999;
+}
+
+
 
 .ToDoElement br {
     display: none;
 }
 
 .done {
-    background: rgba(50,50,50,.6) !important;
+    background: linear-gradient(to right, rgba(38, 35, 37, 0.25), rgba(115, 54, 64, 0.24)) !important;
     color: rgba(200,200,200,0.8);
+}
+
+.fa.fa-undo {
+    display: none;
+}
+
+.done .fa.fa-undo {
+    display: inherit !important;
+    margin-right: 8px;
+}
+
+.done .fa.fa-check {
+    display: none;
 }
 
 [draggable] {
@@ -108,14 +134,16 @@ body {
   -webkit-user-drag: element;
 }
 
-
+.fa-check {
+    margin-right: 8px;
+}
 .fa-times {
-    margin-right: 10px;
     padding: 4px 5px !important;
 }
 
 .fa {
-    top: 0;
+    position: relative;
+    top: -14px;
     border: 1px solid rgba(200,200,200,0.8);
     padding: 4px;
     float: right;
