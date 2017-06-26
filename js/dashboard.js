@@ -19,7 +19,7 @@ function WeatherListVM() {
         $.ajax
         ({
           type: "GET",
-          url: "http://api.openweathermap.org/data/2.5/forecast/daily?zip=68132&APPID=c2a99fac19cc7ce5482b309b8ee6bcdb",
+          url: "https://crossorigin.me/http://api.openweathermap.org/data/2.5/forecast/daily?zip=68132&APPID=c2a99fac19cc7ce5482b309b8ee6bcdb",
           success: function(data){
             for(var i = 0;i < data.list.length;i++){
                 var weather = new Weather();
