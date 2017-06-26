@@ -3,7 +3,7 @@
   display: inline-block;
   width: 100%;
   height: 10em;
-  font-size: 1em; /* control icon size here */
+  font-size: 0.9em; /* control icon size here */
 }
 
 .cloud {
@@ -14,7 +14,7 @@
   width: 3.6875em;
   height: 3.6875em;
   margin: -1.84375em;
-  background: #2C2C2C;
+  background: currentColor;
   border-radius: 50%;
   box-shadow:
     -2.1875em 0.6875em 0 -0.6875em,
@@ -31,7 +31,7 @@
   display: block;
   width: 4.5625em;
   height: 1em;
-  background: #2C2C2C;
+  background: currentColor;
   box-shadow: 0 0.4375em 0 -0.0625em #fff;
 }
 .cloud:nth-child(2) {
@@ -56,7 +56,7 @@
   width: 2.5em;
   height: 2.5em;
   margin: -1.25em;
-  background: #2C2C2C;
+  background: currentColor;
   border-radius: 50%;
   box-shadow: 0 0 0 0.375em #fff;
   animation: spin 12s infinite linear;
@@ -105,7 +105,7 @@
   width: 3.75em;
   height: 3.75em;
   margin: 0.375em 0 0 -2em;
-  background: #2C2C2C;
+  background: currentColor;
 }
 
 .rain:after {

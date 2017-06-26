@@ -2,7 +2,7 @@ html {
     background: -webkit-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
     background: -o-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
     background: -moz-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
-    background: linear-gradient(to bottom left, rgba(29, 29, 29, 0.4), rgba(100, 100, 100, 0.4)), url(../img/LandscapeBackground.png);
+    background: linear-gradient(to bottom, rgba(90, 90, 90, 0.4), rgba(50, 50, 50, 0.4)), url(../img/LandscapeBackground.png);
     
     background-repeat: no-repeat;
     background-position: right top;
@@ -18,6 +18,7 @@ body {
 
 #WeatherWrapper {
     width: 100%;
+    margin-bottom: 10px;
 }
 
 #WeatherList {
@@ -34,6 +35,7 @@ body {
 }
 
 label {
+    font-weight: 100;
     text-align: center;
     color: white;
 }
@@ -80,6 +82,10 @@ label {
 .ToDoContent {
     cursor: text !important;
     font-size: 16px;
+}
+
+.ContentWrapper {
+    padding-right: 70px;
 }
 
 .ToDoTime {
@@ -156,5 +162,12 @@ label {
     }
     body {
         padding: 5px 5px;
+    }
+    
+    .WeatherElement {
+        width: 33%;
+    }
+    .WeatherElement:nth-of-type(4), .WeatherElement:nth-of-type(5), .WeatherElement:nth-of-type(6), .WeatherElement:nth-of-type(7) {
+        display: none;
     }
 }

@@ -19,15 +19,26 @@ function WeatherListVM() {
         $.ajax
         ({
           type: "GET",
-          url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/daily?zip=68132&APPID=c2a99fac19cc7ce5482b309b8ee6bcdb",
+          url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/daily?zip=96815&APPID=c2a99fac19cc7ce5482b309b8ee6bcdb",
           success: function(data){
+            var d = new Date();
+              var weekday = new Array(7);
+              weekday[0] = "Sunday";
+              weekday[1] = "Monday";
+              weekday[2] = "Tuesday";
+              weekday[3] = "Wednesday";
+              weekday[4] = "Thursday";
+              weekday[5] = "Friday";
+              weekday[6] = "Saturday";
+              
             for(var i = 0;i < data.list.length;i++){
                 var weather = new Weather();
-                weather.Min = (data.list[i].temp.min*9/5 - 459.67).toFixed(2);
-                weather.Max = (data.list[i].temp.max*9/5 - 459.67).toFixed(2);
+                weather.Min = (data.list[i].temp.min*9/5 - 459.67).toFixed(0);
+                weather.Max = (data.list[i].temp.max*9/5 - 459.67).toFixed(0);
                 
                 weather.Main = data.list[i].weather[0].main;
                 weather.Description = data.list[i].weather[0].description;
+                weather.Day = weekday[(d.getDay() + i + 1)%7];
                                 
                 self.WeatherList.push(weather);
                 
@@ -35,15 +46,16 @@ function WeatherListVM() {
                     $('#'+(100+i)).append("<div class=\"icon rainy\"><div class=\"cloud\"></div><div class=\"rain\"></div></div>");
                 }else if(weather.Main == 'Clear'){
                     $('#'+(100+i)).append("<div class=\"icon sunny\"><div class=\"sun\"><div class=\"rays\"></div></div></div>");
+                }else if(weather.Main == 'Clouds'){
+                    $('#'+(100+i)).append("<div class=\"icon cloudy\"><div class=\"cloud\"></div><div class=\"cloud\"></div></div>");
                 }
             }
-            console.log(data);
           }
         });
     };
 }
 
-function Weather(min, max, main, description){
+function Weather(min, max, main, description, day){
     var self = this;
     
     self.Min = ko.observable(min);
@@ -51,6 +63,7 @@ function Weather(min, max, main, description){
     self.Main = ko.observable(main);
     self.Description = ko.observable(description);
     self.Id = ko.observable(weatherCounter);
+    self.Day = ko.observable(day);
     weatherCounter += 1;
 }
 
@@ -124,7 +137,7 @@ function moveToDo(dragId, baseId){
         var id = $(this).children()[0].id;
         if(self.id != counter){
             var position = counter;
-            ajax("GET", "https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/"+id, null,           function(data) {
+            ajax("GET", "https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/"+id, null, function(data) {
                   var changedToDo = {
                       Content: data.Content,
                       Completed: data.Completed,
