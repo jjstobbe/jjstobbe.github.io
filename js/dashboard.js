@@ -1,9 +1,58 @@
 var ToDoListVM = new ToDoListVM();
+var WeatherListVM = new WeatherListVM();
+var weatherCounter = 100;
 
 $(document).ready(function() {
     ko.applyBindings(ToDoListVM);
     ToDoListVM.GetToDos();
+    WeatherListVM.GetWeather();
 });
+
+function WeatherListVM() {
+    var self = this;
+    
+    self.WeatherList = ko.observableArray([]);
+    
+    self.GetWeather = function() {
+        self.WeatherList.removeAll();
+        
+        $.ajax
+        ({
+          type: "GET",
+          url: "http://api.openweathermap.org/data/2.5/forecast/daily?zip=68132&APPID=c2a99fac19cc7ce5482b309b8ee6bcdb",
+          success: function(data){
+            for(var i = 0;i < data.list.length;i++){
+                var weather = new Weather();
+                weather.Min = (data.list[i].temp.min*9/5 - 459.67).toFixed(2);
+                weather.Max = (data.list[i].temp.max*9/5 - 459.67).toFixed(2);
+                
+                weather.Main = data.list[i].weather[0].main;
+                weather.Description = data.list[i].weather[0].description;
+                                
+                self.WeatherList.push(weather);
+                
+                if(weather.Main == 'Rain'){
+                    $('#'+(100+i)).append("<div class=\"icon rainy\"><div class=\"cloud\"></div><div class=\"rain\"></div></div>");
+                }else if(weather.Main == 'Clear'){
+                    $('#'+(100+i)).append("<div class=\"icon sunny\"><div class=\"sun\"><div class=\"rays\"></div></div></div>");
+                }
+            }
+            console.log(data);
+          }
+        });
+    };
+}
+
+function Weather(min, max, main, description){
+    var self = this;
+    
+    self.Min = ko.observable(min);
+    self.Max = ko.observable(max);
+    self.Main = ko.observable(main);
+    self.Description = ko.observable(description);
+    self.Id = ko.observable(weatherCounter);
+    weatherCounter += 1;
+}
 
 function ToDoListVM() {
     var self = this;
@@ -152,11 +201,12 @@ function ajax(type, url, data, successFunction) {
       data: data,
       headers: {
         "Authorization": "Kinvey " + document.cookie.substring(document.cookie.indexOf("=")+1),
-          "X-Kinvey-API-Version": "3"
+          "X-Kinvey-API-Version": "3",
+          
       },success: function(data){
           successFunction(data);
       },error: function(data){
-          window.location.href = "/login.html"
+          window.location.href="login";
       }
     });
 }

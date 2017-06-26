@@ -13,48 +13,35 @@ html {
 
 body {
     background-color: transparent;
+    padding: 20px 300px;
 }
 
-#navbarWrapper {
-    max-width: 200px;
-    height: 100%;
-    margin: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: grey;
-    padding: 20px;
-}
-
-#navbarWrapper ul li {
+#WeatherWrapper {
     width: 100%;
-    clear: both;
-    margin-bottom: 10px;
-    font-size: 18px;
-    list-style: none;
-    color: #DDDDDD;
-    border: 1px solid black;
-    opacity: 0.5;
-    transition: all 0.5s ease;
 }
 
-#navbarWrapper ul li:hover {
-    opacity: 1;
+#WeatherList {
+    width: 100%;
+    display: table;
 }
 
-#navbarWrapper ul:first-child {
-    margin-top: 200px;
+.WeatherElement {
+    width: 14%;
+    margin: 0;
+    float: left;
+    display: table-row;
+    text-align: center;
+}
+
+label {
+    text-align: center;
+    color: white;
 }
 
 #ToDoList {
     color: white;
-    max-width: 600px;
+    max-width: 100%;
     word-break: keep-all;
-}
-
-#ToDoWrapper {
-    padding: 20px;
-    box-shadow: 0px 0px 10px #333333;
 }
 
 #ToDoList .ToDoElement {
@@ -65,7 +52,7 @@ body {
 
 #inputWrapper {
     word-break: keep-all;
-    max-width: 600px;
+    max-width: 100%;
 }
 
 #inputWrapper input {
@@ -99,8 +86,6 @@ body {
     font-size: 12px;
     color: #999999;
 }
-
-
 
 .ToDoElement br {
     display: none;
@@ -156,8 +141,20 @@ body {
     border: 1px solid rgba(140,140,140,0.9);
 }
 
-@media only screen and (max-width: 550px) {
-    #navbarWrapper {
-        display: none;
-    }   
+@media only screen and (max-width: 1500px) {
+    body {
+        padding: 20px 20px;
+    }
+    .icon {
+        font-size: 0.7em !important;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .icon {
+        font-size: 0.5em !important;
+    }
+    body {
+        padding: 5px 5px;
+    }
 }

@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="css/dashboard.css"/>
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="weather.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
     <script type='text/javascript' src='js/knockout.js'></script>
@@ -17,17 +18,18 @@
     <script type='text/javascript' src='drag.js'></script>
     
 	<body>
-        <!--
-      <div id="navbarWrapper" class="col-xs-2 text-center">
-        <ul>
-            <li>Lynda</li>
-            <li>Facebook</li>
-            <li>Stocks</li>
-            <li>Contact</li>
-            <li>YouTube</li>
-        </ul>
-      </div>
-        -->
+        <div id="WeatherWrapper" data-bind="with: WeatherListVM">
+            <div id="WeatherList" data-bind="foreach: WeatherList">
+                <div class="WeatherElement">
+                    <div data-bind="attr: { id: Id }"></div>
+                    <label data-bind="text: Min"></label>
+                    <label data-bind="text: Max"></label>
+                    <br>
+                    <label data-bind="text: Description"></label>
+                
+                </div>
+            </div>
+        </div>
         <div id="ToDoWrapper">
           <div id="ToDoList" data-bind="with: ToDoListVM">
             <div data-bind="foreach: ToDoList">
