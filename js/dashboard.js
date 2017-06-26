@@ -19,7 +19,7 @@ function WeatherListVM() {
         $.ajax
         ({
           type: "GET",
-          url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/daily?zip=96815&APPID=c2a99fac19cc7ce5482b309b8ee6bcdb",
+          url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/daily?zip=68132&APPID=c2a99fac19cc7ce5482b309b8ee6bcdb",
           success: function(data){
             var d = new Date();
               var weekday = new Array(7);
@@ -37,7 +37,7 @@ function WeatherListVM() {
                 weather.Max = (data.list[i].temp.max*9/5 - 459.67).toFixed(0);
                 
                 weather.Main = data.list[i].weather[0].main;
-                weather.Description = data.list[i].weather[0].description;
+                weather.Description = data.list[i].weather[0].description[0].toUpperCase() +            data.list[i].weather[0].description.slice(1);
                 weather.Day = weekday[(d.getDay() + i + 1)%7];
                                 
                 self.WeatherList.push(weather);
