@@ -38,7 +38,7 @@ function WeatherListVM() {
                 
                 weather.Main = data.list[i].weather[0].main;
                 weather.Description = data.list[i].weather[0].description[0].toUpperCase() +            data.list[i].weather[0].description.slice(1);
-                weather.Day = weekday[(d.getDay() + i + 1)%7];
+                weather.Day = weekday[(d.getDay() + i)%7];
                                 
                 self.WeatherList.push(weather);
                 
