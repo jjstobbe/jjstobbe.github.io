@@ -134,7 +134,8 @@ function moveToDo(dragId, baseId){
     var counter = 1;
     $('.ToDoElement').each(function() {
         var self = this;
-        var id = $(this).children()[0].id;
+        var id = $(this).children().children()[0].id;
+        
         if(self.id != counter){
             var position = counter;
             ajax("GET", "https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/"+id, null, function(data) {
@@ -219,6 +220,7 @@ function ajax(type, url, data, successFunction) {
       },success: function(data){
           successFunction(data);
       },error: function(data){
+          console.error(data);
           window.location.href="login";
       }
     });
