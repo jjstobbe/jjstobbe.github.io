@@ -1,59 +1,70 @@
 <!DOCTYPE html>
 <html>
-    <head>
-		<title>Dashboard</title>
-        <meta name="theme-color" content="#333333" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="css/animate.css"/>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" href="css/dashboard.css"/>
-        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="weather.css">
-	</head>
-    <script type='text/javascript' src='js/knockout.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script type='text/javascript' src='js/bootstrap-notify.min.js'></script>
-    <script type='text/javascript' src='js/moment.min.js'></script>
-    <script type='text/javascript' src='js/custom-notification.js'></script>
-    <script type='text/javascript' src='js/dashboard.js'></script>
-    <script type='text/javascript' src='drag.js'></script>
-    
-	<body>
-        <div id="WeatherWrapper" data-bind="with: WeatherListVM">
-            <div id="WeatherList" data-bind="foreach: WeatherList">
-                <div class="WeatherElement">
-                    <div data-bind="attr: { id: Id }"></div>
-                    <label data-bind="text: Day"></label>
-                    <br>
-                    <label data-bind="text: Min"></label>
-                    <label> - </label>
-                    <label data-bind="text: Max"></label>
-                    <br>
-                    <label data-bind="text: Description"></label>
-                </div>
+
+<head>
+    <title>Dashboard</title>
+    <meta name="theme-color" content="#333333" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/weather.css">
+    <link rel="stylesheet" type="text/css" href="css/calendar.css">
+</head>
+<script type='text/javascript' src='js/knockout.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script type='text/javascript' src='js/bootstrap-notify.min.js'></script>
+<script type='text/javascript' src='js/moment.min.js'></script>
+<script type='text/javascript' src='js/custom-notification.js'></script>
+<script type='text/javascript' src='js/dashboard.js'></script>
+<script type='text/javascript' src='js/calendar.js'></script>
+<script type='text/javascript' src='js/drag.js'></script>
+
+<body>
+    <div id="WeatherWrapper" data-bind="with: WeatherListVM">
+        <div id="WeatherList" data-bind="foreach: WeatherList">
+            <div class="WeatherElement">
+                <div data-bind="attr: { id: Id }"></div>
+                <label data-bind="text: Day"></label>
+                <br>
+                <label data-bind="text: Min"></label>
+                <label> - </label>
+                <label data-bind="text: Max"></label>
+                <br>
+                <label data-bind="text: Description"></label>
             </div>
         </div>
-        <div id="ToDoWrapper">
-          <div id="ToDoList" data-bind="with: ToDoListVM">
+    </div>
+    <div id="ToDoWrapper">
+        <div id="ToDoList" data-bind="with: ToDoListVM">
             <div data-bind="foreach: ToDoList">
-              <div class="ToDoElement" data-bind="attr: { id: Order }, css: { done: Completed }" draggable="true">
-                <div class="ContentWrapper">
-                    <span class="ToDoContent" data-bind="text: Content, attr: { id: Id }" contenteditable="true" onKeyPress="return checkEdit(event)"></span>
+                <div class="ToDoElement" data-bind="attr: { id: Order }, css: { done: Completed }" draggable="true">
+                    <div class="ContentWrapper">
+                        <span class="ToDoContent" data-bind="text: Content, attr: { id: Id }" contenteditable="true" onKeyPress="return checkEdit(event)"></span>
+                    </div>
+                    <div><span class="ToDoTime" data-bind="text: Time"></span>
+                        <i class="fa fa-times" aria-hidden="true" data-bind="click: deleteToDo"></i>
+                        <i class="fa fa-check" aria-hidden="true" data-bind="click: finishToDo"></i>
+                        <i class="fa fa-undo" aria-hidden="true" data-bind="click: finishToDo"></i>
+                    </div>
                 </div>
-                <div><span class="ToDoTime" data-bind="text: Time"></span>
-                    <i class="fa fa-times" aria-hidden="true" data-bind="click: deleteToDo"></i>
-                    <i class="fa fa-check" aria-hidden="true" data-bind="click: finishToDo"></i>
-                    <i class="fa fa-undo" aria-hidden="true" data-bind="click: finishToDo"></i>
-                </div>
-              </div>
             </div>
-          </div>
-        
-        <div id="inputWrapper" class="form-group">
-          <input type="text" class="form-control" id="textBox" onKeyPress="return checkSubmit(event)">
         </div>
-      </div>                                                                                         
-	</body>
+
+        <div id="inputWrapper" class="form-group">
+            <input type="text" class="form-control" id="textBox" onKeyPress="return checkSubmit(event)">
+        </div>
+    </div>
     
-    
+    <div class="calendar">
+        <div class="group">
+            <p class="left pointer minusmonth">&laquo;</p>
+            <p class="monthname center pointer"></p>
+            <p class="right pointer addmonth">&raquo;</p>
+        </div>
+        <ul class="group">
+        </ul>
+    </div>
+</body>
 </html>

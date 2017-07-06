@@ -154,6 +154,9 @@ label {
     .icon {
         font-size: 0.7em !important;
     }
+    .calendar {
+        max-width: 100% !important;
+    }
 }
 
 @media only screen and (max-width: 650px) {
@@ -169,5 +172,8 @@ label {
     }
     .WeatherElement:nth-of-type(4), .WeatherElement:nth-of-type(5), .WeatherElement:nth-of-type(6), .WeatherElement:nth-of-type(7) {
         display: none;
+    }
+    .calendar {
+        max-width: 100% !important;
     }
 }
