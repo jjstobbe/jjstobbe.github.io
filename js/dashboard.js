@@ -170,9 +170,7 @@ function checkEdit(e) {
               }
               var dataObject = ko.toJSON(changedToDo);
             
-            ajax('PUT', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, dataObject, function(data){
-                  notifySuccess('Success', 'Task has been updated');
-             });
+            ajax('PUT', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, dataObject, function(){});
         });
     }
 }
@@ -189,18 +187,20 @@ function finishToDo() {
     // Adds the id back for later use
     self.Id = ko.observable(id);
     
-    ajax('PUT', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, dataObject, function(data){
-        notifySuccess('Success', 'Task Completed');
-    });
+    ajax('PUT', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, dataObject, function(){});
 }
 
 function deleteToDo() {    
     var self = this;
     
     var id = self.Id();
+    console.log(id);
     
     ajax('DELETE', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, null, function(data){
-        location.reload();
+        console.log(data);
+        ToDoListVM.ToDoList.remove(function(Todo){
+            return self.Id() == Todo.Id();
+        });
     });
 }
 

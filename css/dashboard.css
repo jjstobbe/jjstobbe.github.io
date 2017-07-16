@@ -1,3 +1,5 @@
+@font-face { font-family: 'Roboto'; src: url('../fonts/Roboto-Light.ttf'); }
+
 html {
     background: -webkit-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
     background: -o-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
@@ -14,6 +16,7 @@ html {
 body {
     background-color: transparent;
     padding: 20px 300px;
+    font-family: 'Roboto', arial;
 }
 
 #WeatherWrapper {
@@ -32,9 +35,13 @@ body {
     float: left;
     display: table-row;
     text-align: center;
+    color: rgb(51,51,51);
 }
 
 label {
+    font-size: 13px;
+    display: inline-block;
+    margin-bottom: 5px;
     font-weight: 100;
     text-align: center;
     color: white;
@@ -54,7 +61,6 @@ label {
 
 #inputWrapper {
     word-break: keep-all;
-    max-width: 100%;
 }
 
 #inputWrapper input {
@@ -63,6 +69,10 @@ label {
     border: none;
     border-bottom: 1px solid white;
     color: white;
+    min-width: 100%;
+    padding: 6px 12px;
+    line-height: 1.5;
+    font-size: 14px;
 }
 
 /* Removes blue outline on everything */
@@ -86,6 +96,7 @@ label {
 
 .ContentWrapper {
     padding-right: 70px;
+    margin-bottom: 5px;
 }
 
 .ToDoTime {
@@ -145,6 +156,7 @@ label {
     cursor: pointer;
     transition: all 0.5s ease;
     border-radius: 1px;
+    font-size: 14px !important;
 }
 
 .fa:hover {
