@@ -56,6 +56,10 @@ input[type=text], input[type=password] {
     font-family: 'Roboto', sans-serif;
 }
 
+input[type=password]{
+    margin-left: 5px;
+}
+
 input:focus {outline:0;}
 
 /* Set a style for all buttons */
@@ -98,6 +102,7 @@ button:hover {
     background-color: transparent;
     font-size: 14px;
     line-height: 20px;
+    color: #EEEEEE;
 }
 
 @media (min-width: 1200px) {
@@ -119,4 +124,3 @@ button:hover {
 input::placeholder  {
   color: #BBBBBB !important;
 }
-
