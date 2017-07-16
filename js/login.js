@@ -19,7 +19,6 @@ function Login() {
         "Content-Type": "application/json"
       },success: function(data){
           document.cookie = "authToken="+data._kmd.authtoken;
-          notifySuccess("Success", "You are authorized");
           window.location.href = "/dashboard";
       }
     });
