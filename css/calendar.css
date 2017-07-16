@@ -12,11 +12,12 @@ ul {
 
 .monthname {
     display:inline-block;
+    cursor: default;
 }
 
 .pointer {
     cursor: pointer;
-    display:inline-block;
+    display: inline-block;
 }
 
 .group:after {
@@ -36,8 +37,8 @@ ul {
     background: #222;
     color: #ddd;
     padding: .5em .5em 1em;
-    max-width: 70%;
-    min-height: 15em;
+    max-width: 100%;
+    min-height: 25em;
     margin: 30px auto;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -53,7 +54,7 @@ ul {
 
 .calendar li {
     font-weight: 100;
-    font-size: 2em;
+    font-size: 3em;
     float: left;
     width: -webkit-calc(100%/7);
     text-align: center;
@@ -62,7 +63,7 @@ ul {
     border-bottom: 1px solid #444;
 }
 
-.calendar li:hover,
+.calendar li:not(:nth-child(-n+7)):hover,
 .calendar li.red {
     color: black;
     background-color: #999999;
@@ -70,6 +71,7 @@ ul {
 
 .calendar li:nth-child(-n+7) {
     color: #666;
+    cursor: default;
 }
 
 .center {

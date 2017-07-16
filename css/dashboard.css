@@ -111,6 +111,10 @@ label {
     margin-right: 8px;
 }
 
+.done .fa.fa-undo::before {
+    margin: 0 1px;
+}
+
 .done .fa.fa-check {
     display: none;
 }

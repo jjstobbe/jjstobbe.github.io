@@ -12,7 +12,6 @@ function Login() {
     object.username = $('#username').val();
     object.password = $('#password').val();
     var dataObject = JSON.stringify(object);
-    console.log(dataObject);
     $.ajax
     ({
       type: "POST",
@@ -22,7 +21,6 @@ function Login() {
         "Authorization": "Basic " + btoa($('#username').val() + ":" + $('#password').val()),
         "Content-Type": "application/json"
       },success: function(data){
-          console.log(data);
           document.cookie = "authToken="+data._kmd.authtoken;
           notifySuccess("Success", "You are authorized");
           window.location.href = "/dashboard";
