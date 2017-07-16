@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
 #login {
     padding: 0px;
     height: 50px;
@@ -124,3 +121,6 @@ button:hover {
 input::placeholder  {
   color: #BBBBBB !important;
 }
+
+@font-face { font-family: 'Raleway'; src: url('../fonts/Raleway-Regular.ttf'); }
+@font-face { font-family: 'Roboto'; src: url('../fonts/Roboto-Light.ttf'); }
