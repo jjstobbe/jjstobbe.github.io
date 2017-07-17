@@ -46,19 +46,31 @@
             </div>
         </div>
 
-        <div id="inputWrapper" class="form-group">
-            <input type="text" class="form-control" id="textBox" onKeyPress="return checkSubmit(event)">
+        <div id="inputWrapper">
+            <input type="text" id="textBox" onKeyPress="return checkSubmit(event)">
         </div>
     </div>
     
-    <div class="calendar">
-        <div class="group">
-            <p class="left pointer minusmonth">&laquo;</p>
-            <p class="monthname center"></p>
-            <p class="right pointer addmonth">&raquo;</p>
+    <div id="calendarWrapper">
+        <div class="calendar">
+            <div class="group">
+                <p class="left pointer minusmonth">&#9666;</p>
+                <p class="monthname center"></p>
+                <p class="right pointer addmonth">&#9656;</p>
+            </div>
+            <ul class="group">
+            </ul>
         </div>
-        <ul class="group">
-        </ul>
+        <div id="eventContainer">
+            <h3 id="SelectedDay">Sunday</h3>
+            <ul id="eventList">
+                <li>Give dog a bath</li>
+                <li>Wash Clothes</li>
+            </ul>
+            <div id="eventInputWrapper">
+                <input type="text" id="eventInput">
+            </div>
+        </div>
     </div>
 </body>
 </html>

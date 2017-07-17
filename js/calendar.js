@@ -22,7 +22,7 @@ function renderCal(themonth) {
         fDay = firstDay(currentMonth, d.getYear()) - 1, // find what day of the week the 1st lands on
         months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; // month names
 
-    $('.calendar p.monthname').text(months[currentMonth - 1]); // add month name to calendar
+    $('.calendar p.monthname').html(months[currentMonth - 1] +" &nbsp;  "+(1900 + d.getYear())); // add month name to calendar
 
     for (var i = 0; i < fDay - 1; i++) { // place the first day of the month in the correct position
         $('<li>&nbsp;</li>').appendTo('.calendar ul');

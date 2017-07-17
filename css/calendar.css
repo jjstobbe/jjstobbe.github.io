@@ -26,22 +26,80 @@ ul {
     clear: both;
 }
 
+#calendarWrapper {
+    display: flex;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: #ddd;
+}
+
+#eventContainer {
+    width: 30%;
+    height: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    float: right;
+    background: rgba(10,10,10,0.6);
+    margin-top: 40px;
+    margin-bottom: 50px;
+    margin-left: 30px;
+}
+
+#SelectedDay {
+    text-align: center;
+    font-size: 2em;
+}
+
+#eventList li {
+    margin: 30px 0;
+    font-size: 1.6em;
+    color: #bbb;
+}
+
+#eventInputWrapper {
+    width: 100%;
+    display: flex;
+}
+
+#eventInput {
+    margin: 30px 10px 30px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    background: rgba(100,100,100,0.5);
+    border: none;
+    border-bottom: 1px solid rgba(200,200,200,0.8);
+    color: #bbb;
+    padding: 10px 20px;
+}
+
 .calendar p {
     margin-bottom: .5em;
     color: white;
-    font-size: 2em;
+    font-size: 2.3em;
+}
+
+.calednar p:not(.monthname) {
+    font-size: 1.5em;
 }
 
 .calendar {
     text-align: center;
-    background: #222;
-    color: #ddd;
-    padding: .5em .5em 1em;
-    max-width: 100%;
-    min-height: 25em;
-    margin: 30px auto;
+    background: rgba(34,34,34,0.7);
+    padding: 50px;
+    padding-top: 10px;
+    max-width: 60%;
+    float: left;
+    min-height: 20em;
+    margin-top: 40px;
+    margin-bottom: 50px;
     -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
+    
+    box-shadow:
+        1px -1px 1px rgba(0,0,0,0.15), /* The top layer shadow */
+        20px 0px 1px -4px rgba(0,0,0,0.2), /* The second layer shadow */
+        40px 0px 1px -12px rgba(0,0,0,0.2); /* The third layer shadow */
 }
 
 .calendar ul {
@@ -54,19 +112,20 @@ ul {
 
 .calendar li {
     font-weight: 100;
-    font-size: 3em;
+    font-size: 2em;
     float: left;
     width: -webkit-calc(100%/7);
     text-align: center;
-    padding: .25em 0;
+    padding: 1em 0;
+    
     cursor: pointer;
     border-bottom: 1px solid #444;
+    transition: background 0.5s ease;
 }
 
 .calendar li:not(:nth-child(-n+7)):hover,
 .calendar li.red {
-    color: black;
-    background-color: #999999;
+    background: rgba(34,34,34,1);
 }
 
 .calendar li:nth-child(-n+7) {
