@@ -45,6 +45,10 @@ ul {
     margin-left: 30px;
 }
 
+.selected {
+    background-color: rgba(20,20,20,.6);
+}
+
 #SelectedDay {
     text-align: center;
     font-size: 2em;
@@ -135,4 +139,30 @@ ul {
 
 .center {
     text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+    #calendarWrapper {
+        display: block;
+    }
+    
+    .calendar {
+        margin-top: 10px;
+        margin-bottom: 4px;
+        padding: 0;
+    }
+    
+    #eventContainer {
+        width: 100%;
+        margin: 0;
+        height: auto;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .calendar li {
+        font-size: 1.3em;
+        padding: 0.7em 0;
+    }
 }

@@ -27,9 +27,14 @@ function renderCal(themonth) {
     for (var i = 0; i < fDay - 1; i++) { // place the first day of the month in the correct position
         $('<li>&nbsp;</li>').appendTo('.calendar ul');
     }
-
+    
+    console.log(d.getDate());
     for (var i = 1; i <= days; i++) { // write out the days
-        $('<li>' + i + '</li>').appendTo('.calendar ul');
+        if(d.getDate() == i){
+            $('<li class="selected">' + i + '</li>').appendTo('.calendar ul');
+        }else {
+            $('<li>' + i + '</li>').appendTo('.calendar ul');
+        }
     }
 
     function firstDay(month, year) {
