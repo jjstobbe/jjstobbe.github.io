@@ -111,7 +111,7 @@ function ToDo(id, content, completed, time, order) {
         var dataObject = ko.toJSON(self);
         
         ajax('POST', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo', dataObject, (data) => {
-              $('#textBox').val('');
+              document.getElementById('textBox').value = '';
               ToDoListVM.ToDoList.push(new ToDo(data._id, data.Content, data.Completed, data.Time, data.Order));
               var cols = document.querySelectorAll('#ToDoList .ToDoElement');
               [].forEach.call(cols, addDnDHandlers);
@@ -159,7 +159,6 @@ function moveToDo(dragId, baseId) {
 function checkEdit(e) {
     if (e && e.keyCode == 13) {
         var id = e.srcElement.id;
-        console.log(e.srcElement.innerText);
         var newContent = e.srcElement.innerText.replace(/\r?\n|\r/g, '');
         $('#'+id).blur();
         
@@ -197,10 +196,8 @@ function deleteToDo() {
     var self = this;
     
     var id = self.Id();
-    console.log(id);
     
     ajax('DELETE', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, null, (data) => {
-        console.log(data);
         ToDoListVM.ToDoList.remove((Todo) => {
             return self.Id() == Todo.Id();
         });
