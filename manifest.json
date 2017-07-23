@@ -1,0 +1,15 @@
+{
+    "name": "Dashboard",
+    "start_url": "/dashboard",
+    "scope": "/",
+    "display": "standalone",
+    "theme_color": "#333333",
+    "background-color": "#EEE",
+    "icons": [
+        {
+            "src": "img/icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
