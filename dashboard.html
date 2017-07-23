@@ -19,7 +19,7 @@
     <div id="WeatherWrapper" data-bind="with: WeatherListVM">
         <div id="WeatherList" data-bind="foreach: WeatherList">
             <div class="WeatherElement">
-                <div data-bind="attr: { id: Id }"></div>
+                <div data-bind="attr: { id: 'WeatherElement'+$index() }"></div>
                 <label data-bind="text: Day"></label>
                 <br>
                 <label data-bind="text: Min"></label>
@@ -30,6 +30,7 @@
             </div>
         </div>
     </div>
+    
     <div id="ToDoWrapper">
         <div id="ToDoList" data-bind="with: ToDoListVM">
             <div data-bind="foreach: ToDoList">

@@ -1,8 +1,7 @@
 var ToDoListVM = new ToDoListVM();
 var WeatherListVM = new WeatherListVM();
-var weatherCounter = 100;
 
-$(document).ready(function() {
+$(document).ready(() => {
     ko.applyBindings(ToDoListVM);
     ToDoListVM.GetToDos();
     WeatherListVM.GetWeather();
@@ -10,61 +9,65 @@ $(document).ready(function() {
 
 function WeatherListVM() {
     var self = this;
-    
+
     self.WeatherList = ko.observableArray([]);
+    self.lat = 41.267;
+    self.long = -96.001;
     
-    self.GetWeather = function() {
+    self.GetWeather = () => {
         self.WeatherList.removeAll();
         
-        $.ajax
-        ({
-          type: 'GET',
-          url: 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/daily?zip=68132&APPID=c2a99fac19cc7ce5482b309b8ee6bcdb',
-          success: function(data){
-            var d = new Date();
-              var weekday = new Array(7);
-              weekday[0] = 'Sunday';
-              weekday[1] = 'Monday';
-              weekday[2] = 'Tuesday';
-              weekday[3] = 'Wednesday';
-              weekday[4] = 'Thursday';
-              weekday[5] = 'Friday';
-              weekday[6] = 'Saturday';
-              
-            for(var i = 0;i < data.list.length;i++){
-                var weather = new Weather();
-                weather.Min = (data.list[i].temp.min*9/5 - 459.67).toFixed(0);
-                weather.Max = (data.list[i].temp.max*9/5 - 459.67).toFixed(0);
-                
-                weather.Main = data.list[i].weather[0].main;
-                weather.Description = data.list[i].weather[0].description[0].toUpperCase() +            data.list[i].weather[0].description.slice(1);
-                weather.Day = weekday[(d.getDay() + i)%7];
-                                
-                self.WeatherList.push(weather);
-                
-                if(weather.Main == 'Rain'){
-                    $('#'+(100+i)).append('<div class=\'icon rainy\'><div class=\'cloud\'></div><div class=\'rain\'></div></div>');
-                }else if(weather.Main == 'Clear'){
-                    $('#'+(100+i)).append('<div class=\'icon sunny\'><div class=\'sun\'><div class=\'rays\'></div></div></div>');
-                }else if(weather.Main == 'Clouds'){
-                    $('#'+(100+i)).append('<div class=\'icon cloudy\'><div class=\'cloud\'></div><div class=\'cloud\'></div></div>');
-                }
-            }
-          }
+        // Gets the current location of the device
+        navigator.geolocation.getCurrentPosition((position) => {
+            self.lat = position.coords.latitude;
+            self.long = position.coords.longitude;
+
+            getWeather();
         });
-    };
+    }
 }
 
-function Weather(min, max, main, description, day){
+// Calls the api to get the current weather based upon the lat/long of your device
+function getWeather(){
+    $.ajax
+    ({
+      type: 'GET',
+      url: 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/daily?lat='+WeatherListVM.lat+'&lon='+WeatherListVM.long+'&APPID=c2a99fac19cc7ce5482b309b8ee6bcdb',
+      success: (data) => {
+        var d = new Date();
+          var weekday = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+        for(var i = 0;i < data.list.length;i++){
+            var weather = new Weather();
+            weather.Min = (data.list[i].temp.min*9/5 - 459.67).toFixed(0);
+            weather.Max = (data.list[i].temp.max*9/5 - 459.67).toFixed(0);
+
+            weather.Main = data.list[i].weather[0].main;
+            weather.Description = data.list[i].weather[0].description[0].toUpperCase() +            data.list[i].weather[0].description.slice(1);
+            weather.Day = weekday[(d.getDay() + i)%7];
+
+            WeatherListVM.WeatherList.push(weather);
+
+            if(weather.Main == 'Rain'){
+                $('#WeatherElement'+i).append('<div class=\'icon rainy\'><div class=\'cloud\'></div><div class=\'rain\'></div></div>');
+            }else if(weather.Main == 'Clear'){
+                $('#WeatherElement'+i).append('<div class=\'icon sunny\'><div class=\'sun\'><div class=\'rays\'></div></div></div>');
+            }else if(weather.Main == 'Clouds'){
+                $('#WeatherElement'+i).append('<div class=\'icon cloudy\'><div class=\'cloud\'></div><div class=\'cloud\'></div></div>');
+            }
+        }
+      }
+    });
+}
+
+function Weather(min, max, main, description, day) {
     var self = this;
     
     self.Min = ko.observable(min);
     self.Max = ko.observable(max);
     self.Main = ko.observable(main);
     self.Description = ko.observable(description);
-    self.Id = ko.observable(weatherCounter);
     self.Day = ko.observable(day);
-    weatherCounter += 1;
 }
 
 function ToDoListVM() {
@@ -72,13 +75,13 @@ function ToDoListVM() {
     
     self.ToDoList = ko.observableArray([]);
     
-    self.GetToDos = function() {
+    self.GetToDos = () => {
         self.ToDoList.removeAll();
         
-        ajax('GET', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo', null, function(data) {
-            $.each(data, function(index, value){
-                self.ToDoList.push(new ToDo(value._id, value.Content, value.Completed, value.Time, value.Order));
-            });
+        ajax('GET', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo', null, (data) => {
+            for(var i = 0; i < data.length; i++){
+                self.ToDoList.push(new ToDo(data[i]._id, data[i].Content, data[i].Completed, data[i].Time, data[i].Order));
+            }
             
             // Sorts the list by Order
             self.ToDoList.sort(sortFunction);
@@ -87,7 +90,7 @@ function ToDoListVM() {
             [].forEach.call(cols, addDnDHandlers);
         });
     };
-};
+}
 
 function sortFunction(a, b) {
     return a.Order()-b.Order();
@@ -102,22 +105,22 @@ function ToDo(id, content, completed, time, order) {
     self.Time = ko.observable(time);
     self.Order = ko.observable(order);
     
-    self.AddToDo = function() {
+    self.AddToDo = () => {
         delete self.Id;
         self.Order = ToDoListVM.ToDoList().length + 1;
         var dataObject = ko.toJSON(self);
         
-        ajax('POST', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo', dataObject, function(data){
+        ajax('POST', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo', dataObject, (data) => {
               $('#textBox').val('');
               ToDoListVM.ToDoList.push(new ToDo(data._id, data.Content, data.Completed, data.Time, data.Order));
               var cols = document.querySelectorAll('#ToDoList .ToDoElement');
               [].forEach.call(cols, addDnDHandlers);
         });
     };
-};
+}
 
 function Logout() {
-    ajax('POST', 'https://baas.kinvey.com/user/kid_BJFBIVmX-/_logout', null, function() {
+    ajax('POST', 'https://baas.kinvey.com/user/kid_BJFBIVmX-/_logout', null, () => {
       document.cookie = 'authToken=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       window.location.href='/login';
     });
@@ -130,7 +133,7 @@ function checkSubmit(e) {
     }
 }
 
-function moveToDo(dragId, baseId){
+function moveToDo(dragId, baseId) {
     var counter = 1;
     $('.ToDoElement').each(function() {
         var self = this;
@@ -138,7 +141,7 @@ function moveToDo(dragId, baseId){
         
         if(self.id != counter){
             var position = counter;
-            ajax('GET', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, null, function(data) {
+            ajax('GET', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, null, (data) => {
                   var changedToDo = {
                       Content: data.Content,
                       Completed: data.Completed,
@@ -146,7 +149,7 @@ function moveToDo(dragId, baseId){
                       Order: position
                   }
                   var dataObject = ko.toJSON(changedToDo);
-                  ajax('PUT', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, dataObject, function(){});
+                  ajax('PUT', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, dataObject, ()=>{});
             });
         }
         counter+=1;
@@ -161,7 +164,7 @@ function checkEdit(e) {
         $('#'+id).blur();
         
         ajax('GET', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, null, 
-        function(data){
+        (data) => {
               var changedToDo = {
                   Content: newContent,
                   Completed: data.Completed,
@@ -170,7 +173,7 @@ function checkEdit(e) {
               }
               var dataObject = ko.toJSON(changedToDo);
             
-            ajax('PUT', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, dataObject, function(){});
+            ajax('PUT', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, dataObject, ()=>{});
         });
     }
 }
@@ -187,7 +190,7 @@ function finishToDo() {
     // Adds the id back for later use
     self.Id = ko.observable(id);
     
-    ajax('PUT', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, dataObject, function(){});
+    ajax('PUT', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, dataObject,() => {});
 }
 
 function deleteToDo() {    
@@ -196,9 +199,9 @@ function deleteToDo() {
     var id = self.Id();
     console.log(id);
     
-    ajax('DELETE', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, null, function(data){
+    ajax('DELETE', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/ToDo/'+id, null, (data) => {
         console.log(data);
-        ToDoListVM.ToDoList.remove(function(Todo){
+        ToDoListVM.ToDoList.remove((Todo) => {
             return self.Id() == Todo.Id();
         });
     });
@@ -217,9 +220,9 @@ function ajax(type, url, data, successFunction) {
         "Authorization": 'Kinvey ' + document.cookie.substring(document.cookie.indexOf('=')+1),
           "X-Kinvey-API-Version": '3',
           
-      },success: function(data){
+      },success: (data) => {
           successFunction(data);
-      },error: function(data){
+      },error: (data) => {
           if(data.status == 400){
               window.location.href = 'login';
           }
