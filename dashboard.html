@@ -16,13 +16,16 @@
         <div id="WeatherList" data-bind="foreach: WeatherList">
             <div class="WeatherElement">
                 <div data-bind="attr: { id: 'WeatherElement'+$index() }"></div>
-                <label data-bind="text: Day"></label>
-                <br>
-                <label data-bind="text: Min"></label>
-                <label> - </label>
-                <label data-bind="text: Max"></label>
-                <br>
-                <label data-bind="text: Description"></label>
+                <div class="weatherFooter">
+                    <label data-bind="text: Day"></label>
+                    <br>
+                    <label data-bind="text: Min"></label>
+                    <label> - </label>
+                    <label data-bind="text: Max"></label>
+                    <br>
+                    <label data-bind="text: Description"></label>
+                </div>
+
             </div>
         </div>
     </div>
@@ -31,13 +34,19 @@
         <div id="ToDoList" data-bind="with: ToDoListVM">
             <div data-bind="foreach: ToDoList">
                 <div class="ToDoElement" data-bind="attr: { id: Order }, css: { done: Completed }" draggable="true">
-                    <div class="ContentWrapper">
-                        <span class="ToDoContent" data-bind="text: Content, attr: { id: Id }" contenteditable="true" onKeyPress="return checkEdit(event)"></span>
+                    <div class="ToDoContentWrapper">
+                        <span class="ToDoContent" spellcheck="false" data-bind="text: Content, attr: { id: Id }" contenteditable="true" onKeyPress="return checkEdit(event)"></span>
+<span class="ToDoTime" data-bind="text: Time"></span>
                     </div>
-                    <div><span class="ToDoTime" data-bind="text: Time"></span>
-                        <i class="fa fa-times" aria-hidden="true" data-bind="click: deleteToDo"></i>
-                        <i class="fa fa-check" aria-hidden="true" data-bind="click: finishToDo"></i>
-                        <i class="fa fa-undo" aria-hidden="true" data-bind="click: finishToDo"></i>
+                    
+                    <div class="IconWrapper">
+                        <div class="modifyIcon">                        
+                            <i class="fa fa-check" aria-hidden="true" data-bind="click: finishToDo"></i>
+                            <i class="fa fa-undo" aria-hidden="true" data-bind="click: finishToDo"></i>
+                        </div>
+                       <div class="deleteIcon">
+                            <i class="fa fa-times" aria-hidden="true" data-bind="click: deleteToDo"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,10 +83,7 @@
     // Defines a service worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-              .then(function(registration) {
-                    console.log('Service Worker Registered');
-              });
+                navigator.serviceWorker.register('/sw.js');
       });
     }    
 </script>

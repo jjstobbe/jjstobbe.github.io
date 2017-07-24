@@ -1,11 +1,13 @@
 self.addEventListener('install', event => {
     self.skipWaiting();
     
+    // Store outline html css for caching
+    // Then populate with indexedDb values
     event.waitUntil(
         caches.open('offline-v1')
             .then(cache => cache.addAll([
-             '/offline.html',
-             '/css/offline.css'
+             '/dashboard.html',
+             '/css/dashboard.css'
             ]))
     );
 });
@@ -16,8 +18,7 @@ self.addEventListener('fetch', event => {
             .then(response => response || fetch(event.request))
             .catch(() => {
                 if(event.request.mode == 'navigate'){
-                    console.log('returning stuff');
-                    return caches.match('/offline.html');
+                    return caches.match('/dashboard.html');
                 }
             })
     );

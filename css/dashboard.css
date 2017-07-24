@@ -1,27 +1,32 @@
 @font-face { font-family: 'Roboto'; src: url('../fonts/Roboto-Light.ttf'); }
 
+/*
+#272727 -- grey
+
+#323232 -- lighter grey
+
+#c5a47e -- gold 
+
+#747474
+
+#F3F3F3
+
+Using oswald for a font
+*/
+
+
 html {
-    background: -webkit-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
-    background: -o-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
-    background: -moz-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
-    background: linear-gradient(to bottom, rgba(90, 90, 90, 0.4), rgba(50, 50, 50, 0.4)), url(../img/LandscapeBackground.png);
-    
-    background-repeat: no-repeat;
-    background-position: right top;
-    background-attachment: fixed;
-    background-size: cover;
-    min-height: 100%;
+    background: #272727;
+    font-family: 'Roboto', arial;
 }
 
 body {
-    background-color: transparent;
     padding: 20px 300px;
-    font-family: 'Roboto', arial;
 }
 
 #WeatherWrapper {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 #WeatherList {
@@ -30,12 +35,22 @@ body {
 }
 
 .WeatherElement {
-    width: 14%;
+    width: 13.28%;
     margin: 0;
     float: left;
     display: table-row;
     text-align: center;
-    color: rgb(51,51,51);
+    box-shadow: 0px 0px 10px black;
+    color: #272727;
+    margin: 0.5%;
+}
+
+.weatherFooter {
+    padding-top: 7px;
+    padding-bottom: 5px;
+    color: white;
+    background-color: #323232;
+    border-top: 1px dashed #c5a47e;
 }
 
 label {
@@ -44,7 +59,6 @@ label {
     margin-bottom: 5px;
     font-weight: 100;
     text-align: center;
-    color: white;
 }
 
 #ToDoList {
@@ -54,9 +68,17 @@ label {
 }
 
 #ToDoList .ToDoElement {
-    background: linear-gradient(to right, rgba(64, 58, 62, 0.25), rgba(191, 90, 107, 0.24));
+    background: #454545;
     margin-bottom: 5px;
-    padding: 10px;
+    box-shadow: 0px 0px 10px black;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    
+    cursor: pointer;
+	transition: all ease 0.8s;
+    border-left: 1px solid #c5a47e;
+    border-right: 1px solid #c5a47e;
 }
 
 #inputWrapper {
@@ -65,9 +87,9 @@ label {
 
 #inputWrapper input {
     border-radius: 0;
-    background: rgba(150,150,150,0.2);
+    background: #323232;
     border: none;
-    border-bottom: 1px solid white;
+    border-bottom: 1px dashed #c5a47e;
     color: white;
     min-width: 100%;
     padding: 6px 12px;
@@ -84,9 +106,11 @@ label {
   border-top: 2px solid white;
 }
 
-.ToDoElement {
-    cursor: pointer;
-	transition: all ease 0.8s;
+.ToDoElement .ToDoContentWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    padding: 10px;
 }
 
 .ToDoContent {
@@ -94,14 +118,20 @@ label {
     font-size: 16px;
 }
 
-.ContentWrapper {
-    padding-right: 70px;
-    margin-bottom: 5px;
+.IconWrapper {
+    min-width: 70px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    height: 55px !important;
 }
 
 .ToDoTime {
-    font-size: 12px;
+    margin-top: 1px;
+    font-size: 11px;
     color: #999999;
+    display: inline-block;
+    min-width: 150px;
 }
 
 .ToDoElement br {
@@ -109,8 +139,17 @@ label {
 }
 
 .done {
-    background: linear-gradient(to right, rgba(38, 35, 37, 0.25), rgba(115, 54, 64, 0.24)) !important;
-    color: rgba(200,200,200,0.8);
+    background: #323232 !important;
+    /* background: rgba(237,197,152, 0.8) !important; */
+    /* color: rgba(200,200,200,0.8); */
+}
+
+.done .ToDoContent {
+    color: rgba(255,255,255,0.6);
+}
+
+.done .ToDoTime {
+    color: rgba(255,255,255,0.2);
 }
 
 .fa.fa-undo {
@@ -148,19 +187,13 @@ label {
 }
 
 .fa {
+    color: white;
     position: relative;
-    top: -14px;
-    border: 1px solid rgba(200,200,200,0.8);
     padding: 4px;
     float: right;
     cursor: pointer;
     transition: all 0.5s ease;
-    border-radius: 1px;
     font-size: 14px !important;
-}
-
-.fa:hover {
-    border: 1px solid rgba(140,140,140,0.9);
 }
 
 @media only screen and (max-width: 1500px) {
@@ -184,7 +217,8 @@ label {
     }
     
     .WeatherElement {
-        width: 33%;
+        width: 29%;
+        margin: 1% 2%;
     }
     .WeatherElement:nth-of-type(4), .WeatherElement:nth-of-type(5), .WeatherElement:nth-of-type(6), .WeatherElement:nth-of-type(7) {
         display: none;
