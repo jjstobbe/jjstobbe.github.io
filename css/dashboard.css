@@ -12,19 +12,31 @@
 #F3F3F3
 
 Using oswald for a font
+
+linear-gradient(to bottom, rgba(53, 53, 53, 01), rgba(40,40,40, 0.98))
 */
 
 
 html {
-    background: #272727;
-    font-family: 'Roboto', arial;
+    font-family: 'Roboto', arial;	
+    background: linear-gradient(to bottom left, rgba(47,47,47,0.98), rgba(39,39,39, 0.98));
+    min-height: 100%;
+    margin: auto;
+    padding: 0;
 }
 
 body {
     padding: 20px 300px;
+    background: url(../img/Background_01.png);
+    background-position: center center;
+    background-repeat: no-repeat;		
+    background-position: right top;		
+    background-attachment: fixed;		
+    background-size: cover;
 }
 
 #WeatherWrapper {
+    background: rgba(30,30,30,0.3);
     width: 100%;
     margin-bottom: 20px;
 }
@@ -41,7 +53,7 @@ body {
     display: table-row;
     text-align: center;
     box-shadow: 0px 0px 10px black;
-    color: #272727;
+    color: #353535;
     margin: 0.5%;
 }
 
@@ -49,7 +61,7 @@ body {
     padding-top: 7px;
     padding-bottom: 5px;
     color: white;
-    background-color: #323232;
+    background-color: rgba(48,48,48,0.98);
     border-top: 1px dashed #c5a47e;
 }
 
@@ -68,7 +80,7 @@ label {
 }
 
 #ToDoList .ToDoElement {
-    background: #454545;
+    background: rgba(100,100,100,0.6);
     margin-bottom: 5px;
     box-shadow: 0px 0px 10px black;
     align-items: center;
@@ -139,9 +151,7 @@ label {
 }
 
 .done {
-    background: #323232 !important;
-    /* background: rgba(237,197,152, 0.8) !important; */
-    /* color: rgba(200,200,200,0.8); */
+    background: rgba(80,80,80,0.33) !important;
 }
 
 .done .ToDoContent {
