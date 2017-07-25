@@ -130,6 +130,7 @@ function checkSubmit(e) {
     if (e && e.keyCode == 13) {
         var newToDo = new ToDo(null, $('#textBox').val(), false, moment().format('MMMM Do YYYY, h:mm:ss a'));
         newToDo.AddToDo();
+        $('#textBox').blur();
     }
 }
 
