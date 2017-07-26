@@ -54,6 +54,7 @@ body {
     box-shadow: 0px 0px 10px black;
     color: #353535;
     margin: 0.5%;
+    cursor: pointer;
 }
 
 .weatherFooter {

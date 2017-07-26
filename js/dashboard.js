@@ -1,11 +1,26 @@
 var ToDoListVM = new ToDoListVM();
 var WeatherListVM = new WeatherListVM();
 
+//7d63849cadf9d0d6a5beb3ff659ca3b7
+
 $(document).ready(() => {
     ko.applyBindings(ToDoListVM);
     ToDoListVM.GetToDos();
     WeatherListVM.GetWeather();
+    
+    $('#ToDoWrapper .ToDoElement').each(function(i) {
+      $(this).css('opacity', 0);
+      $(this).delay(1000 * i).animate({
+        'opacity': 1.0
+      }, 450);
+    });
+    
+    Date.prototype.getUnixTime = function() { return this.getTime()/1000|0 };
+    if(!Date.now) Date.now = function() { return new Date(); }
+    Date.time = function() { return Date.now().getUnixTime(); }
 });
+
+
 
 function WeatherListVM() {
     var self = this;
@@ -13,6 +28,7 @@ function WeatherListVM() {
     self.WeatherList = ko.observableArray([]);
     self.lat = 41.267;
     self.long = -96.001;
+    self.WeatherDetails = ko.observable();
     
     self.GetWeather = () => {
         self.WeatherList.removeAll();
@@ -56,6 +72,22 @@ function getWeather(){
                 $('#WeatherElement'+i).append('<div class=\'icon cloudy\'><div class=\'cloud\'></div><div class=\'cloud\'></div></div>');
             }
         }
+          
+        $('#WeatherList .WeatherElement').on('click', (e) => {
+            var dateOffset = Number($($(e.currentTarget).children()[0]).attr('id').slice(-1));
+            
+            var d = new Date();
+            d.setDate(d.getDate()+dateOffset);
+            
+            $.ajax({
+                type: 'GET',
+                dataType: 'jsonp',
+                url: 'https://api.darksky.net/forecast/7d63849cadf9d0d6a5beb3ff659ca3b7/'+WeatherListVM.lat+','+WeatherListVM.long+','+Math.round(d.getTime() / 1000)+'?exclude=currently,flags,hourly,minutely',
+                success: (data) => {
+                    WeatherListVM.WeatherDetails(data.daily.data[0]);
+                }
+             });
+        });
       }
     });
 }
