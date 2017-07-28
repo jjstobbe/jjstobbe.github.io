@@ -1,7 +1,7 @@
 var ToDoListVM = new ToDoListVM();
 var WeatherListVM = new WeatherListVM();
-
-//7d63849cadf9d0d6a5beb3ff659ca3b7
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 $(document).ready(() => {
     ko.applyBindings(ToDoListVM);
@@ -160,11 +160,35 @@ function Logout() {
 
 function checkSubmit(e) {
     if (e && e.keyCode == 13) {
-        var newToDo = new ToDo(null, $('#textBox').val(), false, moment().format('MMMM Do YYYY, h:mm:ss a'));
+        var d = new Date();
+        var ampm = d.getHours() < 12 ? 'am' : 'pm';
+        var min = d.getMinutes();
+        if(min < 10){
+            min = '0' + min;
+        }
+        var sec = d.getSeconds();
+        if(sec < 10){
+            sec = '0' + sec;
+        }
+        
+        var parsedDate = ''+months[d.getMonth()]+" "+d.getDate()+""+nth(d.getDate());
+        parsedDate = parsedDate + ', '+d.getHours()%12+':'+min+':'+sec+' '+ampm;
+        
+        var newToDo = new ToDo(null, $('#textBox').val(), false, parsedDate);
         newToDo.AddToDo();
         $('#textBox').blur();
     }
 }
+
+function nth(d) {
+  if(d>3 && d<21) return 'th'; // thanks kennebec
+  switch (d % 10) {
+        case 1:  return "st";
+        case 2:  return "nd";
+        case 3:  return "rd";
+        default: return "th";
+    }
+} 
 
 function moveToDo(dragId, baseId) {
     var counter = 1;

@@ -42,6 +42,7 @@ body {
 #WeatherList {
     width: 100%;
     display: table;
+    transition: all 0.5s;
 }
 
 .WeatherElement {
@@ -54,6 +55,7 @@ body {
     color: #353535;
     margin: 0.5%;
     cursor: pointer;
+    transition: all 0.5s;
 }
 
 .weatherFooter {
@@ -63,7 +65,6 @@ body {
     background-color: rgba(48,48,48,0.98);
     border-top: 1px dashed #c5a47e;
 }
-
 
 label {
     font-size: 13px;
