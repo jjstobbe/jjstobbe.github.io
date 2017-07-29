@@ -25,10 +25,13 @@ $(document).ready(() => {
 function WeatherListVM() {
     var self = this;
 
-    self.WeatherList = ko.observableArray([]);
+    self.WeatherList = ko.observableArray();
     self.lat = 41.267;
     self.long = -96.001;
-    self.WeatherDetails = ko.observable();
+    self.WeatherDetails = [];
+    for(var i = 0;i<7;i++){
+        self.WeatherDetails[i] = ko.observable();
+    }
     
     self.GetWeather = () => {
         self.WeatherList.removeAll();
@@ -55,46 +58,54 @@ function getWeather(){
 
         for(var i = 0;i < data.list.length;i++){
             var weather = new Weather();
+            
+            weather.Id = i;
             weather.Min = (data.list[i].temp.min*9/5 - 459.67).toFixed(0);
             weather.Max = (data.list[i].temp.max*9/5 - 459.67).toFixed(0);
 
             weather.Main = data.list[i].weather[0].main;
-            weather.Description = data.list[i].weather[0].description[0].toUpperCase() +            data.list[i].weather[0].description.slice(1);
+            weather.Description = data.list[i].weather[0].description[0].toUpperCase()+data.list[i].weather[0].description.slice(1);
             weather.Day = weekday[(d.getDay() + i)%7];
 
             WeatherListVM.WeatherList.push(weather);
 
             if(weather.Main == 'Rain'){
-                $('#WeatherElement'+i).append('<div class=\'icon rainy\'><div class=\'cloud\'></div><div class=\'rain\'></div></div>');
+                $('#WeatherElement'+weather.Id).append('<div class=\'icon rainy\'><div class=\'cloud\'></div><div class=\'rain\'></div></div>');
             }else if(weather.Main == 'Clear'){
-                $('#WeatherElement'+i).append('<div class=\'icon sunny\'><div class=\'sun\'><div class=\'rays\'></div></div></div>');
+                $('#WeatherElement'+weather.Id).append('<div class=\'icon sunny\'><div class=\'sun\'><div class=\'rays\'></div></div></div>');
             }else if(weather.Main == 'Clouds'){
-                $('#WeatherElement'+i).append('<div class=\'icon cloudy\'><div class=\'cloud\'></div><div class=\'cloud\'></div></div>');
+                $('#WeatherElement'+weather.Id).append('<div class=\'icon cloudy\'><div class=\'cloud\'></div><div class=\'cloud\'></div></div>');
             }
         }
           
-        $('#WeatherList .WeatherElement').on('click', (e) => {
-            var dateOffset = Number($($(e.currentTarget).children()[0]).attr('id').slice(-1));
-            
+        //for(i = 0;i<WeatherListVM.WeatherList().length;i++) {
+        for(i = 0;i<1;i++) {
             var d = new Date();
-            d.setDate(d.getDate()+dateOffset);
+            d.setDate(d.getDate()+WeatherListVM.WeatherList()[i].Id);
             
             $.ajax({
                 type: 'GET',
                 dataType: 'jsonp',
                 url: 'https://api.darksky.net/forecast/7d63849cadf9d0d6a5beb3ff659ca3b7/'+WeatherListVM.lat+','+WeatherListVM.long+','+Math.round(d.getTime() / 1000)+'?exclude=currently,flags,hourly,minutely',
                 success: (data) => {
-                    WeatherListVM.WeatherDetails(data.daily.data[0]);
+                    WeatherListVM.WeatherDetails[0](data.daily.data[0]);
                 }
-             });
+            });
+        }
+          
+        $('#WeatherList .WeatherElement').on('click', (e) => {
+            /* Expand out corresponding details page */
+            $($(e.currentTarget).parent().children()[1]).addClass('active');
+            $('body').addClass('active');
         });
       }
     });
 }
 
-function Weather(min, max, main, description, day) {
+function Weather(id, min, max, main, description, day) {
     var self = this;
     
+    self.Id = ko.observable(id);
     self.Min = ko.observable(min);
     self.Max = ko.observable(max);
     self.Main = ko.observable(main);
@@ -283,3 +294,17 @@ function ajax(type, url, data, successFunction) {
       }
     });
 }
+
+ko.components.register('js-weather-details', {
+    viewModel: function(params) {
+        var self = this;
+        console.log(params);
+        $('js-weather-details').on('click', (e) => {
+            $(e.currentTarget).removeClass('active');
+            $('body').removeClass('active');
+        });
+        
+        return self;
+    },
+    template: '<label>ayy lmao</label>'
+});
