@@ -90,9 +90,18 @@ function getWeather(){
             /* Expand out corresponding details page */
             var id = Number($($(e.currentTarget).children()[0]).attr('id').slice(-1));
 
-            $('.WeatherDetails:eq('+id+')').addClass('active');
-            $('body').addClass('active');
+            setTimeout(() => {
+                $('.WeatherDetails:eq('+id+')').addClass('active');
+                $('body').addClass('active');
+            }, 10);
         });
+        $(document).on('click', (e) => {
+            /* Expand out corresponding details page */
+            if($('.WeatherDetails').hasClass('active')){
+                $('.WeatherDetails').removeClass('active');
+                $('body').removeClass('active');
+            }
+         });
       }
     });
     
@@ -114,12 +123,6 @@ function getWeather(){
                 var days = Math.ceil(millisBetween / millisecondsPerDay);
                 
                 WeatherListVM.WeatherDetails[days](data.daily.data[0]);
-                
-                $('.WeatherDetails').on('click', (e) => {
-                    /* Expand out corresponding details page */
-                    $('.WeatherDetails').removeClass('active');
-                    $('body').removeClass('active');
-                });
             }
         });
     }
