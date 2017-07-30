@@ -37,6 +37,20 @@ function renderCal(themonth) {
             $('<li>' + i + '</li>').appendTo('.calendar ul');
         }
     }
+    
+    $('.group li').on('click', function(){
+        $('.selected').removeClass('selected');
+        $(this).addClass('selected');
+        
+        EventListVM.FilteredEvents.removeAll();
+        EventListVM.SelectedDate(getCalendarDate());
+        for(var i = 0;i<EventListVM.EventList().length;i++){
+            if(EventListVM.EventList()[i].Date() == EventListVM.SelectedDate()){
+                EventListVM.FilteredEvents.push(EventListVM.EventList()[i]);
+            }
+        }
+        
+    });
 
     function firstDay(month, year) {
         return new Date(year, month, 1).getDay();

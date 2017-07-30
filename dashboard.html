@@ -100,12 +100,11 @@
         </div>
         <div id="eventContainer">
             <h3 id="SelectedDay">Sunday</h3>
-            <ul id="eventList">
-                <li>Give dog a bath</li>
-                <li>Wash Clothes</li>
+            <ul id="eventList" data-bind="foreach: EventListVM.FilteredEvents">
+                <li data-bind="text: Content">No Content</li>
             </ul>
             <div id="eventInputWrapper">
-                <input type="text" id="eventInput">
+                <input type="text" id="eventInput" onKeyPress="return checkEventSubmit(event)">
             </div>
         </div>
     </div>

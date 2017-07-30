@@ -1,5 +1,6 @@
 var ToDoListVM = new ToDoListVM();
 var WeatherListVM = new WeatherListVM();
+var EventListVM = new EventListVM();
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -7,13 +8,7 @@ $(document).ready(() => {
     ko.applyBindings(ToDoListVM);
     ToDoListVM.GetToDos();
     WeatherListVM.GetWeather();
-    
-    $('#ToDoWrapper .ToDoElement').each(function(i) {
-      $(this).css('opacity', 0);
-      $(this).delay(1000 * i).animate({
-        'opacity': 1.0
-      }, 450);
-    });
+    EventListVM.GetEvents();
     
     Date.prototype.getUnixTime = function() { return this.getTime()/1000|0 };
     if(!Date.now) Date.now = function() { return new Date(); }
@@ -95,6 +90,7 @@ function getWeather(){
                 $('body').addClass('active');
             }, 10);
         });
+          
         $(document).on('click', (e) => {
             /* Expand out corresponding details page */
             if($('.WeatherDetails').hasClass('active')){
@@ -152,6 +148,50 @@ function Weather(id, min, max, main, description, day) {
     self.Main = ko.observable(main);
     self.Description = ko.observable(description);
     self.Day = ko.observable(day);
+}
+
+function EventListVM() {
+    var self = this;
+    
+    self.EventList = ko.observableArray([]);
+    self.FilteredEvents = ko.observableArray([]);
+    self.SelectedDate = ko.observable(getCalendarDate());
+    
+    self.GetEvents = () => {
+        self.EventList.removeAll();
+        
+        ajax('GET', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/Events', null, (data) => {
+            for(var i = 0; i < data.length; i++){
+                var event = new Event(data[i]._id, data[i].Content, data[i].Date);
+                self.EventList.push(event);
+                
+                self.SelectedDate(getCalendarDate());
+                if(data[i].Date == self.SelectedDate()){
+                    self.FilteredEvents.push(event);
+                }
+            }
+        });
+    };
+}
+
+function Event(id, content, date) {
+    var self = this;
+    
+    self.Id = ko.observable(id);
+    self.Content = ko.observable(content);
+    self.Date = ko.observable(date);
+    
+    self.AddEvent = () => {
+        delete self.Id;
+        var dataObject = ko.toJSON(self);
+        
+        ajax('POST', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/Events', dataObject, (data) => {
+            $('#eventInput').val('');
+            var event = new Event(data._id, data.Content, data.Date);
+            EventListVM.EventList.push(event);
+            EventListVM.FilteredEvents.push(event);
+        });
+    };
 }
 
 function ToDoListVM() {
@@ -232,6 +272,18 @@ function checkSubmit(e) {
     }
 }
 
+function checkEventSubmit(e) {
+    if (e && e.keyCode == 13) {
+        
+        var Content = $('#eventInput').val();
+        
+        var newEvent = new Event(null, Content, getCalendarDate());
+        newEvent.AddEvent();
+        
+        $('#eventInput').blur();
+    }
+}
+
 function nth(d) {
   if(d>3 && d<21) return 'th'; // thanks kennebec
   switch (d % 10) {
@@ -240,7 +292,20 @@ function nth(d) {
         case 3:  return "rd";
         default: return "th";
     }
-} 
+}
+
+function minTwoDigits(n) {
+  return (n < 10 ? '0' : '') + n;
+}
+        
+function getCalendarDate() {
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
+    var MonthYear = $('.monthname').html();
+    var Month = MonthYear.substring(0, MonthYear.indexOf(' '));
+    var Year = MonthYear.substring(MonthYear.lastIndexOf(' ')+1);
+    return (minTwoDigits(months.indexOf(Month)+1)+'/'+$('.selected').html()+'/'+Year);
+}
 
 function moveToDo(dragId, baseId) {
     var counter = 1;

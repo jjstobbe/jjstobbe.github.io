@@ -35,13 +35,11 @@ ul {
 
 #eventContainer {
     width: 50%;
-    height: 100%;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     float: right;
     background: rgba(30,30,30,0.8);
     margin-top: 40px;
-    margin-bottom: 50px;
     border-left: 2px dashed rgba(197, 164, 126, 0.7);
     box-shadow: 0px 0px 10px black;
 }
@@ -97,7 +95,6 @@ ul {
     float: left;
     min-height: 20em;
     margin-top: 40px;
-    margin-bottom: 50px;
     box-shadow: 0px 0px 10px black;
 }
 
