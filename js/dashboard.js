@@ -20,8 +20,6 @@ $(document).ready(() => {
     Date.time = function() { return Date.now().getUnixTime(); }
 });
 
-
-
 function WeatherListVM() {
     var self = this;
 
@@ -29,8 +27,10 @@ function WeatherListVM() {
     self.lat = 41.267;
     self.long = -96.001;
     self.WeatherDetails = [];
+    var blankObject = { summary: '' };
+    
     for(var i = 0;i<7;i++){
-        self.WeatherDetails[i] = ko.observable();
+        self.WeatherDetails[i] = ko.observable({summary: '', humidity: '',temperatureMin:0,temperatureMax:0,cloudCover:0,precipProbability:0});
     }
     
     self.GetWeather = () => {
@@ -78,28 +78,43 @@ function getWeather(){
             }
         }
           
-        //for(i = 0;i<WeatherListVM.WeatherList().length;i++) {
-        for(i = 0;i<1;i++) {
-            var d = new Date();
-            d.setDate(d.getDate()+WeatherListVM.WeatherList()[i].Id);
-            
-            $.ajax({
-                type: 'GET',
-                dataType: 'jsonp',
-                url: 'https://api.darksky.net/forecast/7d63849cadf9d0d6a5beb3ff659ca3b7/'+WeatherListVM.lat+','+WeatherListVM.long+','+Math.round(d.getTime() / 1000)+'?exclude=currently,flags,hourly,minutely',
-                success: (data) => {
-                    WeatherListVM.WeatherDetails[0](data.daily.data[0]);
-                }
-            });
-        }
-          
         $('#WeatherList .WeatherElement').on('click', (e) => {
             /* Expand out corresponding details page */
-            $($(e.currentTarget).parent().children()[1]).addClass('active');
+            var id = Number($($(e.currentTarget).children()[0]).attr('id').slice(-1));
+
+            $('.WeatherDetails:eq('+id+')').addClass('active');
             $('body').addClass('active');
         });
       }
     });
+    
+    // Gets weather details for the week
+    for(i = 0;i<7;i++) {
+        var d = new Date();
+        d.setDate(d.getDate()+i);
+
+        $.ajax({
+            type: 'GET',
+            dataType: 'jsonp',
+            url: 'https://api.darksky.net/forecast/7d63849cadf9d0d6a5beb3ff659ca3b7/'+WeatherListVM.lat+','+WeatherListVM.long+','+Math.round(d.getTime() / 1000)+'?exclude=currently,flags,minutely',
+            success: (data) => {
+                var date1 = new Date();
+                var date2 = new Date(data.daily.data[0].time * 1000);
+                
+                var millisecondsPerDay = 1000 * 60 * 60 * 24;
+                var millisBetween = date2.getTime() - date1.getTime();
+                var days = Math.ceil(millisBetween / millisecondsPerDay);
+                
+                WeatherListVM.WeatherDetails[days](data.daily.data[0]);
+                
+                $('.WeatherDetails').on('click', (e) => {
+                    /* Expand out corresponding details page */
+                    $('.WeatherDetails').removeClass('active');
+                    $('body').removeClass('active');
+                });
+            }
+        });
+    }
 }
 
 function Weather(id, min, max, main, description, day) {
@@ -294,17 +309,3 @@ function ajax(type, url, data, successFunction) {
       }
     });
 }
-
-ko.components.register('js-weather-details', {
-    viewModel: function(params) {
-        var self = this;
-        console.log(params);
-        $('js-weather-details').on('click', (e) => {
-            $(e.currentTarget).removeClass('active');
-            $('body').removeClass('active');
-        });
-        
-        return self;
-    },
-    template: '<label>ayy lmao</label>'
-});

@@ -33,8 +33,25 @@
                     <label data-bind="text: Description"></label>
                 </div>
             </div>
-            
-            <js-weather-details params="data: $data"></js-weather-details>
+        </div>
+        
+        <div data-bind="foreach: WeatherDetails">
+            <div class="WeatherDetails">
+                <ul>
+                    <label>Summary</label>
+                    <li data-bind="text: summary"></li>
+                    <label>Humidity</label>
+                    <li><span data-bind="text: Math.floor(humidity*100)"></span>%</li>
+                    <label>Min</label>
+                    <li><span data-bind="text: temperatureMin"></span>&#8457; </li>
+                    <label>Max</label>
+                    <li><span data-bind="text: temperatureMax"></span>&#8457; </li>
+                    <label>Cloud Cover</label>
+                    <li><span data-bind="text: Math.floor(cloudCover*100)"></span>%</li>
+                    <label>Chance of Rain</label>
+                    <li><span data-bind="text: Math.floor(precipProbability*100)"></span>%</li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -99,21 +116,4 @@
 <script async type='text/javascript' src='js/dashboard.js'></script>
 <script async type='text/javascript' src='js/calendar.js'></script>
 <script async type='text/javascript' src='js/drag.js'></script>
-    
-<template id='js-weather-details'>
-    <ul>
-        <label>Summary</label>
-        <li data-bind="text: summary"></li>
-        <label>Humidity</label>
-        <li><span data-bind="text: Math.floor(humidity*100)"></span>%</li>
-        <label>Min</label>
-        <li><span data-bind="text: temperatureMin"></span>&#8457; </li>
-        <label>Max</label>
-        <li><span data-bind="text: temperatureMax"></span>&#8457; </li>
-        <label>Cloud Cover</label>
-        <li><span data-bind="text: Math.floor(cloudCover*100)"></span>%</li>
-        <label>Chance of Rain</label>
-        <li><span data-bind="text: Math.floor(precipProbability*100)"></span>%</li>
-    </ul>
-</template>
 </html>
