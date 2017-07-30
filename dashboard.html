@@ -36,20 +36,26 @@
         
         <div data-bind="foreach: WeatherDetails">
             <div class="WeatherDetails">
-                <ul>
-                    <label>Summary</label>
-                    <li data-bind="text: summary"></li>
-                    <label>Humidity</label>
-                    <li><span data-bind="text: Math.floor(humidity*100)"></span>%</li>
-                    <label>Min</label>
-                    <li><span data-bind="text: temperatureMin"></span>&#8457; </li>
-                    <label>Max</label>
-                    <li><span data-bind="text: temperatureMax"></span>&#8457; </li>
-                    <label>Cloud Cover</label>
-                    <li><span data-bind="text: Math.floor(cloudCover*100)"></span>%</li>
-                    <label>Chance of Rain</label>
-                    <li><span data-bind="text: Math.floor(precipProbability*100)"></span>%</li>
-                </ul>
+                <div data-bind="attr: { id: 'WeatherDetails'+$index() }" class="WeatherDetailsIcon">
+                </div>
+                <div class="WeatherContentWrapper">
+                    <ul class="WeatherDetailsContentLeft">
+                        <label>Summary</label>
+                        <li data-bind="text: summary"></li>
+                        <label>Min</label>
+                        <li><span data-bind="text: temperatureMin"></span>&#8457; </li>
+                        <label>Max</label>
+                        <li><span data-bind="text: temperatureMax"></span>&#8457; </li>
+                    </ul>
+                    <ul class="WeatherDetailsContentRight">
+                        <label>Humidity</label>
+                        <li><span data-bind="text: Math.floor(humidity*100)"></span>%</li>
+                        <label>Cloud Cover</label>
+                        <li><span data-bind="text: Math.floor(cloudCover*100)"></span>%</li>
+                        <label>Chance of Rain</label>
+                        <li><span data-bind="text: Math.floor(precipProbability*100)"></span>%</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

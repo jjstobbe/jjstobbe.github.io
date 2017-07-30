@@ -211,11 +211,13 @@
   opacity: 0.4;
   animation: spin 16s linear infinite reverse;
 }
-.rainy {
+
+
+.WeatherElement .rainy {
     background: linear-gradient(to bottom left, rgba(37,47,47,0.60), rgba(39,39,39, 0.98));
 }
 
-.sunny {
+.WeatherElement .sunny {
     background: linear-gradient(to bottom left, rgba(197, 164, 126, 0.1), rgba(39,39,39, 0.98));
 }
 
@@ -223,7 +225,7 @@
     background: transparent;
 }
 
-.cloudy {
+.WeatherElement .cloudy {
     background: linear-gradient(to bottom left, rgba(100, 100, 100, 0.2), rgba(39,39,39, 0.98));
 }
 

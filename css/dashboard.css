@@ -78,6 +78,53 @@ body {
     transition-timing-function: cubic-bezier(0.23, 0.86, 0.38, 0.91);
     transition-duration: 0.3s;
     overflow: hidden;
+    text-align: center;
+}
+
+.WeatherDetails.rainy {
+    background: linear-gradient(to bottom left, rgba(96,108,136,0.4), rgba(19,23,32,0.6))
+}.WeatherDetails.sunny {
+    background: linear-gradient(to bottom left, rgba(37,47,51,0.85), rgba(39,39,40, 1))
+}.WeatherDetails.cloudy {
+    background: linear-gradient(to bottom left, rgba(37,47,51,0.85), rgba(39,39,40, 1))
+}
+
+.WeatherDetails .icon {
+    font-size: 2em;
+    color: #323232
+}
+
+.WeatherDetails .icon.rainy {
+    color: #353942;
+}.WeatherDetails .rain {
+    background: #353942;
+}
+
+.WeatherContentWrapper {
+    margin: 10px auto;
+}
+
+.WeatherContentWrapper label {
+    font-size: 1.5em;
+    border-bottom: 1px dashed #c5a47e;
+}
+
+.WeatherContentWrapper label+li {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    margin-top: 2px;
+}
+
+.WeatherDetailsContentLeft {
+    text-align: left;
+    display: inline-block;
+    margin-right: 40px;
+}
+
+.WeatherDetailsContentRight {
+    text-align: right;
+    display: inline-block;
+    margin-left: 40px;
 }
 
 .WeatherDetails.active {
@@ -90,6 +137,10 @@ body {
 
 body.active {
     overflow:hidden;
+}
+
+body.active #WeatherList, body.active #ToDoWrapper, body.active #calendarWrapper {
+    opacity: 0.3;
 }
 
 label {
@@ -237,7 +288,7 @@ label {
     body {
         padding: 20px 20px;
     }
-    .icon {
+    #WeatherList .icon {
         font-size: 0.7em !important;
     }
     .calendar {
@@ -246,7 +297,7 @@ label {
 }
 
 @media only screen and (max-width: 650px) {
-    .icon {
+    #WeatherList .icon {
         font-size: 0.5em !important;
     }
     

@@ -71,10 +71,18 @@ function getWeather(){
 
             if(weather.Main == 'Rain'){
                 $('#WeatherElement'+weather.Id).append('<div class=\'icon rainy\'><div class=\'cloud\'></div><div class=\'rain\'></div></div>');
+                
+                $('.WeatherDetails:eq('+weather.Id+')').addClass('rainy');
+                
+                $('#WeatherDetails'+weather.Id).append('<div class=\'icon rainy\'><div class=\'cloud\'></div><div class=\'rain\'></div></div>');
             }else if(weather.Main == 'Clear'){
                 $('#WeatherElement'+weather.Id).append('<div class=\'icon sunny\'><div class=\'sun\'><div class=\'rays\'></div></div></div>');
+                $('.WeatherDetails:eq('+weather.Id+')').addClass('sunny');
+                $('#WeatherDetails'+weather.Id).append('<div class=\'icon sunny\'><div class=\'sun\'><div class=\'rays\'></div></div></div>');
             }else if(weather.Main == 'Clouds'){
                 $('#WeatherElement'+weather.Id).append('<div class=\'icon cloudy\'><div class=\'cloud\'></div><div class=\'cloud\'></div></div>');
+                $('.WeatherDetails:eq('+weather.Id+')').addClass('cloudy');
+                $('#WeatherDetails'+weather.Id).append('<div class=\'icon cloudy\'><div class=\'cloud\'></div><div class=\'cloud\'></div></div>');
             }
         }
           
