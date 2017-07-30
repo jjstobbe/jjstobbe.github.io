@@ -10,10 +10,10 @@
 }
 
 html {
-    background: -webkit-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
-    background: -o-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
-    background: -moz-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
-    background: linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4)), url(../img/LandscapeBackground.png);
+    background: -webkit-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4));
+    background: -o-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4));
+    background: -moz-linear-gradient(to bottom left, rgba(29, 67, 80, 0.4), rgba(164, 57, 49, 0.4));
+    background: linear-gradient(to bottom left, rgba(10, 10, 10, 0.85), rgba(20, 20, 20, 0.85));
     
     background-repeat: no-repeat;
     background-position: right top;
@@ -35,7 +35,7 @@ body {
 }
 
 #usernameWrapper, #passwordWrapper {
-    border-bottom: 1px solid #848484 !important;
+    border-bottom: 1px dashed #c5a47e !important;
     margin-bottom: 20px;
 }
 
@@ -61,7 +61,7 @@ input:focus {outline:0;}
 
 /* Set a style for all buttons */
 button {
-    background-color: #DDDDDD;
+    background: linear-gradient(to right, white, #c5a47e);
     color: #222222;
     margin: 8px 0;
     border: none;
@@ -88,8 +88,8 @@ button:hover {
     padding: 20px;
     
     border: 1px solid #777777;
-    box-shadow: 0px 0px 10px #333333;
-    background-color: rgba(196, 196, 196, 0.05);
+    box-shadow: 0px 0px 10px #272727;
+    background-color: #363636;
     
     margin-right: auto;
     margin-left: auto;

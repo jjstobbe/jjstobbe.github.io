@@ -30,7 +30,7 @@ function WeatherListVM() {
     var blankObject = { summary: '' };
     
     for(var i = 0;i<7;i++){
-        self.WeatherDetails[i] = ko.observable({summary: '', humidity: '',temperatureMin:0,temperatureMax:0,cloudCover:0,precipProbability:0});
+        self.WeatherDetails[i] = ko.observable({summary: '', humidity: '',temperatureMin:0,temperatureMax:0,cloudCover:0,precipProbability:0, Intensity:`<embed src='.\/img\/SVG_000.svg' style="width:100%;">`});
     }
     
     self.GetWeather = () => {
@@ -121,7 +121,22 @@ function getWeather(){
                 var millisecondsPerDay = 1000 * 60 * 60 * 24;
                 var millisBetween = date2.getTime() - date1.getTime();
                 var days = Math.ceil(millisBetween / millisecondsPerDay);
+                var intensityString = '';
+                var a = 'precipProbability';
                 
+                // Selects the SVG for the corresponding intensity of weather.
+                for(var i = 0;i<24;i+=8){
+                    var intensity = (data.hourly.data[0+i][a]+data.hourly.data[1+i][a]+data.hourly.data[2+i][a]
+                      +data.hourly.data[3+i][a]+data.hourly.data[4+i][a]+data.hourly.data[5+i][a]
+                      +data.hourly.data[6+i][a]+data.hourly.data[7+i][a]) / 8.0;
+                    if(intensity < 0.15){
+                        intensityString += '0';
+                    }else{
+                        intensityString += '1';
+                    }
+                }
+                
+                data.daily.data[0].Intensity = `<embed src='.\/img\/SVG_`+intensityString+`.svg' style="width:100%;">`;
                 WeatherListVM.WeatherDetails[days](data.daily.data[0]);
             }
         });
