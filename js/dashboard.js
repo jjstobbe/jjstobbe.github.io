@@ -23,6 +23,12 @@ function WeatherListVM() {
     self.long = -96.001;
     self.WeatherDetails = [];
     var blankObject = { summary: '' };
+    self.numDays = 7;
+    
+    // Only show 3 if screen is small
+    if($(window).width() < 650){
+        self.numDays = 3;
+    }
     
     for(var i = 0;i<7;i++){
         self.WeatherDetails[i] = ko.observable({summary: '', humidity: '',temperatureMin:0,temperatureMax:0,cloudCover:0,precipProbability:0, Intensity:`<embed src='.\/img\/SVG_000.svg' style="width:100%;">`});
@@ -51,7 +57,7 @@ function getWeather(){
         var d = new Date();
           var weekday = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
-        for(var i = 0;i < data.list.length;i++){
+        for(var i = 0;i < WeatherListVM.numDays;i++){
             var weather = new Weather();
             
             weather.Id = i;
@@ -66,9 +72,7 @@ function getWeather(){
 
             if(weather.Main == 'Rain'){
                 $('#WeatherElement'+weather.Id).append('<div class=\'icon rainy\'><div class=\'cloud\'></div><div class=\'rain\'></div></div>');
-                
                 $('.WeatherDetails:eq('+weather.Id+')').addClass('rainy');
-                
                 $('#WeatherDetails'+weather.Id).append('<div class=\'icon rainy\'><div class=\'cloud\'></div><div class=\'rain\'></div></div>');
             }else if(weather.Main == 'Clear'){
                 $('#WeatherElement'+weather.Id).append('<div class=\'icon sunny\'><div class=\'sun\'><div class=\'rays\'></div></div></div>');
@@ -102,7 +106,7 @@ function getWeather(){
     });
     
     // Gets weather details for the week
-    for(i = 0;i<7;i++) {
+    for(i = 0;i<WeatherListVM.numDays;i++) {
         var d = new Date();
         d.setDate(d.getDate()+i);
 
@@ -111,6 +115,7 @@ function getWeather(){
             dataType: 'jsonp',
             url: 'https://api.darksky.net/forecast/7d63849cadf9d0d6a5beb3ff659ca3b7/'+WeatherListVM.lat+','+WeatherListVM.long+','+Math.round(d.getTime() / 1000)+'?exclude=currently,flags,minutely',
             success: (data) => {
+                console.log(data);
                 var date1 = new Date();
                 var date2 = new Date(data.daily.data[0].time * 1000);
                 
@@ -125,7 +130,7 @@ function getWeather(){
                     var intensity = (data.hourly.data[0+i][a]+data.hourly.data[1+i][a]+data.hourly.data[2+i][a]
                       +data.hourly.data[3+i][a]+data.hourly.data[4+i][a]+data.hourly.data[5+i][a]
                       +data.hourly.data[6+i][a]+data.hourly.data[7+i][a]) / 8.0;
-                    if(intensity < 0.15){
+                    if(intensity < 0.1){
                         intensityString += '0';
                     }else{
                         intensityString += '1';

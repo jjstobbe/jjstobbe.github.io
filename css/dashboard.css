@@ -51,7 +51,7 @@ body {
     float: left;
     display: table-row;
     text-align: center;
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     color: #353535;
     margin: 0.5%;
     cursor: pointer;
@@ -166,7 +166,7 @@ label {
 #ToDoList .ToDoElement {
     background: rgba(100,100,100,0.6);
     margin-bottom: 5px;
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     align-items: center;
     display: flex;
     width: 100%;
