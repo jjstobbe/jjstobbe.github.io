@@ -34,109 +34,6 @@ body {
     background-size: cover;
 }
 
-#WeatherWrapper {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-#WeatherList {
-    width: 100%;
-    display: table;
-    transition: all 0.5s;
-}
-
-.WeatherElement {
-    width: 13.28%;
-    margin: 0;
-    float: left;
-    display: table-row;
-    text-align: center;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    color: #353535;
-    margin: 0.5%;
-    cursor: pointer;
-    transition: all 0.5s;
-}
-
-.weatherFooter {
-    padding-top: 7px;
-    padding-bottom: 5px;
-    color: white;
-    background-color: rgba(48,48,48,0.98);
-    border-top: 1px dashed #c5a47e;
-}
-
-.WeatherDetails {
-    position: absolute;
-    height: 100vh;
-    color: white;
-    width: 40vw;
-    border-right: 1px solid #c5a47e;
-    background-color: #323232;
-    left: -100vw;
-    top: 0;
-    z-index: 10;
-    transition-timing-function: cubic-bezier(0.23, 0.86, 0.38, 0.91);
-    transition-duration: 0.3s;
-    overflow: hidden;
-    text-align: center;
-}
-
-.WeatherDetails.rainy {
-    background: linear-gradient(to bottom left, rgba(96,108,136,0.4), rgba(19,23,32,0.6))
-}.WeatherDetails.sunny {
-    background: linear-gradient(to bottom left, rgba(37,47,51,0.85), rgba(39,39,40, 1))
-}.WeatherDetails.cloudy {
-    background: linear-gradient(to bottom left, rgba(37,47,51,0.85), rgba(39,39,40, 1))
-}
-
-.WeatherDetails .icon {
-    font-size: 2em;
-    color: #323232
-}
-
-.WeatherDetails .icon.rainy {
-    color: #353942;
-}.WeatherDetails .rain {
-    background: #353942;
-}
-
-.DivideSVG {
-    max-width: 40vw;
-    max-height: 110px;
-}
-
-.WeatherContentWrapper {
-    margin: 10px auto;
-}
-
-.WeatherContentWrapper label {
-    font-size: 1.5em;
-    border-bottom: 1px dashed #c5a47e;
-}
-
-.WeatherContentWrapper label+li {
-    margin-bottom: 20px;
-    font-size: 1.2em;
-    margin-top: 2px;
-}
-
-.WeatherDetailsContentLeft {
-    text-align: left;
-    display: inline-block;
-    margin-right: 40px;
-}
-
-.WeatherDetailsContentRight {
-    text-align: right;
-    display: inline-block;
-    margin-left: 40px;
-}
-
-.WeatherDetails.active {
-    left: 0;
-}
-
 body {
     transition: all 0.3s ease;
 }
@@ -246,23 +143,6 @@ label {
     color: rgba(255,255,255,0.2);
 }
 
-.fa.fa-undo {
-    display: none;
-}
-
-.done .fa.fa-undo {
-    display: inherit !important;
-    margin-right: 8px;
-}
-
-.done .fa.fa-undo::before {
-    margin: 0 1px;
-}
-
-.done .fa.fa-check {
-    display: none;
-}
-
 [draggable] {
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -271,23 +151,6 @@ label {
   /* Required to make elements draggable in old WebKit */
   -khtml-user-drag: element;
   -webkit-user-drag: element;
-}
-
-.fa-check {
-    margin-right: 8px;
-}
-.fa-times {
-    padding: 4px 5px !important;
-}
-
-.fa {
-    color: white;
-    position: relative;
-    padding: 4px;
-    float: right;
-    cursor: pointer;
-    transition: all 0.5s ease;
-    font-size: 14px !important;
 }
 
 @media only screen and (max-width: 1500px) {
@@ -302,7 +165,7 @@ label {
     }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1100px) {
     .WeatherDetails  {
         width: 100%;
     }

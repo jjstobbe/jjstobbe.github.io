@@ -37,15 +37,8 @@ function handleDrop(e) {
 
   // Don't do anything if dropping the same column we're dragging.
   if (dragSrcEl != this) {
-    // Set the source column's HTML to the HTML of the column we dropped on.
-    //alert(this.outerHTML);
-    //dragSrcEl.innerHTML = this.innerHTML;
-    //this.innerHTML = e.dataTransfer.getData('text/html');
-    this.parentNode.removeChild(dragSrcEl);
-    var dropHTML = e.dataTransfer.getData('text/html');
-    this.insertAdjacentHTML('beforebegin',dropHTML);
+    ToDoListVM.MoveToDo(ko.dataFor(dragSrcEl), ko.dataFor(this));
     var dropElem = this.previousSibling;
-    moveToDo(dropElem.id, this.id);
     addDnDHandlers(dropElem);
   }
   this.classList.remove('over');

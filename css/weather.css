@@ -212,7 +212,6 @@
   animation: spin 16s linear infinite reverse;
 }
 
-
 .WeatherElement .rainy {
     background: linear-gradient(to bottom left, rgba(37,47,47,0.60), rgba(39,39,39, 0.98));
 }
@@ -227,6 +226,114 @@
 
 .WeatherElement .cloudy {
     background: linear-gradient(to bottom left, rgba(100, 100, 100, 0.2), rgba(39,39,39, 0.98));
+}
+
+
+#WeatherWrapper {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#WeatherList {
+    width: 100%;
+    display: table;
+    transition: all 0.5s;
+}
+
+.WeatherElement {
+    width: 13.28%;
+    margin: 0;
+    float: left;
+    display: table-row;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    color: #353535;
+    margin: 0.5%;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.weatherFooter {
+    padding-top: 7px;
+    padding-bottom: 5px;
+    color: white;
+    background-color: rgba(48,48,48,0.98);
+    border-top: 1px dashed #c5a47e;
+}
+
+.WeatherDetails {
+    position: absolute;
+    height: 100vh;
+    color: white;
+    width: 40vw;
+    border-right: 1px solid #c5a47e;
+    background-color: #323232;
+    left: -100vw;
+    top: 0;
+    z-index: 10;
+    transition-timing-function: cubic-bezier(0.23, 0.86, 0.38, 0.91);
+    transition-duration: 0.3s;
+    overflow: hidden;
+    text-align: center;
+}
+
+.WeatherDetails.rainy {
+    background: linear-gradient(to bottom left, rgba(96,108,136,0.4), rgba(19,23,32,0.6))
+}.WeatherDetails.sunny {
+    background: linear-gradient(to bottom left, rgba(37,47,51,0.85), rgba(39,39,40, 1))
+}.WeatherDetails.cloudy {
+    background: linear-gradient(to bottom left, rgba(37,47,51,0.85), rgba(39,39,40, 1))
+}
+
+.WeatherDetails .icon {
+    font-size: 2em;
+    color: #323232
+}
+
+.WeatherDetails .icon.rainy {
+    color: #353942;
+}.WeatherDetails .rain {
+    background: linear-gradient(to bottom, #353942 50%, transparent);
+}
+
+.DivideSVG {
+    max-width: 40vw;
+    max-height: 110px;
+}
+
+.WeatherContentWrapper {
+    margin: 10px auto;
+}
+
+.WeatherContentWrapper label {
+    font-size: 1.5em;
+    border-bottom: 1px dashed #c5a47e;
+}
+
+.WeatherContentWrapper label+li {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    margin-top: 2px;
+}
+
+.WeatherDetailsContentLeft {
+    text-align: left;
+    display: inline-block;
+    max-width: 45%;
+    margin: 0;
+    padding: 30px 0 0 0;
+}
+
+.WeatherDetailsContentRight {
+    text-align: right;
+    display: inline-block;
+    max-width: 45%;
+    margin: 0;
+    padding-top: 30px;
+}
+
+.WeatherDetails.active {
+    left: 0;
 }
 
 

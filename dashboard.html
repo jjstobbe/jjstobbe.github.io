@@ -64,27 +64,17 @@
     <div id="ToDoWrapper">
         <div id="ToDoList" data-bind="with: ToDoListVM">
             <div data-bind="foreach: ToDoList">
-                <div class="ToDoElement" data-bind="attr: { id: Order }, css: { done: Completed }" draggable="true">
+                <div class="ToDoElement" data-bind="css: { done: Completed }" draggable="true">
                     <div class="ToDoContentWrapper">
-                        <span class="ToDoContent" spellcheck="false" data-bind="text: Content, attr: { id: Id }" contenteditable="true" onKeyPress="return checkEdit(event)"></span>
+                        <span class="ToDoContent" spellcheck="false" data-bind="text: Content" contenteditable="true" onKeyPress="return checkEdit(event)"></span>
 <span class="ToDoTime" data-bind="text: Time"></span>
-                    </div>
-                    
-                    <div class="IconWrapper">
-                        <div class="modifyIcon">                        
-                            <i class="fa fa-check" aria-hidden="true" data-bind="click: finishToDo"></i>
-                            <i class="fa fa-undo" aria-hidden="true" data-bind="click: finishToDo"></i>
-                        </div>
-                       <div class="deleteIcon">
-                            <i class="fa fa-times" aria-hidden="true" data-bind="click: deleteToDo"></i>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="inputWrapper">
-            <input type="text" id="textBox" onKeyPress="return checkSubmit(event)">
+            <input type="text" id="textBox" placeholder="What are you going to do?" onKeyPress="return checkSubmit(event)">
         </div>
     </div>
 
@@ -98,13 +88,13 @@
             <ul class="group">
             </ul>
         </div>
-        <div id="eventContainer">
-            <h3 id="SelectedDay">Sunday</h3>
-            <ul id="eventList" data-bind="foreach: EventListVM.FilteredEvents">
-                <li data-bind="text: Content">No Content</li>
+        <div id="eventContainer" data-bind="with: EventListVM">
+            <h3 id="SelectedDay" data-bind='text: SelectedDay'>Sunday</h3>
+            <ul id="eventList" data-bind="foreach: FilteredEvents">
+                <li data-bind="text: Content"></li>
             </ul>
             <div id="eventInputWrapper">
-                <input type="text" id="eventInput" onKeyPress="return checkEventSubmit(event)">
+                <input type="text" id="eventInput" placeholder="What's happening?" onKeyPress="return checkEventSubmit(event)">
             </div>
         </div>
     </div>
@@ -118,7 +108,8 @@
     }    
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script async type='text/javascript' src='js/dashboard.js'></script>
+<script async type='text/javascript' src='js/weather.js'></script>
 <script async type='text/javascript' src='js/calendar.js'></script>
+<script async type='text/javascript' src='js/todo.js'></script>
 <script async type='text/javascript' src='js/drag.js'></script>
 </html>

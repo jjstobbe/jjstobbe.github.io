@@ -65,13 +65,12 @@ ul {
 }
 
 #eventInput {
-    margin: 30px 10px 30px 40px;
     width: 100%;
     box-sizing: border-box;
     font-size: 1.2em;
     background: rgba(100,100,100,0.5);
     border: none;
-    border-bottom: 1px solid rgba(200,200,200,0.8);
+    border-bottom: 1px solid #c5a47e;
     color: #bbb;
     padding: 10px 20px;
 }

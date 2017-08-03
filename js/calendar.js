@@ -1,4 +1,10 @@
+var EventListVM = new EventListVM();
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
 $(document).ready(function() {
+    EventListVM.GetEvents();
+    
     var themonth = 1;
     renderCal(themonth);
     
@@ -11,7 +17,108 @@ $(document).ready(function() {
         themonth += 1;
         renderCal(themonth);
     });
+    
+
+    $('#eventList').on('dblclick', 'li', (e) => {
+        var event = ko.dataFor(e.currentTarget);
+        event.DeleteEvent();
+    });
 });
+
+function Event(id, content, date) {
+    var self = this;
+    
+    self.Id = ko.observable(id);
+    self.Content = ko.observable(content);
+    self.Date = ko.observable(date);
+    
+    self.AddEvent = () => {
+        delete self.Id;
+        var dataObject = ko.toJSON(self);
+        
+        ajax('POST', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/Events', dataObject, (data) => {
+            $('#eventInput').val('');
+            var event = new Event(data._id, data.Content, data.Date);
+            EventListVM.EventList.push(event);
+            EventListVM.FilteredEvents.push(event);
+        });
+    };
+    
+    self.DeleteEvent = () => {
+        ajax('DELETE', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/Events/'+self.Id(), null, (data) => {
+            EventListVM.EventList.remove(self);
+            EventListVM.FilteredEvents.remove(self);
+        });
+    };
+}
+
+function EventListVM() {
+    var self = this;
+    
+    self.EventList = ko.observableArray([]);
+    self.FilteredEvents = ko.observableArray([]);
+    self.SelectedDate = ko.observable(getCalendarDate());
+    self.SelectedDay = ko.observable('Monday');
+    
+    self.SelectedDate.subscribe((newDate) => {
+        var d = new Date(newDate);
+        self.SelectedDay(days[d.getDay()]);
+    });
+    
+    self.GetEvents = () => {
+        self.EventList.removeAll();
+        
+        ajax('GET', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/Events', null, (data) => {
+            for(var i = 0; i < data.length; i++){
+                var event = new Event(data[i]._id, data[i].Content, data[i].Date);
+                self.EventList.push(event);
+                
+                self.SelectedDate(getCalendarDate());
+                if(data[i].Date == self.SelectedDate()){
+                    self.FilteredEvents.push(event);
+                }
+            }
+        });
+    };
+}
+
+function checkEventSubmit(e) {
+    if (e && e.keyCode == 13) {
+        var Content = $('#eventInput').val();
+        
+        var newEvent = new Event(null, Content, getCalendarDate());
+        newEvent.AddEvent();
+        
+        $('#eventInput').blur();
+    }
+}
+
+function nth(d) {
+  if(d>3 && d<21) return 'th'; // thanks kennebec
+  switch (d % 10) {
+        case 1:  return "st";
+        case 2:  return "nd";
+        case 3:  return "rd";
+        default: return "th";
+    }
+}
+
+function minTwoDigits(n) {
+  return (n < 10 ? '0' : '') + n;
+}
+        
+function getCalendarDate() {
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
+    var MonthYear = $('.monthname').html();
+    var Month = MonthYear.substring(0, MonthYear.indexOf(' '));
+    var Year = MonthYear.substring(MonthYear.lastIndexOf(' ')+1);
+    return (minTwoDigits(months.indexOf(Month)+1)+'/'+$('.selected').html()+'/'+Year);
+}
+
+function getSelectedDay() {
+    
+}
 
 function renderCal(themonth) {
     $('.calendar li').remove();
@@ -49,7 +156,6 @@ function renderCal(themonth) {
                 EventListVM.FilteredEvents.push(EventListVM.EventList()[i]);
             }
         }
-        
     });
 
     function firstDay(month, year) {
@@ -63,4 +169,26 @@ function renderCal(themonth) {
     function mod(n, m) {
         return ((n % m) + m) % m;
     }
+}
+
+function ajax(type, url, data, successFunction) {
+    $.ajax
+    ({
+      type: type,
+      url: url,
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      data: data,
+      headers: {
+        "Authorization": 'Kinvey ' + document.cookie.substring(document.cookie.indexOf('=')+1),
+          "X-Kinvey-API-Version": '3',
+          
+      },success: (data) => {
+          successFunction(data);
+      },error: (data) => {
+          if(data.status == 400){
+              window.location.href = 'login';
+          }
+      }
+    });
 }
