@@ -1,0 +1,31 @@
+.Wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.Row {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.Tile {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 1px;
+    background-color: #CCC;
+}
+
+.Tile.Flag {
+    background-color: #999;
+}
+
+.Tile.Uncovered {
+    background-color: #DDD;
+}
+
+.Tile span {
+    
+}
