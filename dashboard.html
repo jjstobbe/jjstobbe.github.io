@@ -90,7 +90,7 @@
         <div id="eventContainer" data-bind="with: EventListVM">
             <h3 id="SelectedDay" data-bind='text: SelectedDay'>Sunday</h3>
             <ul id="eventList" data-bind="foreach: FilteredEvents">
-                <li data-bind="text: Content"></li>
+                <li spellcheck="false" contenteditable="true" onKeyPress="return checkEventEdit(event)" data-bind="text: Content"></li>
             </ul>
             <div id="eventInputWrapper">
                 <input type="text" id="eventInput" placeholder="What's happening?" onKeyPress="return checkEventSubmit(event)">

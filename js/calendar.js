@@ -82,6 +82,23 @@ function EventListVM() {
     };
 }
 
+function checkEventEdit(e) {
+    if (e && e.keyCode == 13) {
+        var Event = ko.dataFor(e.srcElement);
+        Event.Content = e.srcElement.innerText.replace(/\r?\n|\r/g, '');
+
+        var dataObject = ko.toJSON(Event);
+        
+        ajax('PUT', 'https://baas.kinvey.com/appdata/kid_BJFBIVmX-/Events/'+Event.Id(), dataObject, ()=>{});
+        
+        if ("activeElement" in document){
+            document.activeElement.blur();
+        }
+        
+        e.preventDefault();
+    }
+}
+
 function checkEventSubmit(e) {
     if (e && e.keyCode == 13) {
         var Content = $('#eventInput').val();
@@ -116,10 +133,6 @@ function getCalendarDate() {
     return (minTwoDigits(months.indexOf(Month)+1)+'/'+$('.selected').html()+'/'+Year);
 }
 
-function getSelectedDay() {
-    
-}
-
 function renderCal(themonth) {
     $('.calendar li').remove();
     $('.calendar ul').append('<li>Mo</li><li>Tu</li><li>We</li><li>Th</li><li>Fr</li><li>Sa</li><li>Su</li>');
@@ -128,12 +141,17 @@ function renderCal(themonth) {
         currentYear = (1900 + d.getYear() + Math.floor((d.getMonth()+themonth - 1)/12)),// get this year
         days = numDays(currentMonth, currentYear), // get number of days in the month
         fDay = firstDay(currentMonth, currentYear), // find what day of the week the 1st lands on
+        lDay = lastDay(currentMonth, currentYear), // find what day of the week the 1st lands on
         months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; // month names
     
     $('.calendar p.monthname').html(months[currentMonth] +" &nbsp;  "+currentYear); // add month name to calendar
 
-    for (var i = 0; i < fDay - 1; i++) { // place the first day of the month in the correct position
-        $('<li>&nbsp;</li>').appendTo('.calendar ul');
+    var thePrevMonth = themonth - 1;
+    var prevMonth = mod((d.getMonth() + thePrevMonth-1), 12);
+    var prevYear = (1900 + d.getYear() + Math.floor((d.getMonth()+thePrevMonth - 1)/12));
+    
+    for (var i = fDay - 1; i >= 0 ; i--) { // place the first day of the month in the correct position
+        $('<li class="notCurrentDate">'+(numDays(prevMonth, prevYear) -  i)+'</li>').appendTo('.calendar ul');
     }
     
     for (var i = 1; i <= days; i++) { // write out the days
@@ -145,21 +163,31 @@ function renderCal(themonth) {
         }
     }
     
-    $('.group li').on('click', function(){
-        $('.selected').removeClass('selected');
-        $(this).addClass('selected');
-        
-        EventListVM.FilteredEvents.removeAll();
-        EventListVM.SelectedDate(getCalendarDate());
-        for(var i = 0;i<EventListVM.EventList().length;i++){
-            if(EventListVM.EventList()[i].Date() == EventListVM.SelectedDate()){
-                EventListVM.FilteredEvents.push(EventListVM.EventList()[i]);
+    for (var i = 1; i < 7 - (lDay+1) + 1; i++) { // place the first day of the month in the correct position
+        $('<li class="notCurrentDate">'+i+'</li>').appendTo('.calendar ul');
+    }
+    
+    $('.group li:gt(7)').on('click', function(){
+        if(!$(this).hasClass('notCurrentDate')){
+            $('.selected').removeClass('selected');
+            $(this).addClass('selected');
+
+            EventListVM.FilteredEvents.removeAll();
+            EventListVM.SelectedDate(getCalendarDate());
+            for(var i = 0;i<EventListVM.EventList().length;i++){
+                if(EventListVM.EventList()[i].Date() == EventListVM.SelectedDate()){
+                    EventListVM.FilteredEvents.push(EventListVM.EventList()[i]);
+                }
             }
         }
     });
 
     function firstDay(month, year) {
         return new Date(year, month, 1).getDay();
+    }
+    
+    function lastDay(month, year) {
+        return new Date(year, month+1, 0).getDay();
     }
 
     function numDays(month, year) {

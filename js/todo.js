@@ -155,6 +155,8 @@ function checkEdit(e) {
         if ("activeElement" in document){
             document.activeElement.blur();
         }
+        
+        e.preventDefault();
     }
 }
 

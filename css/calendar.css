@@ -132,6 +132,10 @@ ul {
     text-align: center;
 }
 
+.notCurrentDate {
+    color: #555;
+}
+
 @media screen and (max-width: 1200px) {
     #calendarWrapper {
         display: block;
