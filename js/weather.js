@@ -37,12 +37,16 @@ function WeatherListVM() {
         self.WeatherList.removeAll();
         
         // Gets the current location of the device
-        navigator.geolocation.getCurrentPosition((position) => {
-            self.lat = position.coords.latitude;
-            self.long = position.coords.longitude;
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition((position) => {
+                self.lat = position.coords.latitude;
+                self.long = position.coords.longitude;
 
+                getWeather();
+            });
+        }else {
             getWeather();
-        });
+        }
     }
 }
 

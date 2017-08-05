@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+    <script>
+    if (document.cookie.indexOf('authToken') != -1 ) {
+        window.location.href='/dashboard';
+    }
+    </script>
     <head> 
         <title>Login</title>
         <meta name="theme-color" content="#333333" />
