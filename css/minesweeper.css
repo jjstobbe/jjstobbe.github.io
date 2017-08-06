@@ -84,3 +84,10 @@ body.GameOver {
     font-size: 0.6em;
     padding: 10px 15px;
 }
+
+
+@media only screen and (max-width: 650px) {
+    .Tile span {
+        font-size: 0.6em;
+    }
+}

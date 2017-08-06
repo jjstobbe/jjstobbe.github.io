@@ -19,6 +19,7 @@ function Tile(x, y, mine, number, uncovered, flag) {
     self.TileClicked = (data) => {
         if(!self.Uncovered()) {
             self.Uncovered(true);
+            Minesweeper.recalcSize();
             if(self.Number() == 0){
                 for(var k = self.X() - 1;k < self.X()+2;k++){
                     for(var l = self.Y()-1;l < self.Y()+2;l++){
@@ -53,7 +54,28 @@ function Minesweeper() {
     var self = this;
     
     self.TileRows = ko.observableArray([]);
-    self.Size = ko.observable();
+    self.Size = ko.observable();    
+    
+    self.Size.subscribe((newSize) => {
+        self.recalcSize();
+    });
+    
+    window.onresize = () => {   
+        self.recalcSize();
+    };
+    
+    self.recalcSize = () => {
+        if($(window).width() > $(window).height()){
+            $('.Tile').css('width', self.Size()-2+'vh');
+            $('.Tile').css('height', self.Size()-2+'vh');
+            $('.Tile span').css('line-height', self.Size()-2+'vh');
+        }else {
+            $('.Tile').css('width', self.Size()-2+'vw');
+            $('.Tile').css('height', self.Size()-2+'vw');
+            $('.Tile span').css('line-height', self.Size()-2+'vw');
+        }
+    };
+    
     self.Mines = ko.observable();
     self.GameOver = ko.observable(false);
     
@@ -64,7 +86,6 @@ function Minesweeper() {
     });
     
     self.GenerateBoard = (size, numMines) => {
-        console.log('removing board');
         self.TileRows.removeAll();
         Minesweeper.GameOver(false);
         
