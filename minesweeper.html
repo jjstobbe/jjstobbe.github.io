@@ -15,7 +15,7 @@
             <ul data-bind="foreach: Tiles" class="Row">
                 <li data-bind="click: ()=>{TileClicked($data)}, event: {contextmenu: ()=>{TileRightClicked($data)}},css: {Uncovered:Uncovered, Flag: Flag}" class="Tile">
                     <!-- ko if: Uncovered -->
-                    <span data-bind="visible: Uncovered() && !Mine(), text: Number"></span>
+                    <span data-bind="visible: Uncovered() && !Mine(), text: Number, css: 'color'+Number()"></span>
                     <span data-bind="visible: Mine, css: {Mine: Mine}"></span>
                     <!-- /ko -->
                     <span data-bind="visible: !Uncovered(),css: {Flag: Flag}">&nbsp;</span>
@@ -43,9 +43,9 @@
     </div>
     <div class="Done" data-bind="visible: Minesweeper.Status() == 3">
         <span>
-            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(10);Minesweeper.Mines(10);Minesweeper.Status(0);}">Easy</div>
-            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(15);Minesweeper.Mines(20);Minesweeper.Status(0);}">Medium</div>
-            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(20);Minesweeper.Mines(40);Minesweeper.Status(0);}">Hard</div>
+            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(9);Minesweeper.Mines(10);Minesweeper.Status(0);}">Easy</div>
+            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(16);Minesweeper.Mines(40);Minesweeper.Status(0);}">Medium</div>
+            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(22);Minesweeper.Mines(99);Minesweeper.Status(0);}">Hard</div>
             <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Status(4)}">Custom</div>
             <div class="btn" data-bind="click: ()=>{Minesweeper.Status(0)}">Retry</div>
         </span>

@@ -1,6 +1,7 @@
 body {
     font-family: sans-serif;
     overflow: hidden;
+    margin: 0;
 }
 
 .Wrapper {
@@ -22,10 +23,12 @@ body {
     background-color: #CCC;
     width: 70px;
     height: 70px;
-    margin: 2px 0;
+    margin: 2px;
     
     text-align:center;
     line-height: 70px;
+    font-weight: 500;
+    font-family: sans-serif;
 }
 
 .Tile.Flag {
@@ -42,6 +45,14 @@ body {
 
 .Tile.Uncovered .Mine::After {
 	content: '💣';
+}
+
+.Tile .color1 {
+    color: rgba(0,0,100,1);
+}.Tile .color2 {
+    color: rgba(0,100,0,1);
+}.Tile .color3 {
+    color: rgba(100,0,0,1);
 }
 
 body.Done {
@@ -89,6 +100,14 @@ body.Done {
     cursor: default;
 }
 
+ul.Row {
+    font-size: 0;
+}
+
+ul.Row li {
+    font-size: 18px;
+}
+
 .Done .SettingHeader {
     font-size: 0.7em;
     margin-bottom: 5px;
@@ -131,5 +150,9 @@ input::-webkit-inner-spin-button {
 @media only screen and (max-width: 650px) {
     .Tile span {
         font-size: 0.6em;
+    }
+    
+    .Tile{
+        margin: 1px;
     }
 }

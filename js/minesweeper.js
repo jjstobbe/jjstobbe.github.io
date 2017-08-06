@@ -1,7 +1,7 @@
 var Minesweeper = new Minesweeper();
 
 $(document).ready(function() {
-    Minesweeper.GenerateBoard(15, 20);
+    Minesweeper.GenerateBoard(16, 40);
     
     ko.applyBindings(Minesweeper);
 });
