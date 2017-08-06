@@ -13,22 +13,31 @@
     <div data-bind="with: Minesweeper">
         <div data-bind="foreach: TileRows" class="Wrapper">
             <ul data-bind="foreach: Tiles" class="Row">
-                <li data-bind="click: ()=>{TileClicked($data)}, event: {contextmenu: ()=>{TileRightClicked($data)}},css: {Flag: Flag, Uncovered:Uncovered}" class="Tile">
+                <li data-bind="click: ()=>{TileClicked($data)}, event: {contextmenu: ()=>{TileRightClicked($data)}},css: {Uncovered:Uncovered, Flag: Flag}" class="Tile">
                     <!-- ko if: Uncovered -->
                     <span data-bind="visible: Uncovered() && !Mine(), text: Number"></span>
                     <span data-bind="visible: Mine, css: {Mine: Mine}"></span>
                     <!-- /ko -->
-                    <span data-bind="visible: !Uncovered()">&nbsp;</span>
+                    <span data-bind="visible: !Uncovered(),css: {Flag: Flag}">&nbsp;</span>
                 </li>
             </ul>
         </div>
     </div>
-    <div class="GameOver" data-bind="visible: Minesweeper.GameOver()">
+    <div class="Done" data-bind="visible: Minesweeper.Status() == 1">
         <span>
             <div>
                 Game Over
             </div>
-            <div class="btn" data-bind="click: ()=>{Minesweeper.GameOver(false)}">Retry</div>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(0)}">Retry</div>
+            <a href="/projects"><div class="btn">Quit</div></a>
+        </span>
+    </div>
+    <div class="Done" data-bind="visible: Minesweeper.Status() == 2">
+        <span>
+            <div>
+                Victory!
+            </div>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(0)}">Retry</div>
             <a href="/projects"><div class="btn">Quit</div></a>
         </span>
     </div>

@@ -20,6 +20,15 @@ function Tile(x, y, mine, number, uncovered, flag) {
         if(!self.Uncovered()) {
             self.Uncovered(true);
             Minesweeper.recalcSize();
+            
+            self.Flag(false);
+            
+            if(self.Mine()){
+                Minesweeper.Status(1);
+            }else{
+                Minesweeper.NumUncovered(Minesweeper.NumUncovered()+1);
+            }
+            
             if(self.Number() == 0){
                 for(var k = self.X() - 1;k < self.X()+2;k++){
                     for(var l = self.Y()-1;l < self.Y()+2;l++){
@@ -28,12 +37,6 @@ function Tile(x, y, mine, number, uncovered, flag) {
                       }
                     }
                 }
-            }
-            
-            self.Flag(false);
-            
-            if(self.Mine()){
-                Minesweeper.GameOver(true);
             }
         }
     }
@@ -55,6 +58,15 @@ function Minesweeper() {
     
     self.TileRows = ko.observableArray([]);
     self.Size = ko.observable();    
+    self.Mines = ko.observable();
+    self.Status = ko.observable(0); // 3 statuses - playing, lost, won
+    self.NumUncovered = ko.observable(0);
+    
+    self.NumUncovered.subscribe((num) => {
+        if(num >= (self.Size()*self.Size()) - self.Mines()){
+            self.Status(2);
+        }
+    });
     
     self.Size.subscribe((newSize) => {
         self.recalcSize();
@@ -69,28 +81,23 @@ function Minesweeper() {
             $('.Tile').css('width', self.Size()-2+'vh');
             $('.Tile').css('height', self.Size()-2+'vh');
             $('.Tile span').css('line-height', self.Size()-2+'vh');
-            $('.Tile.Flag::After').css('line-height', self.Size()-2+'vh');
         }else {
             $('.Tile').css('width', self.Size()-2+'vw');
             $('.Tile').css('height', self.Size()-2+'vw');
             $('.Tile span').css('line-height', self.Size()-2+'vw');
-            $('.Tile span').css('line-height', self.Size()-2+'vh');
-            $('.Tile.Flag::After').css('line-height', self.Size()-2+'vw');
         }
     };
     
-    self.Mines = ko.observable();
-    self.GameOver = ko.observable(false);
-    
-    self.GameOver.subscribe((value) => {
-        if(!value) {
+    self.Status.subscribe((value) => {
+        if(value == 0) {
             self.GenerateBoard(self.Size() || 10, self.Mines() || 15);
         }
     });
     
     self.GenerateBoard = (size, numMines) => {
         self.TileRows.removeAll();
-        Minesweeper.GameOver(false);
+        self.NumUncovered(0);
+        Minesweeper.Status(0);
         
         self.Size(size);
         self.Mines(numMines);

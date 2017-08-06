@@ -31,11 +31,7 @@ body {
     background-color: #999;
 }
 
-.Tile.Flag span{
-    display: none;
-}
-
-.Tile.Flag::After{
+.Tile .Flag::After{
     content: '🚩';
 }
 
@@ -47,11 +43,11 @@ body {
 	content: '💣';
 }
 
-body.GameOver {
+body.Done {
     opacity: 0.4;
 }
 
-.GameOver {
+.Done {
     position: absolute;
     left: 0;
     top: 0;
@@ -61,7 +57,7 @@ body.GameOver {
     text-align: center;
 }
 
-.GameOver span {
+.Done span {
     font-family: sans-serif;
     position: absolute;
     left: 0;
