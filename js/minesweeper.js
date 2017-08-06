@@ -69,10 +69,13 @@ function Minesweeper() {
             $('.Tile').css('width', self.Size()-2+'vh');
             $('.Tile').css('height', self.Size()-2+'vh');
             $('.Tile span').css('line-height', self.Size()-2+'vh');
+            $('.Tile.Flag::After').css('line-height', self.Size()-2+'vh');
         }else {
             $('.Tile').css('width', self.Size()-2+'vw');
             $('.Tile').css('height', self.Size()-2+'vw');
             $('.Tile span').css('line-height', self.Size()-2+'vw');
+            $('.Tile span').css('line-height', self.Size()-2+'vh');
+            $('.Tile.Flag::After').css('line-height', self.Size()-2+'vw');
         }
     };
     
