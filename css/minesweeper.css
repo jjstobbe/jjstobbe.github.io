@@ -1,3 +1,7 @@
+body {
+    font-family: sans-serif;
+}
+
 .Wrapper {
     width: 100%;
     text-align: center;
@@ -10,22 +14,70 @@
 }
 
 .Tile {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    margin: 1px;
+    display:inline-block;
     background-color: #CCC;
+    width: 100px;
+    height:100px;
+    margin: 2px 0;
+    
+    text-align:center;
+    line-height:100px;
 }
 
 .Tile.Flag {
     background-color: #999;
 }
 
+.Tile.Flag span{
+    display: none;
+}
+
+.Tile.Flag::After{
+    content: '🚩';
+}
+
 .Tile.Uncovered {
     background-color: #DDD;
 }
 
-.Tile span {
-    
+.Tile.Uncovered .Mine::After {
+	content: '💣';
+}
+
+body.GameOver {
+    opacity: 0.4;
+}
+
+.GameOver {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.3);
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.GameOver span {
+    font-family: sans-serif;
+    position: absolute;
+    left: 0;
+    top: 42%;
+    width: 100vw;
+    font-size: 4em;
+    padding: 30px 0;
+    background-color: #777;
+    color: white;
+}
+
+.btn {
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    background-color: #DDD;
+    height: 40px;
+    font-size: 0.6em;
+    padding: 10px 15px;
 }

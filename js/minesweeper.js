@@ -1,14 +1,16 @@
 var Minesweeper = new Minesweeper();
 
 $(document).ready(function() {
-    Minesweeper.GenerateBoard(10, 4);
+    Minesweeper.GenerateBoard(10, 15);
     
     ko.applyBindings(Minesweeper);
 });
 
-function Tile(mine, number, uncovered, flag) {
+function Tile(x, y, mine, number, uncovered, flag) {
     var self = this;
     
+    self.X = ko.observable(x);
+    self.Y = ko.observable(y);
     self.Mine = ko.observable(mine);
     self.Number = ko.observable(number);
     self.Uncovered = ko.observable(uncovered);
@@ -17,6 +19,16 @@ function Tile(mine, number, uncovered, flag) {
     self.TileClicked = (data) => {
         if(!self.Uncovered()) {
             self.Uncovered(true);
+            if(self.Number() == 0){
+                for(var k = self.X() - 1;k < self.X()+2;k++){
+                    for(var l = self.Y()-1;l < self.Y()+2;l++){
+                      if ( k > -1 && l > -1 && k < Minesweeper.Size() && l < Minesweeper.Size()){
+                        Minesweeper.TileRows()[k].Tiles()[l].TileClicked();
+                      }
+                    }
+                }
+            }
+            
             self.Flag(false);
             
             if(self.Mine()){
@@ -43,16 +55,26 @@ function Minesweeper() {
     self.TileRows = ko.observableArray([]);
     self.Size = ko.observable();
     self.Mines = ko.observable();
-    self.GameOver = ko.observable(true);
+    self.GameOver = ko.observable(false);
+    
+    self.GameOver.subscribe((value) => {
+        if(!value) {
+            self.GenerateBoard(self.Size() || 10, self.Mines() || 15);
+        }
+    });
     
     self.GenerateBoard = (size, numMines) => {
+        console.log('removing board');
+        self.TileRows.removeAll();
         Minesweeper.GameOver(false);
+        
         self.Size(size);
         self.Mines(numMines);
+        
         for(var i = 0;i<size;i++){
             var tileRow = new TileRow();
             for(var j = 0;j<size;j++){
-                tileRow.Tiles.push(new Tile(false, 0, false, false));
+                tileRow.Tiles.push(new Tile(i, j, false, 0, false, false));
             }
             self.TileRows.push(tileRow);
         }
@@ -80,7 +102,7 @@ function Minesweeper() {
               }
             }
          }
-    }
+    };
     
     // Function to get the data for the leaderboard
     self.GetLeaderboard = () => {
