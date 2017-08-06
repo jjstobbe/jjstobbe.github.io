@@ -29,7 +29,7 @@
                 Game Over
             </div>
             <div class="btn" data-bind="click: ()=>{Minesweeper.Status(0)}">Retry</div>
-            <a href="/projects"><div class="btn">Quit</div></a>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(3)}">Change Difficulty</div>
         </span>
     </div>
     <div class="Done" data-bind="visible: Minesweeper.Status() == 2">
@@ -38,7 +38,28 @@
                 Victory!
             </div>
             <div class="btn" data-bind="click: ()=>{Minesweeper.Status(0)}">Retry</div>
-            <a href="/projects"><div class="btn">Quit</div></a>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(3)}">Change Difficulty</div>
+        </span>
+    </div>
+    <div class="Done" data-bind="visible: Minesweeper.Status() == 3">
+        <span>
+            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(10);Minesweeper.Mines(10);Minesweeper.Status(0);}">Easy</div>
+            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(15);Minesweeper.Mines(20);Minesweeper.Status(0);}">Medium</div>
+            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(20);Minesweeper.Mines(40);Minesweeper.Status(0);}">Hard</div>
+            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Status(4)}">Custom</div>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(0)}">Retry</div>
+        </span>
+    </div>
+    <div class="Done" data-bind="visible: Minesweeper.Status() == 4">
+        <span>
+            <div id="settingWrapper">
+                <div class="SettingHeader">Size</div>
+                <input class="Input" type="number" data-bind="textInput: Minesweeper.Size">
+                <div class="SettingHeader">Mines</div>
+                <input class="Input"  type="number" data-bind="textInput: Minesweeper.Mines">
+            </div>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(3)}">Back</div>
+            <div class="btn" data-bind="visible: (Minesweeper.Size() > 3 && Minesweeper.Mines() > 0 && Minesweeper.Mines() < Minesweeper.Size()*Minesweeper.Size() - 1),click: ()=>{Minesweeper.Status(0)}">Start</div>
         </span>
     </div>
 </body>

@@ -1,7 +1,7 @@
 var Minesweeper = new Minesweeper();
 
 $(document).ready(function() {
-    Minesweeper.GenerateBoard(10, 15);
+    Minesweeper.GenerateBoard(15, 20);
     
     ko.applyBindings(Minesweeper);
 });
@@ -19,9 +19,13 @@ function Tile(x, y, mine, number, uncovered, flag) {
     self.TileClicked = (data) => {
         if(!self.Uncovered()) {
             self.Uncovered(true);
-            Minesweeper.recalcSize();
-            
             self.Flag(false);
+            
+            if($(window).width() > $(window).height()){
+                $('.Tile span').css('line-height', 100.0/Minesweeper.Size() -1 + 'vh');
+            }else {
+                $('.Tile span').css('line-height', 100.0/Minesweeper.Size() -1 + 'vw');
+            }
             
             if(self.Mine()){
                 Minesweeper.Status(1);
@@ -57,9 +61,9 @@ function Minesweeper() {
     var self = this;
     
     self.TileRows = ko.observableArray([]);
-    self.Size = ko.observable();    
-    self.Mines = ko.observable();
-    self.Status = ko.observable(0); // 3 statuses - playing, lost, won
+    self.Size = ko.observable(0);    
+    self.Mines = ko.observable(0);
+    self.Status = ko.observable(0); // 4 statuses - playing, lost, won, change diff.
     self.NumUncovered = ko.observable(0);
     
     self.NumUncovered.subscribe((num) => {
@@ -68,8 +72,10 @@ function Minesweeper() {
         }
     });
     
-    self.Size.subscribe((newSize) => {
-        self.recalcSize();
+    self.Status.subscribe((value) => {
+        if(value == 0) {
+            self.GenerateBoard(self.Size() || 10, self.Mines() || 15);
+        }
     });
     
     window.onresize = () => {   
@@ -78,21 +84,15 @@ function Minesweeper() {
     
     self.recalcSize = () => {
         if($(window).width() > $(window).height()){
-            $('.Tile').css('width', self.Size()-2+'vh');
-            $('.Tile').css('height', self.Size()-2+'vh');
-            $('.Tile span').css('line-height', self.Size()-2+'vh');
+            $('.Tile').css('width', 100.0/self.Size() -1+'vh');
+            $('.Tile').css('height', 100.0/self.Size() -1+'vh');
+            $('.Tile span').css('line-height', 100.0/self.Size() -1 + 'vh');
         }else {
-            $('.Tile').css('width', self.Size()-2+'vw');
-            $('.Tile').css('height', self.Size()-2+'vw');
-            $('.Tile span').css('line-height', self.Size()-2+'vw');
+            $('.Tile').css('width', 100.0/self.Size() -1+'vw');
+            $('.Tile').css('height', 100.0/self.Size() -1+'vw');
+            $('.Tile span').css('line-height', 100.0/self.Size() -1 + 'vw');
         }
     };
-    
-    self.Status.subscribe((value) => {
-        if(value == 0) {
-            self.GenerateBoard(self.Size() || 10, self.Mines() || 15);
-        }
-    });
     
     self.GenerateBoard = (size, numMines) => {
         self.TileRows.removeAll();
@@ -123,6 +123,21 @@ function Minesweeper() {
                 }
             }
         }
+        
+        var found = 0;
+        while(found != -1 && found < 40) {
+            random = {X: Math.floor(Math.random()*size), Y: Math.floor(Math.random()*size)};
+            
+            var foundTile = self.TileRows()[random.X].Tiles()[random.Y];
+            if(foundTile.Number() == 0){
+                foundTile.TileClicked();
+                found = -1;
+            }else {
+                found++;
+            }
+        }
+        
+        self.recalcSize();
     };
     
     self.AddNumbers = (i, j) => {
