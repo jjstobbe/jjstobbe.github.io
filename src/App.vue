@@ -1,3 +1,78 @@
+<template>
+    <div>
+        <app-nav></app-nav>
+        <div class="wrapper">
+            <router-view></router-view>
+        </div>
+        <div class="footer"></div>
+    </div>
+</template>
+
+<script>
+    import AppNav from './app-nav.vue';
+    
+    export default {
+        name: 'app',
+        components: {
+            AppNav
+        }
+    }
+    
+    $(window).on('load', function() {
+         /*Once the page is completely loaded, the loading gif fades in 500ms (1 second)*/
+         $('#loading').fadeOut(1000);
+    });
+    
+    /*Animates on scroll*/
+    function isElementInViewport(elem) {
+        var $elem = $(elem);
+
+        // Get the scroll position of the page.
+        var scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html');
+        var viewportTop = $(scrollElem).scrollTop();
+        var viewportBottom = viewportTop + $(window).height();
+
+        // Get the position of the element on the page.
+        var elemTop = Math.round( $elem.offset().top );
+        var elemBottom = elemTop + $elem.height();
+
+        return ((elemTop < viewportBottom) && (elemBottom > viewportTop));
+    }
+
+    $(document).ready(function() {
+        /* Every time the window is scrolled ... */
+        $(window).scroll( function(){
+
+            /* Check the location of each desired element */
+            $('.hideme').each( function(i){
+
+                var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                /* If the object is completely visible in the window, fade it it */
+                if( bottom_of_window > bottom_of_object ){
+
+                    $(this).animate({'opacity':'1'},500);
+
+                }
+
+            });
+
+        });
+
+    });
+
+    $(function() {
+      $('.skillL').hover(function() {
+        $(this).parent().siblings("img").css('background-color', 'yellow');
+      }, function() {
+        // on mouseout, reset the background colour
+        $('#b').css('background-color', '');
+      });
+    });
+</script>
+
+<style>
 * {
     margin: 0;
     padding: 0;
@@ -29,74 +104,12 @@ hr {
   position: relative;
 }
 
-#WhoAmI {
-  max-width: 80%;
-  margin: 0 auto;
-}
-
-#WhoAmI h2{
-  font-family: sans-serif;
-  color: #3f3f3f;
-  text-align: center;
-  font-size: 3em;
-  margin-bottom: 8px;
-}
-
-#WhoAmI p{
-  font-weight: bold;
-  color: #3f3f3f;
-  font-size: 1.7em;
-  margin-bottom: 10px;
-}
-
-.Divider {
-  background-image: url("../img/HexDivider.png");
-  background-size: 80px 5px;
-  background-repeat: repeat-x;
-  height: 10px;
-  margin-bottom: 40px;
-  margin-top: 40px;
-}
-
-
-#Professional {
-  display: block;
-  text-align: center;
-  margin: 0 auto;
-  max-width: 450px;
-}
-
-#Resume {
-  display: block;
-  margin: 0 auto;
-  width: 70%;
-  height: 1150px;
-
-  /* Bottom Margin to move the footer down farther*/
-  margin-bottom: 450px;
-}
-
-
-#Professional {
-  /*Edits the animation for the zoomIn effect*/
-  -webkit-animation-duration: 1s;
-  -webkit-animation-delay: .3s;
-}
-
-#text {
-  /*Edits the animation for the zoomIn effect*/
-  -webkit-animation-duration: 1s;
-  -webkit-animation-delay: .7s;
-}
-
-
-
 .footer, .push {
   clear: both;
   height: 420px;
 
   width:100%;
-  background-image: url('../img/FooterImage3.png');
+  background-image: url('./img/FooterImage3.png');
   background-position: center;
   background-size: cover;
   background-repeat: repeat-x;
@@ -112,7 +125,7 @@ li a{
 header {
   display: inline-block;
   width: 100%;
-  background-image: url('../img/TriangleBackground11.png');
+  background-image: url('./img/TriangleBackground11.png');
   background-position: center;
   background-size: cover;
   z-index: 2;
@@ -208,7 +221,7 @@ header {
 }
 
 #divider1 {
-  background-image: url('../img/TriangleDivider.png');
+  background-image: url('./img/TriangleDivider.png');
   padding:  0;
   height: 500px;
   background-position: center;
@@ -319,3 +332,4 @@ nav ul li a:hover:not(.active) {
   /*background: #ffb7b7;*/
   background: rgba(118, 121, 117, 0.79);
 }
+</style>

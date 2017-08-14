@@ -1,5 +1,7 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+
 module.exports = {
     devtool: 'cheap-module-source-map',
     context: path.join(__dirname, 'src'),
@@ -12,8 +14,20 @@ module.exports = {
     },
     module: {
         loaders: [
+            { 
+              test: /\.vue$/,
+              loader: 'vue-loader',
+              options: {
+                loaders: {
+                  scss: 'vue-style-loader!css-loader!sass-loader',
+                  sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+                }
+              }
+            },
             { test: /\.js$/, loader: 'babel-loader', include: /src/ },
-            { test: /\.css$/, loader: "style-loader!css-loader", include: path.join(__dirname, 'src', 'css') }
+            { test: /\.html$/, loader: "html-loader" },
+            { test: /\.css$/, loader: "style-loader!css-loader?minimize", include: path.join(__dirname, 'src', 'css') },
+            { test: /\.(png|jpg|pdf|gif)$/, loader: "file-loader", include: path.join(__dirname, 'src', 'img') }
         ]
     },
     devServer: {
@@ -24,6 +38,15 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src', 'index.html'),
+            inject: 'body',
+            minify: {
+                collapseWhitespace: true
+            }
+        }),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            "window.jQuery": "jquery"
         })
     ]
 }
