@@ -6,7 +6,7 @@ module.exports = {
     devtool: 'cheap-module-source-map',
     context: path.join(__dirname, 'src'),
     entry: {
-        app: './app.js'
+        main: './main.js'
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -27,7 +27,8 @@ module.exports = {
             { test: /\.js$/, loader: 'babel-loader', include: /src/ },
             { test: /\.html$/, loader: "html-loader" },
             { test: /\.css$/, loader: "style-loader!css-loader?minimize", include: path.join(__dirname, 'src', 'css') },
-            { test: /\.(png|jpg|pdf|gif)$/, loader: "file-loader", include: path.join(__dirname, 'src', 'img') }
+            { test: /\.(png|jpg|jpeg|pdf|gif|svg|json)$/, loader: "file-loader", include: path.join(__dirname, 'src', 'img') },
+            { test: /\.(ttf)$/, loader: "file-loader", include: path.join(__dirname, 'src', 'fonts') }
         ]
     },
     devServer: {
