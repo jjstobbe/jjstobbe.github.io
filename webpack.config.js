@@ -31,21 +31,20 @@ module.exports = {
             { test: /\.(ttf)$/, loader: "file-loader", include: path.join(__dirname, 'src', 'fonts') },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loaders: ['file-loader?context=src/images&name=images/[path][name].[ext]', {
-                  loader: 'image-webpack-loader',
-                  query: {
-                    mozjpeg: {
-                      progressive: true,
-                    },
-                    optipng: {
-                      optimizationLevel: 7,
-                    },
-                    pngquant: {
-                      quality: '75-90',
-                      speed: 3,
-                    },
-                  },
-                }],
+                loaders: [
+                  'file-loader',
+                  {
+                    loader: 'image-webpack-loader',
+                    query: {
+                        progressive: true,
+                        optimizationLevel: 7,
+                        interlaced: false,
+                        optipng: {
+                          optimizationLevel: 7,
+                        },
+                    }
+                  }
+                ],
                 exclude: /node_modules/,
                 include: __dirname,
             }
