@@ -13,7 +13,7 @@
               </figcaption>
             </figure>
         </div>
-        <div class="Project website">
+        <div class="Project">
             <figure class="fig">
               <img src="./img/Website.png" />
               <figcaption>
@@ -53,13 +53,15 @@
             </a>
         </div>
         <div class="Project">
+        <router-link :to="'Gallery'">
             <figure class="fig">
-              <img src="./img/Minesweeper.png" />
+              <img src="./img/PhotoshopProjects.png" />
               <figcaption>
-                <h3>Minesweeper Game</h3>
-                <p>Just a simple minesweeper clone I made in a few hours. It's fully responsive and I will be adding modifications soon. Click to play</p>
+                <h3>Graphic Design Projects</h3>
+                <p>I've dabbled in graphic design. I've created things from assets for game design, to snapchat filters, to logos, to icons. Click to check out a gallery.</p>
               </figcaption>
             </figure>
+        </router-link>
         </div>
     </div>
 </div>
@@ -105,8 +107,9 @@ $Secondary: #FFFFFF
 img
     width: 30vw
     display: block
-    border-left: 1px solid $Primary
+    border-left: 5px solid $Primary
     margin: 0 10px
+    box-shadow: 0 0px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
     
 label
     font-weight: bold
@@ -122,12 +125,13 @@ h2
     padding: 0 30px
     
 .Center
-    max-width: 80vw
+    max-width: 70vw
     margin: 0 auto
     
 .Wrapper
     background-color: $Secondary
-    padding: 30px 0
+    padding-bottom: 30px
+    
 @media only screen and (max-width: 1300px)
     .Center
         max-width: 98vw
@@ -135,12 +139,9 @@ h2
     img
         width: 90vw
         
-.website img
-    border: 2px solid black
-    border-left: 1px solid $Primary
-        
 figure:hover img 
-	opacity: .5
+    opacity: 0.7
+    
     
 /* Figure Animations below */
 .fig
@@ -187,8 +188,8 @@ figure.fig figcaption p
 
 .fig:hover img,
 .fig.hover img 
-    -webkit-transform: translateX(20px)
-    transform: translateX(20px)
+    -webkit-transform: translateX(5px)
+    transform: translateX(5px)
 
 .fig:hover figcaption,
 .fig.hover figcaption 

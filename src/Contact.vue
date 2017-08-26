@@ -1,24 +1,36 @@
 <template>
     <div class="Wrapper" id="Contact">
-        <div>
-            <h3>Let's build something together</h3>
-        </div>
-        <div id="inputL">        
-            <input id="name" placeholder="Name" type="text">
-            <input id="email" placeholder="Email" type="text">
-        </div>
+        <transition name="fade" mode="out-in">
+        <div v-if="!done" key="form">
+            <div>
+                <h3>Let's build something together</h3>
+            </div>
+            <div id="inputL">        
+                <input id="name" placeholder="Name" type="text">
+                <input id="email" placeholder="Email" type="text">
+            </div>
 
-        <div id="inputR">      
-            <textarea id="content" placeholder="Message" rows="5"></textarea>
+            <div id="inputR">      
+                <textarea id="content" placeholder="Message" rows="5"></textarea>
+            </div>
+
+            <button @click="SendEmail">Submit</button>
         </div>
-        
-        <button @click="SendEmail">Submit</button>
+        <div v-else key="Thanks">
+            <h3>Thank You!</h3>
+        </div>
+        </transition>
     </div>
 </template>
 
 <script>
     export default {
         name: 'contact',
+        data: function () {
+            return {
+                done: false
+            }
+        },
         methods: {
             SendEmail(){
                 var object = new Object();
@@ -26,19 +38,26 @@
                 object.email = $('#email').val();
                 object.content = $('#content').val();
                 
-                var dataObject = JSON.stringify(object);
-                $.ajax
-                ({
-                  type: "POST",
-                  url: "https://baas.kinvey.com/appdata/kid_BJFBIVmX-/Messages",
-                  data: dataObject,
-                  headers: {
-                    "Authorization": "Basic " + btoa("guest:guest"),
-                    "Content-Type": "application/json"
-                  },success: function(data){
-                      console.log('success');
-                  }
-                }); 
+                if(object.content != ''){
+                    var dataObject = JSON.stringify(object);
+                    $.ajax
+                    ({
+                      type: "POST",
+                      url: "https://baas.kinvey.com/appdata/kid_BJFBIVmX-/Messages",
+                      data: dataObject,
+                      headers: {
+                        "Authorization": "Basic " + btoa("guest:guest"),
+                        "Content-Type": "application/json"
+                      },success: (data)=>{
+                          this.done = true
+                      }
+                    }); 
+                } else {
+                    $('#content').addClass('invalid');
+                    setTimeout(()=>{
+                        $('#content').removeClass('invalid');
+                    }, 820)
+                }
             }
         }
     }
@@ -53,13 +72,34 @@ $Secondary: #FFFFFF
 h3
     color: white
     font-size: 3em
-    border-bottom: 1px solid $Secondary
     display: inline-block
     padding: 0 30px
     
 label
     color: white
     font-size: 1.2em
+    
+.invalid
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both
+
+    
+@keyframes shake 
+  10%, 90% 
+    transform: translate3d(-1px, 0, 0)
+  
+  
+  20%, 80% 
+    transform: translate3d(2px, 0, 0)
+  
+
+  30%, 50%, 70% 
+    transform: translate3d(-4px, 0, 0)
+  
+
+  40%, 60% 
+    transform: translate3d(4px, 0, 0)
+  
+
     
 button
     display: block
@@ -117,4 +157,10 @@ textarea
     
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder
     font-family: RalewayR
+
+.fade-enter-active, .fade-leave-active 
+    transition: opacity .5s
+
+.fade-enter, .fade-leave-to
+    opacity: 0
 </style>

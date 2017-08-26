@@ -1,7 +1,9 @@
 <template>
 <div id="ResumeWrapper">
     <router-link :to="'/'"><div id="Back">🡄</div></router-link>
-    <iframe id="Resume"></iframe>
+    <object id="ResumeObject" type="application/pdf">
+        <embed id="Resume" type='application/pdf' />
+    </object>
 </div>
 </template>
 
@@ -10,6 +12,7 @@
         name: 'resume',
         mounted: ()=>{
             $('#Resume').attr('src', require('./img/Resume_01.pdf'));
+            $('#ResumeObject').attr('data', require('./img/Resume_01.pdf'));
         }
     }
 </script>
@@ -31,7 +34,7 @@ html
     text-decoration: none
     
 
-#Resume
+#ResumeObject
     display: block
     margin: 0 auto
     max-width: 1500px

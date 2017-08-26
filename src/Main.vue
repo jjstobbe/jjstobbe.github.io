@@ -1,5 +1,23 @@
 <template>
     <div id="Container">
+        <vue-particles
+            color="#dedede"
+            :particleOpacity="0.7"
+            :particlesNumber="65"
+            shapeType="circle"
+            :particleSize="3.5"
+            linesColor="#c5a47e"
+            :linesWidth="1"
+            :lineLinked="true"
+            :lineOpacity="0.3"
+            :linesDistance="150"
+            :moveSpeed="1.5"
+            :hoverEffect="true"
+            hoverMode="grab"
+            :clickEffect="true"
+            clickMode="push"
+        >
+        </vue-particles>
         <Welcome></Welcome>
         <Experience></Experience>
         <Projects></Projects>
@@ -41,6 +59,19 @@ $Secondary: #FFFFFF
 
 $background: #FFFFFF
 
+a
+    outline: none
+    color: $Background
+    text-decoration: none
+
+#particles-js
+    height: 100vh
+    width: 100vw
+    position: fixed
+    z-index: -1
+    display: block
+    background: $Background
+    box-shadow: 0 0 5px black
 
 html
     overflow-x: hidden
@@ -87,5 +118,7 @@ body
         opacity: 1
     100%
         opacity: 0
-
+    
+::selection
+    background-color: darken(white, 20%)
 </style>

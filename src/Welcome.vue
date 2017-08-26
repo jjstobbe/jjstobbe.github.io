@@ -1,24 +1,6 @@
 <template>
 <div>
     <div id="0" class="Splash">
-        <vue-particles
-            color="#dedede"
-            :particleOpacity="0.7"
-            :particlesNumber="65"
-            shapeType="circle"
-            :particleSize="3.5"
-            linesColor="#c5a47e"
-            :linesWidth="1"
-            :lineLinked="true"
-            :lineOpacity="0.3"
-            :linesDistance="150"
-            :moveSpeed="1.5"
-            :hoverEffect="true"
-            hoverMode="grab"
-            :clickEffect="true"
-            clickMode="push"
-        >
-        </vue-particles>
         <div class="center">
             <div class="typedContainer">
                 <h2 class="typed"></h2>
@@ -105,15 +87,6 @@ img
     left: 50%
     transform: translate(-50%, -50%)
     
-#particles-js
-    height: 100vh
-    width: 100vw
-    position: fixed
-    z-index: -1
-    display: block
-    background: $Background
-    box-shadow: 0 0 5px black
-    
 button
     padding: 10px
     background-color: rgba($Background, 0.2)
@@ -141,7 +114,6 @@ button:hover
         display: inline
         margin: 0 auto
         padding: 0 0 5px 0
-        border-bottom: 1px solid $Secondary
         width: 450px
         font-size: 3.6em
         color: $Secondary

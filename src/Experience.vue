@@ -6,39 +6,39 @@
             <div class="Left">
                 <div class="innerL">
                     <span>Vue</span>
-                    <span>C#</span>
                     <span>Knockout</span>
-                    <span>Java</span>
                     <span>Sass / CSS</span>
+                    <span>C#</span>
+                    <span>Java</span>
                     <span>JQuery</span>
-                    <span>SQL</span>
+                    <span>MySQL</span>
                 </div>
                 <div class="innerR">
                     <label class="Star5"></label>
                     <label class="Star5"></label>
                     <label class="Star5"></label>
-                    <label class="Star5"></label>
-                    <label class="Star5"></label>
-                    <label class="Star5"></label>
-                    <label class="Star5"></label>
+                    <label class="Star4"></label>
+                    <label class="Star4"></label>
+                    <label class="Star4"></label>
+                    <label class="Star4"></label>
                 </div>
             </div>
             <div class="Right">
                 <div class="innerL">
-                    <span>Webpack</span>
                     <span>ES2015</span>
                     <span>REST APIs</span>
-                    <span>UNIX</span>
                     <span>Illustrator</span>
                     <span>Photoshop</span>
+                    <span>Webpack</span>
+                    <span>UNIX</span>
                 </div>
                 <div class="innerR">
                     <label class="Star5"></label>
                     <label class="Star5"></label>
-                    <label class="Star5"></label>
-                    <label class="Star5"></label>
-                    <label class="Star5"></label>
-                    <label class="Star5"></label>
+                    <label class="Star4"></label>
+                    <label class="Star4"></label>
+                    <label class="Star4"></label>
+                    <label class="Star3"></label>
                 </div>
             </div>
         </div>
@@ -46,12 +46,12 @@
     <div id="Jobs">
         <h2>Jobs.</h2>
         <div class="Job">
-            <h4>Buildertrend</h4>
+            <a href="https://buildertrend.com/"><h4>Buildertrend</h4></a>
             <span>May 2017 - August 2017</span>
             <label>This summer I had the opportunity to work at buildertrend! I worked no an application to handle all of the feature requests they recieve for their software. It is designed to streamline the Product and Development team's workflow. We built it using C# Web API with Knockout.js as a front-end. I learned quite a bit and I worked with some amazing people!</label>
         </div>
         <div class="Job">
-            <h4>Nebraska Foundation</h4>
+            <a href="https://nufoundation.org/"><h4>Nebraska Foundation</h4></a>
             <span>March 2016 - May 2017</span>
             <label>My Freshman year I worked with the University of Nebraska Foundation. They had me do a huge variety of different things. From generic IT work, to web development, to SQL database maintenance, to Java bug fixes.</label>
         </div>
@@ -75,6 +75,7 @@ $Secondary: #FFFFFF
 .Wrapper
     width: 100%
     background-color: $Secondary
+    z-index: 1
 
 #Experience
     color: black
