@@ -1,6 +1,6 @@
 <template>
 <div>
-    <router-link :to="'/'"><div id="Back">🡄</div></router-link>
+    <router-link :to="'/'"><div id="Back">🡠</div></router-link>
     <div id="wrapper">
         <div id="images">
           <ul>
@@ -25,17 +25,6 @@
 </script>
 
 <style lang="sass">
-#Back
-    position: fixed
-    top: 0
-    left: 0
-    height: 100px
-    width: 100px
-    font-size: 3em
-    text-align: center
-    line-height: 100px
-    color: white
-    text-decoration: none
     
 li
     list-style: none

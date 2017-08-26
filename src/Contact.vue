@@ -132,6 +132,24 @@ input
     border: none
     width: 100%
     
+
+@media only screen and (max-width: 600px)    
+    textarea
+        width: 100%
+    
+    h3
+        font-size: 2.5em
+        
+    #inputL
+        width: 200px
+        padding: 0
+        display: block
+        margin: 0 auto
+        
+    input
+        margin-bottom: 20px
+    
+    
 textarea
     padding: 10px
     font-family: RalewayR

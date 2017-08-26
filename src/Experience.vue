@@ -8,25 +8,37 @@
                     <span>Vue</span>
                     <span>Knockout</span>
                     <span>Sass / CSS</span>
+                    <span>HTML5</span>
                     <span>C#</span>
+                    <span>MVC Pattern</span>
                     <span>Java</span>
                     <span>JQuery</span>
                     <span>MySQL</span>
+                    <span>Bootstrap</span>
+                    <span>C</span>
                 </div>
                 <div class="innerR">
                     <label class="Star5"></label>
                     <label class="Star5"></label>
                     <label class="Star5"></label>
+                    <label class="Star5"></label>
                     <label class="Star4"></label>
                     <label class="Star4"></label>
                     <label class="Star4"></label>
                     <label class="Star4"></label>
+                    <label class="Star4"></label>
+                    <label class="Star4"></label>
+                    <label class="Star3"></label>
                 </div>
             </div>
             <div class="Right">
                 <div class="innerL">
                     <span>ES2015</span>
                     <span>REST APIs</span>
+                    <span>Responisive Design</span>
+                    <span>Git</span>
+                    <span>NPM</span>
+                    <span>Agile Development</span>
                     <span>Illustrator</span>
                     <span>Photoshop</span>
                     <span>Webpack</span>
@@ -35,6 +47,10 @@
                 <div class="innerR">
                     <label class="Star5"></label>
                     <label class="Star5"></label>
+                    <label class="Star4"></label>
+                    <label class="Star4"></label>
+                    <label class="Star4"></label>
+                    <label class="Star4"></label>
                     <label class="Star4"></label>
                     <label class="Star4"></label>
                     <label class="Star4"></label>
@@ -125,6 +141,18 @@ span
 @media only screen and (max-width: 800px) 
     #Jobs, #Experience
         margin: 0 10px
+    
+@media only screen and (max-width: 600px)    
+    .Left, .Right
+        width: 100%
+        max-width: 350px
+        margin: 20px
+    
+    h2
+        font-size: 2.5em !important
+    
+    .FlexContainer
+        flex-direction: column
 
 
 span, label::after

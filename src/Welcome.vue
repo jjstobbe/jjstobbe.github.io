@@ -12,9 +12,6 @@
     <div id="line1"></div>
     <div id="line2"></div>
     <div id="line3"></div>
-    <div id="line1-1"></div>
-    <div id="line2-2"></div>
-    <div id="line3-3"></div>
 </div>
 </template>
 
@@ -104,7 +101,7 @@ button:hover
     color: black
 
 .typedContainer
-    width: 600px
+    width: 95vw
     
 .Splash
     height: 100vh

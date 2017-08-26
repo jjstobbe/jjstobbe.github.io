@@ -139,6 +139,10 @@ h2
     img
         width: 90vw
         
+@media only screen and (max-width: 600px)
+    #Container h2
+        font-size: 2.5em
+        
 figure:hover img 
     opacity: 0.7
     
@@ -163,6 +167,7 @@ figure:hover img
 
 .fig figcaption 
     position: absolute
+    width: 80%
     top: 5%
     left: 20px
     right: 40%

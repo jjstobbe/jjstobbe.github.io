@@ -1,9 +1,7 @@
 <template>
 <div id="ResumeWrapper">
-    <router-link :to="'/'"><div id="Back">🡄</div></router-link>
-    <object id="ResumeObject" type="application/pdf">
-        <embed id="Resume" type='application/pdf' />
-    </object>
+    <router-link :to="'/'"><div id="Back">🡠</div></router-link>
+    <iframe id="Resume"></iframe>
 </div>
 </template>
 
@@ -18,23 +16,31 @@
 </script>
 
 <style lang="sass">
+$Background_2: #272727
+$Background: #2b2b2b
+$Primary: #c5a47e
+$Secondary: #FFFFFF
+
 html
-    background-color: #2b2b2b
+    background-color: $Background
     
 #Back
     position: fixed
     top: 0
     left: 0
-    height: 100px
-    width: 100px
-    font-size: 3em
+    margin: 30px
+    width: 70px
+    height: 70px
+    font-size: 2em
     text-align: center
-    line-height: 100px
+    line-height: 70px
     color: white
     text-decoration: none
+    border-radius: 50px
+    background-color: lighten($Background_2, 10%)
     
 
-#ResumeObject
+#Resume
     display: block
     margin: 0 auto
     max-width: 1500px

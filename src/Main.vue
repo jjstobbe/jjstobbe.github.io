@@ -48,7 +48,6 @@ $Background: #2b2b2b
 $Primary: #c5a47e
 $Secondary: #FFFFFF
 
-
 @font-face 
     font-family: "RalewayR"
     src: url('./fonts/Raleway-Regular.ttf') format('opentype')
