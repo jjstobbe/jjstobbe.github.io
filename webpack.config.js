@@ -19,16 +19,36 @@ module.exports = {
               loader: 'vue-loader',
               options: {
                 loaders: {
-                  scss: 'vue-style-loader!css-loader!sass-loader',
-                  sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+                  scss: 'vue-style-loader!css-loader!postcss-loader!sass-loader',
+                  sass: 'vue-style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax'
                 }
               }
             },
             { test: /\.js$/, loader: 'babel-loader', include: /src/ },
             { test: /\.html$/, loader: "html-loader" },
             { test: /\.css$/, loader: "style-loader!css-loader?minimize", include: path.join(__dirname, 'src', 'css') },
-            { test: /\.(png|jpg|jpeg|pdf|gif|svg|json)$/, loader: "file-loader", include: path.join(__dirname, 'src', 'img') },
-            { test: /\.(ttf)$/, loader: "file-loader", include: path.join(__dirname, 'src', 'fonts') }
+            { test: /\.(pdf|json)$/, loader: "file-loader", include: path.join(__dirname, 'src', 'img') },
+            { test: /\.(ttf)$/, loader: "file-loader", include: path.join(__dirname, 'src', 'fonts') },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: ['file-loader?context=src/images&name=images/[path][name].[ext]', {
+                  loader: 'image-webpack-loader',
+                  query: {
+                    mozjpeg: {
+                      progressive: true,
+                    },
+                    optipng: {
+                      optimizationLevel: 7,
+                    },
+                    pngquant: {
+                      quality: '75-90',
+                      speed: 3,
+                    },
+                  },
+                }],
+                exclude: /node_modules/,
+                include: __dirname,
+            }
         ]
     },
     devServer: {

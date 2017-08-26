@@ -5,7 +5,7 @@
         <div id="images">
           <ul>
             <li><img src="./img/Photoshop/HenryDoorlyGeofilter.png"></li>
-            <li><img src="./img/Photoshop/SquirelyPoly3.1.png"></li>
+            <li><img src="./img/PhotoshopProjects.png"></li>
             <li><img src="./img/Photoshop/Symbols.png"></li>
             <li><img src="./img/Photoshop/Landscape_02.png"></li>
             <li><img src="./img/Photoshop/WaveArt.png"></li>
