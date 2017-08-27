@@ -27,24 +27,24 @@ module.exports = {
             { test: /\.js$/, loader: 'babel-loader', include: /src/ },
             { test: /\.html$/, loader: "html-loader" },
             { test: /\.css$/, loader: "style-loader!css-loader?minimize", include: path.join(__dirname, 'src', 'css') },
-            { test: /\.(pdf|json)$/, loader: "file-loader", include: path.join(__dirname, 'src', 'img') },
+            { test: /\.(pdf|json)$/, loader: "file-loader?name=[name].[ext]", include: path.join(__dirname, 'src', 'img') },
             { test: /\.(ttf)$/, loader: "file-loader", include: path.join(__dirname, 'src', 'fonts') },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loaders: [
-                  'file-loader',
-                  {
+                loaders: ['file-loader', {
                     loader: 'image-webpack-loader',
                     query: {
-                        progressive: true,
-                        optimizationLevel: 7,
-                        interlaced: false,
+                        mozjpeg: {
+                          progressive: true,
+                        },
+                        gifsicle: {
+                          interlaced: false,
+                        },
                         optipng: {
                           optimizationLevel: 7,
+                        }
                         },
-                    }
-                  }
-                ],
+                    }],
                 exclude: /node_modules/,
                 include: __dirname,
             }
@@ -67,6 +67,7 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery"
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ]
 }

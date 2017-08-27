@@ -9,8 +9,7 @@
     export default {
         name: 'resume',
         mounted: ()=>{
-            $('#Resume').attr('src', require('./img/Resume_01.pdf'));
-            $('#ResumeObject').attr('data', require('./img/Resume_01.pdf'));
+            $('#Resume').attr('src', require('./img/JackStobbeResume.pdf'));
         }
     }
 </script>
