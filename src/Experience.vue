@@ -64,7 +64,7 @@
         <div class="Job">
             <a href="https://buildertrend.com/"><h4>Buildertrend</h4></a>
             <span>May 2017 - August 2017</span>
-            <label>This summer I had the opportunity to work at buildertrend! I worked no an application to handle all of the feature requests they recieve for their software. It is designed to streamline the Product and Development team's workflow. We built it using C# Web API with Knockout.js as a front-end. I learned quite a bit and I worked with some amazing people!</label>
+            <label>This summer I had the opportunity to work at buildertrend! I worked on an application to handle all of the feature requests they recieve for their software. It is designed to streamline the Product and Development team's workflow. We built it using C# Web API with Knockout.js as a front-end. I learned quite a bit and I worked with some amazing people!</label>
         </div>
         <div class="Job">
             <a href="https://nufoundation.org/"><h4>Nebraska Foundation</h4></a>

@@ -7,6 +7,7 @@
         <div class="Project">
             <figure class="fig">
               <img src="./img/Map.png" />
+              <div class="Overlay">Truck Optimization</div>
               <figcaption>
                 <h3>Software Engineering Project</h3>
                 <p>A team of fellow students and I built an application to find optimal truck routes using the Google Maps API. It takes in locations, groups them using K-Means clustering, and brute-forces the Traveling Salesman Problem to find an optimal path.</p>
@@ -16,6 +17,7 @@
         <div class="Project">
             <figure class="fig">
               <img src="./img/Website.png" />
+              <div class="Overlay">Interactive Resume</div>
               <figcaption>
                 <h3>This Website</h3>
                 <p>This website is obviously a project of mine. I spent about a week working on this site. It uses Vue components, Sass, ES2016, webpack, and particles.js.</p>
@@ -25,6 +27,7 @@
         <div class="Project">
             <figure class="fig">
               <img src="./img/Buildertrend.png" />
+              <div class="Overlay">Buildertrend</div>
               <figcaption>
                 <h3>Feature Request Web App</h3>
                 <p>I helped develop a Feature Request tracking application for buildertrend. We built it using C# .NET WebAPI and KnockoutJS. I learned a ton of Javascript and got more comfortable with C#.</p>
@@ -34,6 +37,7 @@
         <div class="Project">
             <figure class="fig">
               <img src="./img/IT_Innovation.png" />
+              <div class="Overlay">IT Innovation Cup</div>
               <figcaption>
                 <h3>IT Innovation Cup</h3>
                 <p>My team created a virtual reality driving simulator to
@@ -45,6 +49,7 @@
             <a @click="redirectToDashboard()">
                 <figure class="fig">
                   <img src="./img/Dashboard.png" />
+                  <div class="Overlay">Personal Dashboard</div>
                   <figcaption>
                     <h3>Personal Dashboard</h3>
                     <p>I built a personal dashboard to keep track of the weather, my To-Do's and keep a calendar of events. I built it as a single-page web application to practice Javascript. It also has an authentication system and supports a variety of operations.</p>
@@ -56,6 +61,7 @@
         <router-link :to="'Gallery'">
             <figure class="fig">
               <img src="./img/PhotoshopProjects.png" />
+              <div class="Overlay">Graphic Design</div>
               <figcaption>
                 <h3>Graphic Design Projects</h3>
                 <p>I've dabbled in graphic design. I've created things from assets for game design, to snapchat filters, to logos, to icons. Click to check out a gallery.</p>
@@ -114,7 +120,22 @@ img
 label
     font-weight: bold
     font-size: 1.2em
-    
+
+.Overlay
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 2
+    background: transparent
+    transition: all 0.5 ease
+    margin: 0 10px
+    width: 30vw
+    color: white
+    font-family: RalewayR
+    font-weight: bold
+
 .Project
     display: inline-block
     
@@ -143,8 +164,10 @@ h2
     #Container h2
         font-size: 2.5em
         
-figure:hover img 
-    opacity: 0.7
+figure:hover 
+    .Overlay
+        background: rgba(black, 0.3)
+
     
     
 /* Figure Animations below */
@@ -174,7 +197,7 @@ figure:hover img
     padding: 15px 20px
     background-color: #ffffff
     box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.6)
-    z-index: 1
+    z-index: 4
     -webkit-transform: translateX(20px)
     transform: translateX(20px)
     opacity: 0
