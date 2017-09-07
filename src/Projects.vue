@@ -88,7 +88,7 @@
         </router-link>
         </div><!--
         --><div class="Project">
-        <a href="/Minesweeper">
+        <a href="/minesweeper">
             <figure class="fig">
               <img src="./img/Minesweeper.png" />
               <div class="Overlay"><span>Minesweeper</span></div>
