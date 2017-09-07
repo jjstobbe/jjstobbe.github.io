@@ -105,7 +105,7 @@ button:hover
     
 .Splash
     height: 100vh
-    width: 100%
+    width: 100vw
     
     h2
         display: inline
