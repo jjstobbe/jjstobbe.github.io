@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Minesweeper</title>
+    <meta name="theme-color" content="#333333" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/minesweeper.css">
+</head>
+    
+<script type='text/javascript' src='js/knockout.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script async type='text/javascript' src='js/minesweeper.js'></script>
+<body>
+    <div data-bind="with: Minesweeper">
+        <div data-bind="foreach: TileRows" class="Wrapper">
+            <ul data-bind="foreach: Tiles" class="Row">
+                <li data-bind="click: ()=>{TileClicked($data)}, event: {contextmenu: ()=>{TileRightClicked($data)}},css: {Uncovered:Uncovered, Flag: Flag}" class="Tile">
+                    <!-- ko if: Uncovered -->
+                    <span data-bind="visible: Uncovered() && !Mine(), text: Number, css: 'color'+Number()"></span>
+                    <span data-bind="visible: Mine, css: {Mine: Mine}"></span>
+                    <!-- /ko -->
+                    <span data-bind="visible: !Uncovered(),css: {Flag: Flag}">&nbsp;</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="Done" data-bind="visible: Minesweeper.Status() == 1">
+        <span>
+            <div>
+                Game Over
+            </div>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(0)}">Retry</div>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(3)}">Change Difficulty</div>
+        </span>
+    </div>
+    <div class="Done" data-bind="visible: Minesweeper.Status() == 2">
+        <span>
+            <div>
+                Victory!
+            </div>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(0)}">Retry</div>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(3)}">Change Difficulty</div>
+        </span>
+    </div>
+    <div class="Done" data-bind="visible: Minesweeper.Status() == 3">
+        <span>
+            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(9);Minesweeper.Mines(10);Minesweeper.Status(0);}">Easy</div>
+            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(16);Minesweeper.Mines(40);Minesweeper.Status(0);}">Medium</div>
+            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Size(22);Minesweeper.Mines(99);Minesweeper.Status(0);}">Hard</div>
+            <div class="slctBtn" data-bind="click: ()=>{Minesweeper.Status(4)}">Custom</div>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(0)}">Retry</div>
+        </span>
+    </div>
+    <div class="Done" data-bind="visible: Minesweeper.Status() == 4">
+        <span>
+            <div id="settingWrapper">
+                <div class="SettingHeader">Size</div>
+                <input class="Input" type="number" data-bind="textInput: Minesweeper.Size">
+                <div class="SettingHeader">Mines</div>
+                <input class="Input"  type="number" data-bind="textInput: Minesweeper.Mines">
+            </div>
+            <div class="btn" data-bind="click: ()=>{Minesweeper.Status(3)}">Back</div>
+            <div class="btn" data-bind="visible: (Minesweeper.Size() > 3 && Minesweeper.Mines() > 0 && Minesweeper.Mines() < Minesweeper.Size()*Minesweeper.Size() - 1),click: ()=>{Minesweeper.Status(0)}">Start</div>
+        </span>
+    </div>
+</body>
+</html>
