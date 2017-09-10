@@ -16,8 +16,9 @@
               <img src="./img/WFF.png" />
               <div class="Overlay"><span>Water For Food</span></div>
               <figcaption>
-                <h3>Graphic Design Projects</h3>
-                <p>I've dabbled in graphic design. I've created things from assets for game design, to snapchat filters, to logos, to icons. Click to check out a gallery.</p>
+                <h3>Water For Food</h3>
+                <p>I am working on a project to collect real-time and spatial agriculture
+            data. This data will help farmers optimize their work and hopefully revolutionize our understanding of agricultural production.</p>
               </figcaption>
             </figure>
         </router-link>
