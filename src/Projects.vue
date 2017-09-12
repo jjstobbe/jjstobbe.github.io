@@ -11,7 +11,6 @@
     </div>
     <div class="CenterProject">
         <div class="Project">
-            <router-link :to="'Gallery'">
             <figure class="fig">
               <img src="./img/WFF.png" />
               <div class="Overlay"><span>Water For Food</span></div>
@@ -21,7 +20,6 @@
             data. This data will help farmers optimize their work and hopefully revolutionize our understanding of agricultural production.</p>
               </figcaption>
             </figure>
-        </router-link>
         </div><!--
         --><div class="Project">
             <figure class="fig">
