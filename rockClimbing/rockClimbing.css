@@ -1,0 +1,28 @@
+body {
+    font-family: 'Lato', sans-serif !important;
+    color: rgba(68, 68, 68);
+}
+
+p {
+    font-weight: 300;
+    font-size: 18px;
+}
+
+#Splash h1 {
+    text-align: center;
+    font-size: 3em;
+    text-transform: uppercase;
+}
+
+#MainDesc {
+    font-size: 18px;
+    margin-top: 80px;
+    font-weight: 300;
+}
+
+img {
+    display: block;
+    margin: 40px auto;
+    width: 100%;
+}
+
