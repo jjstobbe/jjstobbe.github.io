@@ -1,1 +1,23 @@
-#mapid { height: 400px; }
+#mapid { height: 100%; width: 100%; }
+#mapContainer {  height: 100%; overflow:hidden; display: block; }
+h2 { text-align: center; }
+body { font-family: 'Lato', sans-serif !important; height: 100%; }
+html { height: 100%; }
+#Submit { text-align: center; max-width: 800px; margin: 10px auto; }
+
+.flexContainer {
+    height: 100%;
+}
+.app {
+background: green;
+}
+.mapContainer {
+background: pink;
+}
+.flexbox.flexContainer {
+display: flex;
+flex-direction: column;
+}
+.flexbox.container .mapContainer {
+flex-grow: 1;
+}
