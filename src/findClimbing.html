@@ -9,14 +9,19 @@
         crossorigin=""/>
 </head>
 <body class="flexbox flexContainer">
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+
     <div id="app" class="container">
         <h2>Find a Rock Climbing Center Near You!</h2>
 
         <form class="row" id="Submit" >
             <div class="input-group">
-                <input type="text" v-model="place" placeholder="City, State, Address, Zip Code..." class="form-control" id="inlineFormInputGroup" placeholder="Username">
+                <input type="text" v-model="place" placeholder="City, State, Address, Zip Code..." class="form-control" id="SearchField" placeholder="Username">
                 <span v-on:click="submit" class="input-group-btn">
-                    <button class="btn btn-secondary" type="button">Go!</button>
+                    <button class="btn btn-secondary" type="submit">Go!</button>
                 </span>
             </div>
         </form>
@@ -26,8 +31,7 @@
         <div id="mapid"></div>
     </div>
 
-    <script src="https://unpkg.com/vue"></script>
-    <script src="./findClimbing/find.component.js"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBbKk6rWKf_ldzhaDFXhOj-fLD5W_RUmMU"></script>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
         integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
         crossorigin=""></script>
