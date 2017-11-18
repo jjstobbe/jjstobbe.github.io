@@ -886,33 +886,45 @@ var map = L.map('mapid', {
     preferCanvas: true
 }).setView([39.82, -98.58], 4);
 
+var markers = [];
+
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
 for(var i = 0;i<locations.length;i++){
-	L.circle([locations[i][1], locations[i][2]], 1000).addTo(map)
-		.bindPopup(locations[i][0]);
+	markers.push(L.circle([locations[i][1], locations[i][2]], 1000).addTo(map)
+		.bindPopup(locations[i][0]));
 }
 
 // Gets current location if accepted
 if (navigator.geolocation) {
-	navigator.geolocation.getCurrentPosition(({coords}) => { handleData(coords.latitude, coords.longitude); });
+	navigator.geolocation.getCurrentPosition(({coords}) => { app.handleData(coords.latitude, coords.longitude); });
 }
 
-var searchField = $('#SearchField');
 var geocoder = new google.maps.Geocoder();
 
-$('#Submit').submit(function (e) {
-	e.preventDefault();
-	e.stopImmediatePropagation();
+$(document).ready(function() {
+	var headerSearch = $('#HeaderSearch');
+	var resultSearch = $('#ResultSearch');
+	
+	$('#HeaderSubmit').submit(function (e) {
+		e.preventDefault();
+		
+		if(headerSearch.val().trim() != ''){
+			getLocation(headerSearch.val());
+		}
+	});
 
-	if(searchField.val().trim() != ''){
-		getLocation(searchField.val());
-	}
+	$('#ResultSubmit').submit(function (e) {
+		e.preventDefault();
 
-	return false;
+		if(resultSearch.val().trim() != ''){
+			getLocation(resultSearch.val());
+		}
+	});
 });
+
 
 function getLocation(address) {
 	if (geocoder) {
@@ -921,7 +933,7 @@ function getLocation(address) {
 				var lat = results[0].geometry.location.lat();
 				var lng = results[0].geometry.location.lng();
 
-				handleData(lat, lng);
+				app.handleData(lat, lng);
 		   }
 		   else {
 			  console.log("Geocoding failed: " + status);
@@ -931,38 +943,55 @@ function getLocation(address) {
 };
 
 var Rm = 3961; // mean radius of the earth (miles) at 39 degrees from the equator
-var Rk = 6373; // mean radius of the earth (km) at 39 degrees from the equator
-
-function handleData(lat, lng) {
-	map.setView([lat, lng], 10);
-
-	var lat1 = deg2rad(lat);
-	var lon1 = deg2rad(lng);
-
-	for(var i = 0; i < locations.length;i++){
-		var lat2 = deg2rad(locations[i][1]);
-		var lon2 = deg2rad(locations[i][2]);
-		
-		// find the differences between the coordinates
-		var dlat = lat2 - lat1;
-		var dlon = lon2 - lon1;
-		
-		// here's the heavy lifting
-		a  = Math.pow(Math.sin(dlat/2),2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dlon/2),2);
-
-		c  = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a)); // great circle distance in radians
-
-		dm = c * Rm; // great circle distance in miles
-		
-		// round the results down to the nearest 1/1000
-		if(dm < 100){
-			console.log(dm, locations[i][0]);
-		}
-	}
-}
 
 function deg2rad(deg) {
 	rad = deg * Math.PI/180; // radians = degrees * pi/180
 	return rad;
 }
+
+var app = new Vue({
+	el: '#app',
+	data: {
+		results: []	
+	},
+	methods: {
+		pan: (lat,lng, i) => {
+			map.setView([lat, lng], 10);
+
+			markers[i].openPopup();
+		},
+		handleData: (lat, lng) => {
+			var tempResults = [];
+
+			map.setView([lat, lng], 10);
+		
+			var lat1 = deg2rad(lat);
+			var lon1 = deg2rad(lng);
+		
+			for(var i = 0; i < locations.length;i++){
+				var lat2 = deg2rad(locations[i][1]);
+				var lon2 = deg2rad(locations[i][2]);
+				
+				// find the differences between the coordinates
+				var dlat = lat2 - lat1;
+				var dlon = lon2 - lon1;
+				
+				// here's the heavy lifting
+				a  = Math.pow(Math.sin(dlat/2),2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dlon/2),2);
+		
+				c  = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a)); // great circle distance in radians
+		
+				dm = Math.round(c * Rm, 2); // great circle distance in miles
+				
+				// round the results down to the nearest 1/1000
+				if(dm < 100){
+					tempResults.push([...locations[i], dm, i]);
+				}
+			}
+			// Sorts by closest
+			tempResults.sort((a,b) => { return a[3] - b[3]; });
+			app.results = tempResults;
+		}
+	}
+})
 
