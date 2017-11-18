@@ -21,3 +21,49 @@ html { height: 100%; }
 .flexbox.container .mapContainer {
     flex-grow: 1;
 }
+
+
+#ResultOverlay {
+    width: 300px;
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.Result {
+    padding: 10px;
+    background: white;
+    border-bottom: 1px solid #e6e6e6;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+#ResultSubmit {
+    padding: 10px 20px 0px 20px;
+}
+
+.Result:hover {
+    background-color: #f4f4f4;
+    transition: all 0.5s ease;
+}
+
+@media (max-width: 800px) {
+    #ResultOverlay {
+        display: none;
+    }
+}
+
+@media (min-width: 800px) {
+    #HeaderSubmit {
+        display: none;
+    }
+    .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+        left: 300px;
+    }
+}

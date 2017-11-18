@@ -13,14 +13,12 @@
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-
-    <div id="app" class="container">
-        <h2>Find a Rock Climbing Center Near You!</h2>
-
-        <form class="row" id="Submit" >
+    <div class="container">
+        <form id="HeaderSubmit" class="row">
+            <h2>Find a Rock Climbing Center Near You!</h2>
             <div class="input-group">
-                <input type="text" v-model="place" placeholder="City, State, Address, Zip Code..." class="form-control" id="SearchField" placeholder="Username">
-                <span v-on:click="submit" class="input-group-btn">
+                <input type="text"  placeholder="City, State, Address, Zip Code..." class="form-control" id="HeaderSearch">
+                <span class="input-group-btn">
                     <button class="btn btn-secondary" type="submit">Go!</button>
                 </span>
             </div>
@@ -28,9 +26,30 @@
     </div>
 
     <div id="mapContainer">
+        <div id="app">
+            <div id="ResultOverlay">
+                <form id="ResultSubmit" class="row">
+                    <div class="input-group">
+                        <input type="text"  placeholder="City, State, Address, Zip Code..." class="form-control" id="ResultSearch">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="submit">Go!</button>
+                        </span>
+                    </div>
+                </form>
+                <div v-if="results" v-on:click="pan(place[1],place[2], place[4])" class="Result" v-for="place in results"> 
+                    <div v-if="place[3] && place[3]>1" class="text-muted">{{ place[3] }} miles away</div>
+                    <div v-else-if="place[3]" class="text-muted">{{ place[3] }} mile away</div>
+                    <span v-html="place[0]"></span>
+                </div>
+                <div v-if="results.length <= 0">
+                    <span id="No Results">No results..</span>
+                </div>
+            </div>
+        </div>
         <div id="mapid"></div>
     </div>
 
+    <script src="https://unpkg.com/vue"></script>
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyBbKk6rWKf_ldzhaDFXhOj-fLD5W_RUmMU"></script>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
         integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
