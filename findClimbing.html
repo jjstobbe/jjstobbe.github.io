@@ -26,24 +26,22 @@
     </div>
 
     <div id="mapContainer">
-        <div id="app">
-            <div id="ResultOverlay">
-                <form id="ResultSubmit" class="row">
-                    <div class="input-group">
-                        <input type="text"  placeholder="City, State, Address, Zip Code..." class="form-control" id="ResultSearch">
-                        <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="submit">Go!</button>
-                        </span>
-                    </div>
-                </form>
-                <div v-if="results" v-on:click="pan(place[1],place[2], place[4])" class="Result" v-for="place in results"> 
-                    <div v-if="place[3] && place[3]>1" class="text-muted">{{ place[3] }} miles away</div>
-                    <div v-else-if="place[3]" class="text-muted">{{ place[3] }} mile away</div>
-                    <span v-html="place[0]"></span>
+        <div id="ResultOverlay">
+            <form id="ResultSubmit" class="row">
+                <div class="input-group">
+                    <input type="text"  placeholder="City, State, Address, Zip Code..." class="form-control" id="ResultSearch">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit">Go!</button>
+                    </span>
                 </div>
-                <div v-if="results.length <= 0">
-                    <span id="No Results">No results..</span>
-                </div>
+            </form>
+            <div v-if="results" v-on:click="pan(place[1],place[2], place[4])" class="Result" v-for="place in results"> 
+                <div v-if="place[3] && place[3]>1" class="text-muted">{{ place[3] }} miles away</div>
+                <div v-else-if="place[3]" class="text-muted">{{ place[3] }} mile away</div>
+                <span v-html="place[0]"></span>
+            </div>
+            <div v-if="results.length <= 0">
+                <span id="NoResults" class="text-muted">{{ NoResults }}</span>
             </div>
         </div>
         <div id="mapid"></div>

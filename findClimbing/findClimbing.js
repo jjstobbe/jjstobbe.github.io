@@ -903,6 +903,7 @@ if (navigator.geolocation) {
 }
 
 var geocoder = new google.maps.Geocoder();
+var marker;
 
 $(document).ready(function() {
 	var headerSearch = $('#HeaderSearch');
@@ -933,6 +934,13 @@ function getLocation(address) {
 				var lat = results[0].geometry.location.lat();
 				var lng = results[0].geometry.location.lng();
 
+				if(marker){
+					map.removeLayer(marker);
+				}
+				
+				marker = L.marker([lat, lng]);
+				marker.addTo(map);
+
 				app.handleData(lat, lng);
 		   }
 		   else {
@@ -950,9 +958,10 @@ function deg2rad(deg) {
 }
 
 var app = new Vue({
-	el: '#app',
+	el: '#ResultOverlay',
 	data: {
-		results: []	
+		results: [],
+		NoResults: 'No Results..'
 	},
 	methods: {
 		pan: (lat,lng, i) => {
@@ -991,6 +1000,9 @@ var app = new Vue({
 			// Sorts by closest
 			tempResults.sort((a,b) => { return a[3] - b[3]; });
 			app.results = tempResults;
+			if(app.results.length == 0) {
+				app.NoResults = 'No gyms in 100 miles..';
+			}
 		}
 	}
 })
