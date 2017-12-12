@@ -9,8 +9,20 @@ p {
     font-size: 18px;
 }
 
+.navBackground a {
+    color: inherit;
+}
+
+.navBackground a:hover {
+    color: inherit;
+}
+
+#share {
+    margin-top: 60px !important;
+}
+
 #Splash h1 {
-    margin-top: 40px;
+    margin-top: 20px;
     text-align: center;
     font-size: 3em;
 }
@@ -39,5 +51,66 @@ img {
     background-color: #f5f5f5;
 }
 
+.navBackground {
+    background: rgb(37, 37, 37);
+    padding-bottom: 60px;
+    color: white;
+}
 
+#logoContainer {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    display:inline-block;
+    position: relative;
+    top: -50px;
+    background: rgb(37, 37, 37);
+    border-radius: 200px;
+}
+
+#climbingLogo {
+    text-align: center;
+    display:inline-block;
+    width: 80px;
+    margin: 0;
+    top: 10px;
+    position: relative;
+}
+
+.navElement {
+    display: inline-block;
+    font-size: 30px;
+    padding: 5px 30px;
+    margin: 20px 0px 5px 0px;
+    border-right: 1px dashed rgba(107, 107, 107, 0.5);
+    cursor: pointer;
+    opacity: 0.85;
+    border-bottom: none;
+    transition: all 0.5s ease;
+}
+
+.navElement:hover {
+    opacity: 1;
+    border-bottom: rgba(187, 187, 187, 0.3);
+}
+
+.navElement.active {
+    opacity: 1;
+}
+
+.navElement:nth-of-type(3) {
+    border: none;
+}
+
+.nav {
+    text-align: center;
+}
+
+footer {
+    margin-top: 30px;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 20px;
+    background: rgb(37, 37, 37);
+}
 
