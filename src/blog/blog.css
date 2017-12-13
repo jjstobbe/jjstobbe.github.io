@@ -1,0 +1,19 @@
+.LeftSide {
+    display: inline-block;
+    padding: 15px;
+    max-width: 740px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#mainContainer {
+    text-align: center;
+}
+
+#mainDesc {
+    margin-top: 0 !important;
+}
+
+p {
+    margin-top: 29px !important;
+}
