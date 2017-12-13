@@ -1,0 +1,100 @@
+#mapid { height: 100%; }
+#mapContainer {  height: 100%; overflow:hidden; display: block; }
+h2 { text-align: center; }
+body { font-family: 'Lato', sans-serif !important; height: 100%; }
+html { height: 100%; }
+#Submit { text-align: center; max-width: 800px; margin: 10px auto; }
+
+.btn {
+    background-color: #0ae !important;
+    color: white;
+}
+
+.Result {
+    padding: 10px;
+    background: white;
+    border-bottom: 1px solid #e6e6e6;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+#ResultSubmit {
+    padding: 10px 20px 0px 20px;
+}
+
+.Result:hover {
+    background-color: #f4f4f4;
+    transition: all 0.5s ease;
+}
+
+/* If the left menu is closed */
+@media (max-width: 800px) {
+    #ResultOverlay {
+        display: none;
+    }
+
+    .flexContainer {
+        height: 100%;
+    }
+    .flexbox.flexContainer {
+        display: flex;
+        flex-direction: column;
+    }
+    .flexbox.container .mapContainer {
+        flex-grow: 1;
+    }
+}
+
+/* If the left menu is open */
+@media (min-width: 800px) {
+    #HeaderSubmit {
+        display: none;
+    }
+
+    #ResultOverlay {
+        width: 350px;
+        float: left;
+        height: 100vh;
+        z-index: 1000;
+        background: white;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    #ResultOverlay::before {
+        width: 1px;
+        content: '';
+        position:absolute;
+        height: 100vh;
+        left: 350px;
+        top: 0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+    }
+
+    #ResultOverlay::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+    
+    #ResultOverlay::-webkit-scrollbar {
+        width: 5px;
+        background-color: #F5F5F5;
+    }
+    
+    #ResultOverlay::-webkit-scrollbar-thumb {
+        background-color: #0ae;
+        background-image: -webkit-gradient(linear, 0 0, 0 100%,
+                           color-stop(.5, rgba(255, 255, 255, .2)),
+                           color-stop(.5, transparent), to(transparent));
+    }
+}
+
+
+
+#NoResults {
+    text-align: center;
+    display: block;
+}
